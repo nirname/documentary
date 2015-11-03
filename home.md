@@ -1,6 +1,6 @@
 # Template for documentation
 
-This is just template that assumes you are using `pandoc`, `markdown` and `make`
+This is just template that assumes you are using `markdown`, `pandoc` and `make`
 as tools for creating documentation.
 
 Being required quite often `makefile` and pandoc templates (`github-styles.css`
