@@ -3,6 +3,7 @@
 !/styles/*
 !/templates
 !/templates/*
+!nginx.conf
 
 !*.md
 

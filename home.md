@@ -38,3 +38,15 @@ Do all the local commits then do:
     git checkout origin/master -- readme.md
 
 Then do commits normally
+
+## Pretty viewing
+
+You may wish to use `nginx` to view the html document files in browser.
+
+Uncomment `root` directive in `nginx.conf` and set path:
+
+    #root /path/to/project;
+
+Start `nginx` like so:
+
+    sudo nginx -c /path/to/project/nginx.conf
