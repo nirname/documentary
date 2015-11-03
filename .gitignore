@@ -3,9 +3,9 @@
 !/styles/*
 !/templates
 !/templates/*
-!nginx.conf
 
 !*.md
+!*.example
 
 !.gitignore
 !makefile

@@ -43,6 +43,11 @@ Then do commits normally
 
 You may wish to use `nginx` to view the html document files in browser.
 
+Create `nginx.conf`:
+
+    cd /path/to/project
+    cp nginx.conf.example nginx.conf
+
 Uncomment `root` directive in `nginx.conf` and set path:
 
     #root /path/to/project;
