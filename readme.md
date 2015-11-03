@@ -19,7 +19,7 @@ Clone this project.
 Then do:
 
     git remote rename origin documentary
-    git remote add origin your-new-repository
+    git remote add origin git@your-new-repository.git
 
 Remove `readme.md` and do whatever you want, e.g. for generating documentation
 use:
@@ -29,6 +29,12 @@ use:
 
 ## Updating
 
-In case some day you want to update templates and styles refer to git features:
+In case some day you want to update templates and styles refer to git features.
+And of course you'd like to keep your `readme.md` unchanged, don't you?
+Do all the local commits then do:
 
-    git merge --squash -s subtree --no-commit documentary/master
+    git fetch documentary
+    git merge --no-ff --squash -s subtree --no-commit documentary/master
+    git checkout origin/master -- readme.md
+
+Then do commits normally
