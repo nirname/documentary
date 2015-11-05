@@ -2,19 +2,31 @@
 MD = pandoc --data-dir=$(CURDIR) --from markdown --css styles/github-markdown.css --template github-markdown.html --standalone
 # use --toc option generate links to anchors
 
-MD_SOURCES = $(shell ls *.md)
-HTML = $(MD_SOURCES:%.md=%.html)
+SOURCES_DIR = .
+OBJECTS_DIR = doc
+
+#MD_SOURCES = $(shell find . -name '*.md')
+MD_SOURCES = $(shell find . -name '*.md' | cut -sd / -f 2-)
+HTML_OBJECTS = $(MD_SOURCES:%.md=$(OBJECTS_DIR)/%.html)
+
+#all:
+#	@echo $(MD_SOURCES)
+#	@echo $(HTML_OBJECTS)
 
 all: md
 
-md: $(HTML)
+md: $(HTML_OBJECTS)
 
-%.html: %.md makefile
+$(OBJECTS_DIR)/%.html: $(SOURCES_DIR)/%.md makefile
+	@mkdir -p $(@D)
 	$(MD) --to html $< --output $@
 
 PHONY: clean
 
-clean: clean_html
+clean: clean_html clean_dir
 
 clean_html:
-	rm *.html
+	rm $(HTML_OBJECTS)
+
+clean_dir:
+	find $(OBJECTS_DIR) -type d -empty -delete
