@@ -1,5 +1,5 @@
 # 'Makefile'
-MD = pandoc --data-dir=$(CURDIR) --from markdown --css styles/github-markdown.css --template github-markdown.html --standalone
+MD = pandoc --data-dir=$(CURDIR) --from markdown --css ../styles/github-markdown.css --template github-markdown.html --standalone
 # use --toc option generate links to anchors
 
 SOURCES_DIR = .

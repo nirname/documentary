@@ -17,5 +17,9 @@ http {
       #root /path/to/project;
       try_files /$uri /$uri.html;
     }
+
+    location /styles {
+      #root /path/to/styles/;
+    }
   }
 }
