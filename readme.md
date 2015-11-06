@@ -31,10 +31,18 @@ use:
 
 In case some day you want to update templates and styles refer to git features.
 And of course you'd like to keep your `readme.md` unchanged, don't you?
-Do all the local commits then do:
+Do all the local commits then:
 
+    # Working with separate branch
+    git co -b documentary documentar/master
+    git pull
+    git co master
+    git merge --squash --no-commit documentary
+    git checkout origin/master -- readme.md
+
+    # Working with remote master
     git fetch documentary
-    git merge --squash -s subtree --no-commit documentary/master
+    git merge --squash --no-commit documentary/master
     git checkout origin/master -- readme.md
 
 Then do commits normally
