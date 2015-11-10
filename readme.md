@@ -21,6 +21,10 @@ Then do:
     git remote rename origin documentary
     git remote add origin git@your-new-repository.git
 
+    git push -u origin master
+
+## Using
+
 Remove `readme.md` and do whatever you want, e.g. for generating documentation
 use:
 
@@ -34,9 +38,11 @@ And of course you'd like to keep your `readme.md` unchanged, don't you?
 Do all the local commits then:
 
     # Working with separate branch
-    git co -b documentary documentar/master
+    git checkout -b documentary documentary/master # do it once
+    git checkout documentary # later
+
     git pull
-    git co master
+    git checkout master
     git merge --squash --no-commit documentary
     git checkout origin/master -- readme.md
 
@@ -45,7 +51,12 @@ Do all the local commits then:
     git merge --squash --no-commit documentary/master
     git checkout origin/master -- readme.md
 
-Then do commits normally
+To keep you `readme.md` do:
+
+    git stash # if you have local changes
+    git merge --squash --no-commit documentary/master
+    git checkout origin master -- readme.md origin/master
+    git pop # if you had local changes
 
 ## Pretty viewing
 
