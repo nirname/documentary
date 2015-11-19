@@ -9,6 +9,10 @@ http {
   server {
     #root /path/to/project/doc;
 
+    location = / {
+      index index.html;
+    }
+
     location ~ \.md$ {
       if (!-f $request_filename) {
         rewrite ^(.*)\.md$ $1 permanent;
