@@ -14,6 +14,10 @@ Current template is simplified and contains only `$body`, `$css`, `$dir` and
 
 ## How to start
 
+Install the requirements:
+
+    sudo apt-get install pandoc
+
 Clone this project.
 
 Then do:
@@ -61,6 +65,8 @@ To keep you `readme.md` do:
 ## Pretty viewing
 
 You may wish to use `nginx` to view the html document files in browser.
+
+    sudo apt-get install nginx
 
 Create `nginx.conf`:
 
