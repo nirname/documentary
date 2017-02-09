@@ -1,11 +1,2 @@
-*
-!/styles
-!/styles/*
-!/templates
-!/templates/*
-
-!*.md
-!*.example
-
-!.gitignore
-!makefile
+nginx.conf
+doc
