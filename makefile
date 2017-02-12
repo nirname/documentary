@@ -22,7 +22,7 @@ MD_SOURCES = $(shell find $(SOURCES_DIR) -name '*.md' | cut -sd / -f 2-)
 HTML_OBJECTS = $(MD_SOURCES:%.md=$(OBJECTS_DIR)/%.html)
 
 all: assets sources
-	@echo "Done"
+# @echo "Done"
 
 assets: $(CSS_BUILDS)
 
@@ -39,10 +39,10 @@ $(OBJECTS_DIR)/%.html: $(SOURCES_DIR)/%.md makefile
 	@$(MD) --to html $< --output $@
 	@sed -i '' -e '/href="./s/\.md/\.html/g' $@
 
-watch:
-	(while true; do make; sleep 5; done) | grep -v 'make\[1\]'
-
 PHONY: watch serve clean debug
+
+watch:
+	(while true; do make; sleep 1; done) | grep -v 'make\[1\]'
 
 serve:
 	cd $(OBJECTS_DIR) && python -m SimpleHTTPServer 8000
