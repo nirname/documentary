@@ -42,7 +42,7 @@ $(OBJECTS_DIR)/%.html: $(SOURCES_DIR)/%.md makefile
 watch:
 	(while true; do make; sleep 5; done) | grep -v 'make\[1\]'
 
-PHONY: serve clean debug
+PHONY: watch serve clean debug
 
 serve:
 	cd $(OBJECTS_DIR) && python -m SimpleHTTPServer 8000
