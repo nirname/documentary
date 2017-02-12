@@ -35,6 +35,7 @@ md_sources: $(HTML_OBJECTS)
 $(OBJECTS_DIR)/%.html: $(SOURCES_DIR)/%.md makefile
 	@mkdir -p $(@D)
 	$(MD) --to html $< --output $@
+	sed -i '' -e '/href="./s/\.md/\.html/g' $@
 
 PHONY: clean debug
 
