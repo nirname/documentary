@@ -1,6 +1,6 @@
 # Documentary
 
-This is a static website compilator for `markdown` pages.
+This is a **static website compilator** for Markdown pages.
 
 ## Installation
 
@@ -10,8 +10,7 @@ Install the requirements:
 
 Clone this project from here and remove `.git` folder:
 
-    git clone git@github.com:/nirname/documentary.git
-    cd documentary && rm -rf .git
+    git clone git@github.com:/nirname/documentary.git && cd documentary && rm -rf .git
 
 ... or [download it](https://github.com/nirname/documentary/archive/master.zip), or
 fork it.

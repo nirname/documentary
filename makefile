@@ -36,13 +36,19 @@ md_sources: $(HTML_OBJECTS)
 
 $(OBJECTS_DIR)/%.html: $(SOURCES_DIR)/%.md makefile
 	@mkdir -p $(@D)
-	@$(MD) --to html $< --output $@
+	$(MD) --to html $< --output $@
 	@sed -i '' -e '/href="./s/\.md/\.html/g' $@
 
 PHONY: watch serve clean debug
 
 watch:
-	(while true; do make; sleep 1; done) | grep -v 'make\[1\]'
+	while true; do make --silent; sleep 1; done
+
+# watch:
+# 	while true; do \
+# 		make $(WATCHMAKE); \
+# 		inotifywait -qre close_write .; \
+# 	done
 
 serve:
 	cd $(OBJECTS_DIR) && python -m SimpleHTTPServer 8000
