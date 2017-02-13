@@ -3,7 +3,7 @@
 # Where sources are located
 SOURCES_DIR = .
 # Where all the compiled sources will be
-OBJECTS_DIR = doc
+OBJECTS_DIR = docs
 
 # Where assets are located
 ASSETS_DIR = assets
