@@ -1,0 +1,10 @@
+.markdown-body {
+  min-width: 200px;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.markdown-body dl dd {
+  padding: 0;
+}
