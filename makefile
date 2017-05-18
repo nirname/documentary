@@ -15,10 +15,8 @@ MD = pandoc --data-dir=$(CURDIR) --from markdown \
 	--css $(ASSETS_DIR)/github-markdown.css\
 	--css $(ASSETS_DIR)/documentary.css \
 	--css $(ASSETS_DIR)/highlight/styles/default.css \
-	--template documentary.html --standalone
-
-	# \
-	# --filter ./graphviz.py
+	--template documentary.html --standalone \
+	--filter ./graphviz.py
 
 DOT = dot -Tsvg
 
