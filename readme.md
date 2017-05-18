@@ -50,7 +50,7 @@ Markdown support comes from Pandoc.
 
 ### Styles
 
-[Github Markdown styles](https://github.com/sindresorhus/github-markdown-css) are built in
+[Github Markdown styles](https://github.com/sindresorhus/github-markdown-css) are built in.
 
 ### Code highlighting
 
