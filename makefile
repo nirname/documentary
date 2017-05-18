@@ -17,6 +17,9 @@ MD = pandoc --data-dir=$(CURDIR) --from markdown \
 	--css $(ASSETS_DIR)/highlight/styles/default.css \
 	--template documentary.html --standalone
 
+	# \
+	# --filter ./graphviz.py
+
 DOT = dot -Tsvg
 
 CSS_ASSETS = $(shell find $(ASSETS_DIR) -name '*.css' | cut -sd / -f 2-)
@@ -46,9 +49,9 @@ $(BUILDS_DIR)/%.js: $(ASSETS_DIR)/%.js
 
 sources: $(HTML_OBJECTS) $(DOT_OBJECTS)
 
-$(OBJECTS_DIR)/%.html: $(SOURCES_DIR)/%.md makefile
+$(OBJECTS_DIR)/%.html: $(SOURCES_DIR)/%.md $(SOURCES_DIR)/makefile $(SOURCES_DIR)/graphviz.py templates/documentary.html
 	@mkdir -p $(@D)
-	$(MD) --to html $< --output $@
+	$(MD) --to html5 $< --output $@
 	@sed -i '' -e '/href="./s/\.md/\.html/g' $@
 	@sed -i '' -e '/src="./s/\.dot/\.svg/g' $@
 
