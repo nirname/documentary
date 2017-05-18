@@ -1,6 +1,6 @@
 # Documentary
 
-This is a **static website compilator** that works like this
+This is a **static website compilator** that works like this:
 
 ```graphviz
 digraph workflow {
@@ -33,9 +33,10 @@ git clone git@github.com:/nirname/documentary.git && cd documentary && rm -rf .g
 
 ## Usage
 
-Put some `.md` files inside and compile them
+Run this code inside this project
 
 ```bash
+make clean  # to remove all the compiled pages
 make        # to build site
 make serve  # to start serving files at localhost:8000
 make watch  # to watch and recompile changes automatically
@@ -45,25 +46,32 @@ make watch  # to watch and recompile changes automatically
 
 ### Markdown
 
-Markdown support comes from Pandoc
+Markdown support comes from Pandoc.
+
+### Styles
+
+[Github Markdown styles](https://github.com/sindresorhus/github-markdown-css) are built in
 
 ### Code highlighting
 
-It does code highlighting by using Common package of [highlightjs](https://highlightjs.org/download/)
+It uses common package of [highlightjs](https://highlightjs.org/download/).
 
 ### Graphviz
 
-Put in your project `graph.md` and write a link
+#### Stand-alone DOT
+
+Put in your project `graph.dot` with some graph and write a link to it:
 
 ```markdown
-
-[Graph](graph.md)
+[Graph](graph.dot)
 
 ```
 
-`graph.md` will be converted to `graph.svg` and link will be automatically changed as well.
+`graph.dot` will be converted to `graph.svg` and link will be automatically changed as well.
 
-It is also possible to write embedded DOT graph like this
+#### Embedded DOT
+
+It is also possible to write embedded DOT graph like this:
 
     ```graphviz
     digraph workflow {
@@ -75,7 +83,7 @@ It is also possible to write embedded DOT graph like this
     }
     ```
 
-This is the very code that produces graph at the top of the page
+This is the very code that produces graph at the top of the page.
 
 ## Acknowledgements
 

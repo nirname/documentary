@@ -15,7 +15,7 @@
   <article class="markdown-body">
   <!--<a href="/">Home</a>-->
 <h1 id="documentary">Documentary</h1>
-<p>This is a <strong>static website compilator</strong> that works like this</p>
+<p>This is a <strong>static website compilator</strong> that works like this:</p>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
@@ -64,21 +64,25 @@
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> clone git@github.com:/nirname/documentary.git <span class="kw">&amp;&amp;</span> <span class="kw">cd</span> documentary <span class="kw">&amp;&amp;</span> <span class="kw">rm</span> -rf .git</code></pre></div>
 <p>... or <a href="https://github.com/nirname/documentary/archive/master.zip">download it</a>.</p>
 <h2 id="usage">Usage</h2>
-<p>Put some <code>.md</code> files inside and compile them</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">make</span>        <span class="co"># to build site</span>
+<p>Run this code inside this project</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">make</span> clean  <span class="co"># to remove all the compiled pages</span>
+<span class="kw">make</span>        <span class="co"># to build site</span>
 <span class="kw">make</span> serve  <span class="co"># to start serving files at localhost:8000</span>
 <span class="kw">make</span> watch  <span class="co"># to watch and recompile changes automatically</span></code></pre></div>
 <h2 id="features">Features</h2>
 <h3 id="markdown">Markdown</h3>
-<p>Markdown support comes from Pandoc</p>
+<p>Markdown support comes from Pandoc.</p>
+<h3 id="styles">Styles</h3>
+<p><a href="https://github.com/sindresorhus/github-markdown-css">Github Markdown styles</a> are built in</p>
 <h3 id="code-highlighting">Code highlighting</h3>
-<p>It does code highlighting by using Common package of <a href="https://highlightjs.org/download/">highlightjs</a></p>
+<p>It uses common package of <a href="https://highlightjs.org/download/">highlightjs</a>.</p>
 <h3 id="graphviz">Graphviz</h3>
-<p>Put in your project <code>graph.md</code> and write a link</p>
-<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">
-<span class="ot">[Graph](graph.md)</span></code></pre></div>
-<p><code>graph.md</code> will be converted to <code>graph.svg</code> and link will be automatically changed as well.</p>
-<p>It is also possible to write embedded DOT graph like this</p>
+<h4 id="stand-alone-dot">Stand-alone DOT</h4>
+<p>Put in your project <code>graph.dot</code> with some graph and write a link to it:</p>
+<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span class="ot">[Graph](graph.dot)</span></code></pre></div>
+<p><code>graph.dot</code> will be converted to <code>graph.svg</code> and link will be automatically changed as well.</p>
+<h4 id="embedded-dot">Embedded DOT</h4>
+<p>It is also possible to write embedded DOT graph like this:</p>
 <pre><code>```graphviz
 digraph workflow {
 
@@ -88,7 +92,7 @@ digraph workflow {
 
 }
 ```</code></pre>
-<p>This is the very code that produces graph at the top of the page</p>
+<p>This is the very code that produces graph at the top of the page.</p>
 <h2 id="acknowledgements">Acknowledgements</h2>
 <p>The very idea of implementation is borrowed from <a href="https://tylercipriani.com/blog/2014/05/13/replace-jekyll-with-pandoc-makefile/">here</a></p>
 <p>The idea of using inline <code>dot</code> graphs shamelessly taken from <a href="https://gitlab.com/meonkeys/pandoc-dot-svg-hack/tree/master">here</a></p>
