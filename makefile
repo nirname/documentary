@@ -21,7 +21,7 @@ MD = pandoc --data-dir=$(CURDIR) --from markdown \
 DOT = dot -Tsvg
 
 ASSETS_SOURCES = $(shell find $(ASSETS_DIR) -type f | grep -E ".*(css|js|woff|ttf|eot)" | cut -sd / -f 2-)
-ASSETS_TARGETS = $(ASSETS:%=$(BUILDS_DIR)/%)
+ASSETS_TARGETS = $(ASSETS_SOURCES:%=$(BUILDS_DIR)/%)
 
 MD_SOURCES = $(shell find $(SOURCE_DIR) -name '*.md' | cut -sd / -f 2-)
 MD_TARGETS = $(MD_SOURCES:%.md=$(TARGET_DIR)/%.html)
@@ -31,7 +31,7 @@ DOT_TARGETS = $(DOT_SOURCES:%.dot=$(TARGET_DIR)/%.svg)
 
 all: assets sources
 
-assets: $(BUILDS)
+assets: $(ASSETS_TARGETS)
 
 $(ASSETS_TARGETS): $(BUILDS_DIR)/%: $(ASSETS_DIR)/%
 	@mkdir -p $(@D)
