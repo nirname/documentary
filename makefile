@@ -14,17 +14,14 @@ BUILDS_DIR = $(OBJECTS_DIR)/$(ASSETS_DIR)
 MD = pandoc --data-dir=$(CURDIR) --from markdown \
 	--css $(ASSETS_DIR)/github-markdown.css\
 	--css $(ASSETS_DIR)/documentary.css \
-	--css $(ASSETS_DIR)/highlight/styles/default.css \
+	--css $(ASSETS_DIR)/highlight.css \
 	--template documentary.html --standalone \
 	--filter ./graphviz.py
 
 DOT = dot -Tsvg
 
-CSS_ASSETS = $(shell find $(ASSETS_DIR) -name '*.css' | cut -sd / -f 2-)
-CSS_BUILDS = $(CSS_ASSETS:%.css=$(BUILDS_DIR)/%.css)
-
-JS_ASSETS = $(shell find $(ASSETS_DIR) -name '*.js' | cut -sd / -f 2-)
-JS_BUILDS = $(JS_ASSETS:%.js=$(BUILDS_DIR)/%.js)
+ASSETS_SOURCES = $(shell find $(ASSETS_DIR) -type f | grep -E ".*(css|js|woff|ttf|eot)" | cut -sd / -f 2-)
+ASSETS_BUILDS = $(ASSETS:%=$(BUILDS_DIR)/%)
 
 MD_SOURCES = $(shell find $(SOURCES_DIR) -name '*.md' | cut -sd / -f 2-)
 HTML_OBJECTS = $(MD_SOURCES:%.md=$(OBJECTS_DIR)/%.html)
@@ -33,15 +30,10 @@ DOT_SOURCES = $(shell find $(SOURCES_DIR) -name '*.dot' | cut -sd / -f 2-)
 DOT_OBJECTS = $(DOT_SOURCES:%.dot=$(OBJECTS_DIR)/%.svg)
 
 all: assets sources
-# @echo "Done"
 
-assets: $(CSS_BUILDS) $(JS_BUILDS)
+assets: $(BUILDS)
 
-$(BUILDS_DIR)/%.css: $(ASSETS_DIR)/%.css
-	@mkdir -p $(@D)
-	cp -f $< $@
-
-$(BUILDS_DIR)/%.js: $(ASSETS_DIR)/%.js
+$(ASSETS_BUILDS): $(BUILDS_DIR)/%: $(ASSETS_DIR)/%
 	@mkdir -p $(@D)
 	cp -f $< $@
 
@@ -66,25 +58,8 @@ serve:
 	cd $(OBJECTS_DIR) && python -m SimpleHTTPServer 8000
 
 clean:
-	rm -rf $(OBJECTS_DIR)
-
-# clean: clean_builds clean_objects clean_dir
-
-# clean_builds:
-# 	- rm $(CSS_BUILDS)
-
-# clean_objects:
-# 	- rm $(HTML_OBJECTS)
-
-# clean_dir:
-# 	- find $(OBJECTS_DIR) -type d -empty -delete
+	rm -rf $(OBJECTS_DIR)/*
 
 debug:
-	@echo $(JS_ASSETS)
-	@echo $(JS_BUILDS)
-# @echo $(CSS_ASSETS)
-# @echo $(CSS_BUILDS)
-# @echo $(MD_SOURCES)
-# @echo $(HTML_OBJECTS)
-# @echo $(DOT_OBJECTS)
-# @echo $(DOT_SOURCES)
+	@echo $(ASSETS)
+	@echo $(BUILDS)

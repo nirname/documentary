@@ -54,7 +54,7 @@ Markdown support comes from Pandoc.
 
 ### Code highlighting
 
-It uses common package of [highlightjs](https://highlightjs.org/download/).
+Common package of [highlightjs](https://highlightjs.org/download/) is being used.
 
 ### Graphviz
 
