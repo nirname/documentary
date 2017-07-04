@@ -1,7 +1,7 @@
 # 'Makefile'
 
 # Where sources are located
-SOURCE_DIR = .
+SOURCE_DIR = source
 # Where all the compiled sources will be
 TARGET_DIR = docs
 
@@ -39,7 +39,7 @@ $(ASSETS_TARGETS): $(BUILDS_DIR)/%: $(ASSETS_DIR)/%
 
 sources: $(MD_TARGETS) $(DOT_TARGETS)
 
-$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(SOURCE_DIR)/makefile plugins/graphviz.py templates/documentary.html
+$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md makefile plugins/graphviz.py templates/documentary.html
 	@mkdir -p $(@D)
 	$(MD) --to html5 $< --output $@
 	@sed -i '' -e '/href="./s/\.md/\.html/g' $@
