@@ -1,18 +1,17 @@
 # Documentary
 
-This is a **static website compilator** that works like this:
+This is a static website generator with built-in Markdown and Gravhiz support.
 
-```graphviz
+```{#workflow .dot-graph}
 digraph workflow {
-
   node [shape="circle" width=1 fixedsize=true]
-
-  { MD, DOT } -> HTML
-
+  { Markdown, "Graph" } -> Site
 }
 ```
 
-This is self-documentated and `readme.md` contains all the examples you need.
+Supported Graphivz layouts are:
+
+![Layouts](layouts.neato)
 
 ## Installation
 
@@ -31,9 +30,9 @@ git clone git@github.com:/nirname/documentary.git && cd documentary && rm -rf .g
 
 ... or [download it](https://github.com/nirname/documentary/archive/master.zip).
 
-## Usage
+## Running
 
-Run this code inside this project
+Run inside this project folder:
 
 ```bash
 make clean  # to remove all the compiled pages
@@ -41,6 +40,14 @@ make        # to build site
 make serve  # to start serving files at localhost:8000
 make watch  # to watch and recompile changes automatically
 ```
+
+## Usage
+
+Put some `*.md` files under `source/` folder and run `make`.
+
+Everything compiled will be found under `docs/` folder.
+
+Run webserver via `make serve` and open `localhost:8000` in your browser.
 
 ## Features
 
@@ -73,7 +80,7 @@ Put in your project `graph.dot` with some graph and write a link to it:
 
 It is also possible to write embedded DOT graph like this:
 
-    ```graphviz
+    ```dot
     digraph workflow {
 
       node [shape="circle" width=1 fixedsize=true]

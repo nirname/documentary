@@ -17,7 +17,7 @@
 <body>
   <article class="markdown-body">
 <h1 id="documentary">Documentary</h1>
-<p>This is a <strong>static website compilator</strong> that works like this:</p>
+<p>This is a static website generator with built-in Markdown and Gravhiz support.</p>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
@@ -29,48 +29,55 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
 <title>workflow</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-184 166,-184 166,4 -4,4"/>
-<!-- MD -->
-<g id="node1" class="node"><title>MD</title>
+<!-- Markdown -->
+<g id="node1" class="node"><title>Markdown</title>
 <ellipse fill="none" stroke="black" cx="36" cy="-144" rx="36" ry="36"/>
-<text text-anchor="middle" x="36" y="-139.8" font-family="Times,serif" font-size="14.00">MD</text>
+<text text-anchor="middle" x="36" y="-139.8" font-family="Times,serif" font-size="14.00">Markdown</text>
 </g>
-<!-- HTML -->
-<g id="node3" class="node"><title>HTML</title>
+<!-- Site -->
+<g id="node3" class="node"><title>Site</title>
 <ellipse fill="none" stroke="black" cx="81" cy="-36" rx="36" ry="36"/>
-<text text-anchor="middle" x="81" y="-31.8" font-family="Times,serif" font-size="14.00">HTML</text>
+<text text-anchor="middle" x="81" y="-31.8" font-family="Times,serif" font-size="14.00">Site</text>
 </g>
-<!-- MD&#45;&gt;HTML -->
-<g id="edge1" class="edge"><title>MD&#45;&gt;HTML</title>
+<!-- Markdown&#45;&gt;Site -->
+<g id="edge1" class="edge"><title>Markdown&#45;&gt;Site</title>
 <path fill="none" stroke="black" d="M49.746,-110.621C53.9809,-100.645 58.7059,-89.5149 63.1738,-78.9907"/>
 <polygon fill="black" stroke="black" points="66.497,-80.119 67.1831,-69.5464 60.0536,-77.3836 66.497,-80.119"/>
 </g>
-<!-- DOT -->
-<g id="node2" class="node"><title>DOT</title>
+<!-- Graph -->
+<g id="node2" class="node"><title>Graph</title>
 <ellipse fill="none" stroke="black" cx="126" cy="-144" rx="36" ry="36"/>
-<text text-anchor="middle" x="126" y="-139.8" font-family="Times,serif" font-size="14.00">DOT</text>
+<text text-anchor="middle" x="126" y="-139.8" font-family="Times,serif" font-size="14.00">Graph</text>
 </g>
-<!-- DOT&#45;&gt;HTML -->
-<g id="edge2" class="edge"><title>DOT&#45;&gt;HTML</title>
+<!-- Graph&#45;&gt;Site -->
+<g id="edge2" class="edge"><title>Graph&#45;&gt;Site</title>
 <path fill="none" stroke="black" d="M112.254,-110.621C108.019,-100.645 103.294,-89.5149 98.8262,-78.9907"/>
 <polygon fill="black" stroke="black" points="101.946,-77.3836 94.8169,-69.5464 95.503,-80.119 101.946,-77.3836"/>
 </g>
 </g>
 </svg>
 
-<p>This is self-documentated and <code>readme.md</code> contains all the examples you need.</p>
+<p>Supported Graphivz layouts are:</p>
+<figure>
+<embed src="layouts.svg" /><figcaption>Layouts</figcaption>
+</figure>
 <h2 id="installation">Installation</h2>
 <p>Install the requirements:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> apt-get install build-essential pandoc graphviz make pip
-<span class="kw">pip</span> install pandocfilters</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> apt-get install build-essential pandoc graphviz make pip
+<span class="ex">pip</span> install pandocfilters</code></pre></div>
 <p>Clone this project from here and remove <code>.git</code> folder:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> clone git@github.com:/nirname/documentary.git <span class="kw">&amp;&amp;</span> <span class="kw">cd</span> documentary <span class="kw">&amp;&amp;</span> <span class="kw">rm</span> -rf .git</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> clone git@github.com:/nirname/documentary.git <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> documentary <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -rf .git</code></pre></div>
 <p>... or <a href="https://github.com/nirname/documentary/archive/master.zip">download it</a>.</p>
+<h2 id="running">Running</h2>
+<p>Run inside this project folder:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">make</span> clean  # to remove all the compiled pages
+<span class="fu">make</span>        # to build site
+<span class="fu">make</span> serve  # to start serving files at localhost:8000
+<span class="fu">make</span> watch  # to watch and recompile changes automatically</code></pre></div>
 <h2 id="usage">Usage</h2>
-<p>Run this code inside this project</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">make</span> clean  <span class="co"># to remove all the compiled pages</span>
-<span class="kw">make</span>        <span class="co"># to build site</span>
-<span class="kw">make</span> serve  <span class="co"># to start serving files at localhost:8000</span>
-<span class="kw">make</span> watch  <span class="co"># to watch and recompile changes automatically</span></code></pre></div>
+<p>Put some <code>*.md</code> files under <code>source/</code> folder and run <code>make</code>.</p>
+<p>Everything compiled will be found under <code>docs/</code> folder.</p>
+<p>Run webserver via <code>make serve</code> and open <code>localhost:8000</code> in your browser.</p>
 <h2 id="features">Features</h2>
 <h3 id="markdown">Markdown</h3>
 <p>Markdown support comes from Pandoc.</p>
@@ -85,7 +92,7 @@
 <p><code>graph.dot</code> will be converted to <code>graph.svg</code> and link will be automatically changed as well.</p>
 <h4 id="embedded-dot">Embedded DOT</h4>
 <p>It is also possible to write embedded DOT graph like this:</p>
-<pre><code>```graphviz
+<pre><code>```dot
 digraph workflow {
 
   node [shape=&quot;circle&quot; width=1 fixedsize=true]

@@ -1,0 +1,4 @@
+digraph Layouts {
+  node [shape="circle" width=1 fixedsize=true]
+  "Graph" -> { dot neato fdp sfdp twopi circo } [len=1.2]
+}
