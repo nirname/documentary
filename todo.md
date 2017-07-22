@@ -7,6 +7,7 @@
 * Add filters for `gnuplot`
 * Add pallets
 * Keep graphviz layout name as part of svg extension
+* Run in Docker
 
 # Done
 
