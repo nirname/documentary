@@ -8,6 +8,7 @@
 * Add pallets
 * Keep graphviz layout name as part of svg extension
 * Run in Docker
+* Another watcher
 
 # Done
 

@@ -49,7 +49,12 @@ TWOPI_TARGETS = $(TWOPI_SOURCES:%.twopi=$(TARGET_DIR)/%.svg)
 CIRCO_SOURCES = $(shell find $(SOURCE_DIR) -name '*.circo' | cut -sd / -f 2-)
 CIRCO_TARGETS = $(CIRCO_SOURCES:%.circo=$(TARGET_DIR)/%.svg)
 
-all: assets sources
+all: assets sources no_jekyll
+
+no_jekyll: $(TARGET_DIR)/.no_jekyll
+
+$(TARGET_DIR)/.no_jekyll:
+	touch $@
 
 assets: $(ASSETS_TARGETS)
 

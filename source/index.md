@@ -17,43 +17,71 @@ Supported Graphivz layouts are:
 
 Install the requirements:
 
-```bash
+```shell
 sudo apt-get install build-essential pandoc graphviz make pip
 pip install pandocfilters
 ```
 
+It is recommended to use `brew` for MacOS.
+
 Clone this project from here and remove `.git` folder:
 
-```bash
+```shell
 git clone git@github.com:/nirname/documentary.git && cd documentary && rm -rf .git
 ```
 
 ... or [download it](https://github.com/nirname/documentary/archive/master.zip).
 
-## Running
-
-Run inside this project folder:
-
-```bash
-make clean  # to remove all the compiled pages
-make        # to build site
-make serve  # to start serving files at localhost:8000
-make watch  # to watch and recompile changes automatically
-```
-
 ## Usage
 
-Put some `*.md` files under `source/` folder and run `make`.
+### Starting
+
+Put some `*.md` files under `source/` folder and run `make` from this project's folder.
 
 Everything compiled will be found under `docs/` folder.
 
 Run webserver via `make serve` and open `localhost:8000` in your browser.
 
-## Features
+Available commands are:
 
-### Markdown
+```shell
+make clean  # to remove all the compiled pages, equal to rm -rf docs/*
+make        # to build site
+make serve  # to start serving files at localhost:8000
+make watch  # to watch and recompile changes automatically
+```
 
-Markdown support comes from Pandoc.
+### External graphs
+
+To add graph, put in your project `graph.dot` with some valid graph inside and write a link to it:
+
+```markdown
+![Graph](graph.dot)
+
+```
+
+`graph.dot` will be converted to `graph.svg` and links to it will be automatically changed as well.
+
+So as to change layout of the graph change source file extension, e.g. `graph.neato`.
+
+Don't forget to change link to the graph to `graph.neato`
+
+### Inline graphs
+
+It is also possible to write embedded graphs setting specific class to a code block:
+
+    ```dot-graph
+    digraph workflow {
+      node [shape="circle" width=1 fixedsize=true]
+      { Markdown, "Graph" } -> Site
+    }
+    ```
+
+This is the very code that produces graph at the top of the page.
+
+Class name must consist of an available Graphviz layout name plus `-graph` suffix.
+
+### Publishing on GH-Pages
 
 ### Styles
 
@@ -61,36 +89,7 @@ Markdown support comes from Pandoc.
 
 ### Code highlighting
 
-Common package of [highlightjs](https://highlightjs.org/download/) is being used.
-
-### Graphviz
-
-#### Stand-alone DOT
-
-Put in your project `graph.dot` with some graph and write a link to it:
-
-```markdown
-[Graph](graph.dot)
-
-```
-
-`graph.dot` will be converted to `graph.svg` and link will be automatically changed as well.
-
-#### Embedded DOT
-
-It is also possible to write embedded DOT graph like this:
-
-    ```dot
-    digraph workflow {
-
-      node [shape="circle" width=1 fixedsize=true]
-
-      { MD, DOT } -> HTML
-
-    }
-    ```
-
-This is the very code that produces graph at the top of the page.
+Common package of [highlightjs](https://highlightjs.org/download/) is used.
 
 ## Acknowledgements
 

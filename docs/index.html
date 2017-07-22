@@ -63,45 +63,43 @@
 </figure>
 <h2 id="installation">Installation</h2>
 <p>Install the requirements:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> apt-get install build-essential pandoc graphviz make pip
-<span class="ex">pip</span> install pandocfilters</code></pre></div>
+<pre class="shell"><code>sudo apt-get install build-essential pandoc graphviz make pip
+pip install pandocfilters</code></pre>
+<p>It is recommended to use <code>brew</code> for MacOS.</p>
 <p>Clone this project from here and remove <code>.git</code> folder:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> clone git@github.com:/nirname/documentary.git <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> documentary <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -rf .git</code></pre></div>
+<pre class="shell"><code>git clone git@github.com:/nirname/documentary.git &amp;&amp; cd documentary &amp;&amp; rm -rf .git</code></pre>
 <p>... or <a href="https://github.com/nirname/documentary/archive/master.zip">download it</a>.</p>
-<h2 id="running">Running</h2>
-<p>Run inside this project folder:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">make</span> clean  # to remove all the compiled pages
-<span class="fu">make</span>        # to build site
-<span class="fu">make</span> serve  # to start serving files at localhost:8000
-<span class="fu">make</span> watch  # to watch and recompile changes automatically</code></pre></div>
 <h2 id="usage">Usage</h2>
-<p>Put some <code>*.md</code> files under <code>source/</code> folder and run <code>make</code>.</p>
+<h3 id="starting">Starting</h3>
+<p>Put some <code>*.md</code> files under <code>source/</code> folder and run <code>make</code> from this project's folder.</p>
 <p>Everything compiled will be found under <code>docs/</code> folder.</p>
 <p>Run webserver via <code>make serve</code> and open <code>localhost:8000</code> in your browser.</p>
-<h2 id="features">Features</h2>
-<h3 id="markdown">Markdown</h3>
-<p>Markdown support comes from Pandoc.</p>
-<h3 id="styles">Styles</h3>
-<p><a href="https://github.com/sindresorhus/github-markdown-css">Github Markdown styles</a> are built in.</p>
-<h3 id="code-highlighting">Code highlighting</h3>
-<p>Common package of <a href="https://highlightjs.org/download/">highlightjs</a> is being used.</p>
-<h3 id="graphviz">Graphviz</h3>
-<h4 id="stand-alone-dot">Stand-alone DOT</h4>
-<p>Put in your project <code>graph.dot</code> with some graph and write a link to it:</p>
-<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span class="ot">[Graph](graph.dot)</span></code></pre></div>
-<p><code>graph.dot</code> will be converted to <code>graph.svg</code> and link will be automatically changed as well.</p>
-<h4 id="embedded-dot">Embedded DOT</h4>
-<p>It is also possible to write embedded DOT graph like this:</p>
-<pre><code>```dot
+<p>Available commands are:</p>
+<pre class="shell"><code>make clean  # to remove all the compiled pages, equal to rm -rf docs/*
+make        # to build site
+make serve  # to start serving files at localhost:8000
+make watch  # to watch and recompile changes automatically</code></pre>
+<h3 id="external-graphs">External graphs</h3>
+<p>To add graph, put in your project <code>graph.dot</code> with some valid graph inside and write a link to it:</p>
+<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span class="al">![Graph](graph.dot)</span></code></pre></div>
+<p><code>graph.dot</code> will be converted to <code>graph.svg</code> and links to it will be automatically changed as well.</p>
+<p>So as to change layout of the graph change source file extension, e.g. <code>graph.neato</code>.</p>
+<p>Don't forget to change link to the graph to <code>graph.neato</code></p>
+<h3 id="inline-graphs">Inline graphs</h3>
+<p>It is also possible to write embedded graphs setting specific class to a code block:</p>
+<pre><code>```dot-graph
 digraph workflow {
-
   node [shape=&quot;circle&quot; width=1 fixedsize=true]
-
-  { MD, DOT } -&gt; HTML
-
+  { Markdown, &quot;Graph&quot; } -&gt; Site
 }
 ```</code></pre>
 <p>This is the very code that produces graph at the top of the page.</p>
+<p>Class name must consist of an available Graphviz layout name plus <code>-graph</code> suffix.</p>
+<h3 id="publishing-on-gh-pages">Publishing on GH-Pages</h3>
+<h3 id="styles">Styles</h3>
+<p><a href="https://github.com/sindresorhus/github-markdown-css">Github Markdown styles</a> are built in.</p>
+<h3 id="code-highlighting">Code highlighting</h3>
+<p>Common package of <a href="https://highlightjs.org/download/">highlightjs</a> is used.</p>
 <h2 id="acknowledgements">Acknowledgements</h2>
 <p>The very idea of implementation is borrowed from <a href="https://tylercipriani.com/blog/2014/05/13/replace-jekyll-with-pandoc-makefile/">here</a></p>
 <p>The idea of using inline <code>dot</code> graphs shamelessly taken from <a href="https://gitlab.com/meonkeys/pandoc-dot-svg-hack/tree/master">here</a></p>
