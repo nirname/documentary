@@ -89,10 +89,6 @@ This might be convenient if the graph is too big for inline usage.
 
 [Github Markdown styles](https://github.com/sindresorhus/github-markdown-css) are built in.
 
-### Code highlighting
-
-Common package of [highlightjs](https://highlightjs.org/download/) is used.
-
 ## Acknowledgements
 
 The very idea of implementation is borrowed from [here](https://tylercipriani.com/blog/2014/05/13/replace-jekyll-with-pandoc-makefile/)
