@@ -11,12 +11,27 @@ ASSETS_DIR = assets
 BUILDS_DIR = $(TARGET_DIR)/$(ASSETS_DIR)
 
 # use --toc option generate links to anchors
-MD = pandoc --data-dir=$(CURDIR) --from markdown \
-	--css $(ASSETS_DIR)/github-markdown.css\
-	--css $(ASSETS_DIR)/documentary.css \
-	--css $(ASSETS_DIR)/highlight.css \
-	--template documentary.html --standalone \
+MD = pandoc --data-dir=$(CURDIR) \
+	--from markdown --standalone \
+	--css $(ASSETS_DIR)/github-markdown.css \
+	--highlight-style kate \
 	--filter plugins/graphviz.py
+
+# pygments
+# tango
+# espresso
+# zenburn
+# kate
+# monochrome
+# breezedark
+# haddock
+
+	# --css $(ASSETS_DIR)/github.css \
+	# --css $(ASSETS_DIR)/documentary.css \
+	# --template documentary.html \
+	# --css $(ASSETS_DIR)/github-pandoc.css\
+	# --css $(ASSETS_DIR)/buttondown.css \
+	# --css $(ASSETS_DIR)/highlight.css \
 
 DOT = dot -Tsvg
 NEATO = neato -Tsvg

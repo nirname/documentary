@@ -3,19 +3,55 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
   <style type="text/css">code{white-space: pre;}</style>
-
-  <!-- JS -->
-  <script src="assets/highlight.min.js"></script>
-
-  <!-- CSS -->
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #1f1c1b; background-color: #ffffff; }
+code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code > span.dt { color: #0057ae; } /* DataType */
+code > span.dv { color: #b08000; } /* DecVal */
+code > span.bn { color: #b08000; } /* BaseN */
+code > span.fl { color: #b08000; } /* Float */
+code > span.cn { color: #aa5500; } /* Constant */
+code > span.ch { color: #924c9d; } /* Char */
+code > span.sc { color: #3daee9; } /* SpecialChar */
+code > span.st { color: #bf0303; } /* String */
+code > span.vs { color: #bf0303; } /* VerbatimString */
+code > span.ss { color: #ff5500; } /* SpecialString */
+code > span.im { color: #ff5500; } /* Import */
+code > span.co { color: #898887; } /* Comment */
+code > span.do { color: #607880; } /* Documentation */
+code > span.an { color: #ca60ca; } /* Annotation */
+code > span.cv { color: #0095ff; } /* CommentVar */
+code > span.ot { color: #006e28; } /* Other */
+code > span.fu { color: #644a9b; } /* Function */
+code > span.va { color: #0057ae; } /* Variable */
+code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #1f1c1b; } /* Operator */
+code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code > span.pp { color: #006e28; } /* Preprocessor */
+code > span.at { color: #0057ae; } /* Attribute */
+code > span.re { color: #0057ae; } /* RegionMarker */
+code > span.in { color: #b08000; } /* Information */
+code > span.wa { color: #bf0303; } /* Warning */
+code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
+code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code > span. { color: #1f1c1b; } /* Normal */
+  </style>
   <link rel="stylesheet" href="assets/github-markdown.css">
-  <link rel="stylesheet" href="assets/documentary.css">
-  <link rel="stylesheet" href="assets/highlight.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-  <article class="markdown-body">
 <h1 id="documentary">Documentary</h1>
 <p>This is a static website generator with built-in Markdown and Gravhiz support.</p>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -63,11 +99,11 @@
 </figure>
 <h2 id="installation">Installation</h2>
 <p>Install the requirements:</p>
-<pre class="shell"><code>sudo apt-get install build-essential pandoc graphviz make pip
-pip install pandocfilters</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> apt-get install build-essential pandoc graphviz make pip
+<span class="ex">pip</span> install pandocfilters</code></pre></div>
 <p>It is recommended to use <code>brew</code> for MacOS.</p>
 <p>Clone this project from here and remove <code>.git</code> folder:</p>
-<pre class="shell"><code>git clone git@github.com:/nirname/documentary.git &amp;&amp; cd documentary &amp;&amp; rm -rf .git</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> clone git@github.com:/nirname/documentary.git <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> documentary <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -rf .git</code></pre></div>
 <p>... or <a href="https://github.com/nirname/documentary/archive/master.zip">download it</a>.</p>
 <h2 id="usage">Usage</h2>
 <h3 id="starting">Starting</h3>
@@ -75,30 +111,27 @@ pip install pandocfilters</code></pre>
 <p>Everything compiled will be found under <code>docs/</code> folder.</p>
 <p>Run webserver via <code>make serve</code> and open <code>localhost:8000</code> in your browser.</p>
 <p>Available commands are:</p>
-<pre class="shell"><code>make clean  # to remove all the compiled pages, equal to rm -rf docs/*
-make        # to build site
-make serve  # to start serving files at localhost:8000
-make watch  # to watch and recompile changes automatically</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">make</span> clean  # to remove all the compiled pages, equal to rm -rf docs/*
+<span class="fu">make</span>        # to build site
+<span class="fu">make</span> serve  # to start serving files at localhost:8000
+<span class="fu">make</span> watch  # to watch and recompile changes automatically</code></pre></div>
+<h3 id="inline-graphs">Inline graphs</h3>
+<p>To create embedded graph add specific class to a code block:</p>
+<div class="sourceCode"><pre class="sourceCode dot"><code class="sourceCode dot">```<span class="va">dot</span>-<span class="va">graph</span>
+<span class="kw">digraph</span> <span class="va">workflow</span> <span class="ot">{</span>
+<span class="co">  </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">shape</span><span class="ot">=</span><span class="st">&quot;circle&quot;</span><span class="co"> </span><span class="at">width</span><span class="ot">=</span><span class="dv">1</span><span class="co"> </span><span class="va">fixedsize</span><span class="ot">=</span><span class="va">true</span><span class="ot">]</span>
+<span class="co">  </span><span class="ot">{</span><span class="co"> </span><span class="va">Markdown</span><span class="co">, </span><span class="st">&quot;Graph&quot;</span><span class="co"> </span><span class="ot">}</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">Site</span>
+<span class="ot">}</span>
+```</code></pre></div>
+<p>This is the very code that produces graph at the top of the page.</p>
+<p>Class name must consist of an available Graphviz layout name plus <code>-graph</code> suffix.</p>
 <h3 id="external-graphs">External graphs</h3>
-<p>To add graph, put in your project <code>graph.dot</code> with some valid graph inside and write a link to it:</p>
+<p>To add external graph, put in your project <code>graph.dot</code> with some valid graph inside and write a link to it:</p>
 <div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span class="al">![Graph](graph.dot)</span></code></pre></div>
 <p><code>graph.dot</code> will be converted to <code>graph.svg</code> and links to it will be automatically changed as well.</p>
 <p>So as to change layout of the graph change source file extension, e.g. <code>graph.neato</code>.</p>
-<p>Don't forget to change link to the graph to <code>graph.neato</code></p>
-<h3 id="inline-graphs">Inline graphs</h3>
-<p>It is also possible to write embedded graphs setting specific class to a code block:</p>
-<pre>
-<code class="dot">
-```dot-graph
-digraph workflow {
-  node [shape="circle" width=1 fixedsize=true]
-  { Markdown, "Graph" } -> Site
-}
-```
-</code>
-</pre>
-<p>This is the very code that produces graph at the top of the page.</p>
-<p>Class name must consist of an available Graphviz layout name plus <code>-graph</code> suffix.</p>
+<p>Don't forget to change link to the graph to <code>![Graph](graph.neato)</code>.</p>
+<p>This might be convenient if the graph is too big for inline usage.</p>
 <h3 id="styles">Styles</h3>
 <p><a href="https://github.com/sindresorhus/github-markdown-css">Github Markdown styles</a> are built in.</p>
 <h3 id="code-highlighting">Code highlighting</h3>
@@ -106,7 +139,5 @@ digraph workflow {
 <h2 id="acknowledgements">Acknowledgements</h2>
 <p>The very idea of implementation is borrowed from <a href="https://tylercipriani.com/blog/2014/05/13/replace-jekyll-with-pandoc-makefile/">here</a></p>
 <p>The idea of using inline <code>dot</code> graphs shamelessly taken from <a href="https://gitlab.com/meonkeys/pandoc-dot-svg-hack/tree/master">here</a></p>
-  </article>
-  <script src="assets/documentary.js"></script>
 </body>
 </html>

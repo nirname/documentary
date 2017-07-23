@@ -17,7 +17,7 @@ Supported Graphivz layouts are:
 
 Install the requirements:
 
-```shell
+```bash
 sudo apt-get install build-essential pandoc graphviz make pip
 pip install pandocfilters
 ```
@@ -26,7 +26,7 @@ It is recommended to use `brew` for MacOS.
 
 Clone this project from here and remove `.git` folder:
 
-```shell
+```bash
 git clone git@github.com:/nirname/documentary.git && cd documentary && rm -rf .git
 ```
 
@@ -44,16 +44,33 @@ Run webserver via `make serve` and open `localhost:8000` in your browser.
 
 Available commands are:
 
-```shell
+```bash
 make clean  # to remove all the compiled pages, equal to rm -rf docs/*
 make        # to build site
 make serve  # to start serving files at localhost:8000
 make watch  # to watch and recompile changes automatically
 ```
 
+### Inline graphs
+
+To create embedded graph add specific class to a code block:
+
+````dot
+```dot-graph
+digraph workflow {
+  node [shape="circle" width=1 fixedsize=true]
+  { Markdown, "Graph" } -> Site
+}
+```
+````
+
+This is the very code that produces graph at the top of the page.
+
+Class name must consist of an available Graphviz layout name plus `-graph` suffix.
+
 ### External graphs
 
-To add graph, put in your project `graph.dot` with some valid graph inside and write a link to it:
+To add external graph, put in your project `graph.dot` with some valid graph inside and write a link to it:
 
 ```markdown
 ![Graph](graph.dot)
@@ -64,26 +81,9 @@ To add graph, put in your project `graph.dot` with some valid graph inside and w
 
 So as to change layout of the graph change source file extension, e.g. `graph.neato`.
 
-Don't forget to change link to the graph to `graph.neato`
+Don't forget to change link to the graph to `![Graph](graph.neato)`.
 
-### Inline graphs
-
-It is also possible to write embedded graphs setting specific class to a code block:
-
-<pre>
-<code class="dot">
-```dot-graph
-digraph workflow {
-  node [shape="circle" width=1 fixedsize=true]
-  { Markdown, "Graph" } -> Site
-}
-```
-</code>
-</pre>
-
-This is the very code that produces graph at the top of the page.
-
-Class name must consist of an available Graphviz layout name plus `-graph` suffix.
+This might be convenient if the graph is too big for inline usage.
 
 ### Styles
 
