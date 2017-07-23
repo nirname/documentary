@@ -70,12 +70,16 @@ Don't forget to change link to the graph to `graph.neato`
 
 It is also possible to write embedded graphs setting specific class to a code block:
 
-    ```dot-graph
-    digraph workflow {
-      node [shape="circle" width=1 fixedsize=true]
-      { Markdown, "Graph" } -> Site
-    }
-    ```
+<pre>
+<code class="dot">
+```dot-graph
+digraph workflow {
+  node [shape="circle" width=1 fixedsize=true]
+  { Markdown, "Graph" } -> Site
+}
+```
+</code>
+</pre>
 
 This is the very code that produces graph at the top of the page.
 

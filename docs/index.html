@@ -87,12 +87,16 @@ make watch  # to watch and recompile changes automatically</code></pre>
 <p>Don't forget to change link to the graph to <code>graph.neato</code></p>
 <h3 id="inline-graphs">Inline graphs</h3>
 <p>It is also possible to write embedded graphs setting specific class to a code block:</p>
-<pre><code>```dot-graph
+<pre>
+<code class="dot">
+```dot-graph
 digraph workflow {
-  node [shape=&quot;circle&quot; width=1 fixedsize=true]
-  { Markdown, &quot;Graph&quot; } -&gt; Site
+  node [shape="circle" width=1 fixedsize=true]
+  { Markdown, "Graph" } -> Site
 }
-```</code></pre>
+```
+</code>
+</pre>
 <p>This is the very code that produces graph at the top of the page.</p>
 <p>Class name must consist of an available Graphviz layout name plus <code>-graph</code> suffix.</p>
 <h3 id="styles">Styles</h3>
