@@ -81,8 +81,6 @@ This is the very code that produces graph at the top of the page.
 
 Class name must consist of an available Graphviz layout name plus `-graph` suffix.
 
-### Publishing on GH-Pages
-
 ### Styles
 
 [Github Markdown styles](https://github.com/sindresorhus/github-markdown-css) are built in.
