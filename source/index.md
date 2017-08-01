@@ -11,7 +11,7 @@ digraph workflow {
 
 asdf
 
-```seq-diag
+```seqdiag
   seqdiag {
     seqdiag -> "sequence-diagrams" [label = "generates"];
     seqdiag --> "is very easy!";

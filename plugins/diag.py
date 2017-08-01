@@ -8,7 +8,7 @@ Based on graphviz.py from pandocfilters 1.2.1 at
 https://pypi.python.org/pypi/pandocfilters/ (MIT licensed).
 """
 
-SUPPORTED_COMMAMDS = ['seq-diag']
+SUPPORTED_COMMAMDS = ['seqdiag']
 
 from pandocfilters import RawBlock, toJSONFilter
 from subprocess import Popen, PIPE
@@ -21,9 +21,17 @@ def diag(key, value, format, meta):
     if commands:
       if format not in ['html', 'html5']:
         raise Exception('output format must be HTML')
-      p = Popen([commands[0].replace('-', ''), '-T', 'svg'], stdin=PIPE, stdout=PIPE)
-      (output, errors) = p.communicate(code)
+
+      proc = Popen(
+        "seqdiag -T svg  -o /dev/stdout /dev/stdin",
+        shell=True,
+        stdin=PIPE, stdout=PIPE, stderr=PIPE
+      )
+      (output, errors) = proc.communicate(code)
       return RawBlock("html", output)
 
 if __name__ == "__main__":
     toJSONFilter(diag)
+
+
+# seqdiag source/diag.seq -Tsvg --nodoctype -o /dev/stdout

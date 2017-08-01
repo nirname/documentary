@@ -15,8 +15,10 @@ MD = pandoc --data-dir=$(CURDIR) \
 	--from markdown --standalone \
 	--css $(ASSETS_DIR)/github-markdown.css \
 	--highlight-style kate \
-	--filter plugins/graphviz.py \
 	--filter plugins/diag.py
+
+	# --filter plugins/graphviz.py \
+	# --filter pandoc-imagine
 
 # pygments
 # tango
