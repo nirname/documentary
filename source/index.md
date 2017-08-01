@@ -9,22 +9,29 @@ digraph workflow {
 }
 ```
 
+asdf
+
+```seq-diag
+  seqdiag {
+    seqdiag -> "sequence-diagrams" [label = "generates"];
+    seqdiag --> "is very easy!";
+  }
+```
+
 Supported Graphivz layouts are:
 
 ![Layouts](layouts.neato)
 
 ## Installation
 
-Install the requirements:
+Install the requirements
 
-```bash
-sudo apt-get install build-essential pandoc graphviz make pip
-pip install pandocfilters
+```shell
+sudo apt-get install build-essential pandoc graphviz pip
+pip install pandocfilters seqdiag
 ```
 
-It is recommended to use `brew` for MacOS.
-
-Clone this project from here and remove `.git` folder:
+Clone this project and remove `.git` folder:
 
 ```bash
 git clone git@github.com:/nirname/documentary.git && cd documentary && rm -rf .git

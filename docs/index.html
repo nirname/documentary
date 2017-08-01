@@ -93,16 +93,34 @@ code > span. { color: #1f1c1b; } /* Normal */
 </g>
 </svg>
 
+<p>asdf</p>
+Usage: seqdiag [options] infile
+
+Options:
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+  -a, --antialias       Pass diagram image to anti-alias filter
+  -c FILE, --config=FILE
+                        read configurations from FILE
+  --debug               Enable debug mode
+  -o FILE               write diagram to FILE
+  -f FONT, --font=FONT  use FONT to draw diagram
+  --fontmap=FONT        use FONTMAP file to draw diagram
+  --no-transparency     do not make transparent background of diagram (PNG
+                        only)
+  --size=SIZE           Size of diagram (ex. 320x240)
+  -T TYPE               Output diagram as TYPE format
+  --nodoctype           Do not output doctype definition tags (SVG only)
+
 <p>Supported Graphivz layouts are:</p>
 <figure>
 <embed src="layouts.svg" /><figcaption>Layouts</figcaption>
 </figure>
 <h2 id="installation">Installation</h2>
-<p>Install the requirements:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> apt-get install build-essential pandoc graphviz make pip
-<span class="ex">pip</span> install pandocfilters</code></pre></div>
-<p>It is recommended to use <code>brew</code> for MacOS.</p>
-<p>Clone this project from here and remove <code>.git</code> folder:</p>
+<p>Install the requirements</p>
+<pre class="shell"><code>sudo apt-get install build-essential pandoc graphviz pip
+pip install pandocfilters seqdiag</code></pre>
+<p>Clone this project and remove <code>.git</code> folder:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> clone git@github.com:/nirname/documentary.git <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> documentary <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -rf .git</code></pre></div>
 <p>... or <a href="https://github.com/nirname/documentary/archive/master.zip">download it</a>.</p>
 <h2 id="usage">Usage</h2>
@@ -134,8 +152,6 @@ code > span. { color: #1f1c1b; } /* Normal */
 <p>This might be convenient if the graph is too big for inline usage.</p>
 <h3 id="styles">Styles</h3>
 <p><a href="https://github.com/sindresorhus/github-markdown-css">Github Markdown styles</a> are built in.</p>
-<h3 id="code-highlighting">Code highlighting</h3>
-<p>Common package of <a href="https://highlightjs.org/download/">highlightjs</a> is used.</p>
 <h2 id="acknowledgements">Acknowledgements</h2>
 <p>The very idea of implementation is borrowed from <a href="https://tylercipriani.com/blog/2014/05/13/replace-jekyll-with-pandoc-makefile/">here</a></p>
 <p>The idea of using inline <code>dot</code> graphs shamelessly taken from <a href="https://gitlab.com/meonkeys/pandoc-dot-svg-hack/tree/master">here</a></p>

@@ -15,7 +15,8 @@ MD = pandoc --data-dir=$(CURDIR) \
 	--from markdown --standalone \
 	--css $(ASSETS_DIR)/github-markdown.css \
 	--highlight-style kate \
-	--filter plugins/graphviz.py
+	--filter plugins/graphviz.py \
+	--filter plugins/diag.py
 
 # pygments
 # tango
@@ -39,6 +40,7 @@ FDP = fdp -Tsvg
 SFDT = sfdp -Tsvg
 TWOPI = twopi -Tsvg
 CIRCO = circo -Tsvg
+SEQ = seqdiag -Tsvg
 
 ASSETS_SOURCES = $(shell find $(ASSETS_DIR) -type f | grep -E ".*(css|js|woff|ttf|eot)" | cut -sd / -f 2-)
 ASSETS_TARGETS = $(ASSETS_SOURCES:%=$(BUILDS_DIR)/%)
@@ -64,6 +66,9 @@ TWOPI_TARGETS = $(TWOPI_SOURCES:%.twopi=$(TARGET_DIR)/%.svg)
 CIRCO_SOURCES = $(shell find $(SOURCE_DIR) -name '*.circo' | cut -sd / -f 2-)
 CIRCO_TARGETS = $(CIRCO_SOURCES:%.circo=$(TARGET_DIR)/%.svg)
 
+SEQ_SOURCES = $(shell find $(SOURCE_DIR) -name '*.seq' | cut -sd / -f 2-)
+SEQ_TARGETS = $(SEQ_SOURCES:%.seq=$(TARGET_DIR)/%.svg)
+
 all: assets sources no_jekyll
 
 no_jekyll: $(TARGET_DIR)/.no_jekyll
@@ -77,7 +82,15 @@ $(ASSETS_TARGETS): $(BUILDS_DIR)/%: $(ASSETS_DIR)/%
 	@mkdir -p $(@D)
 	cp -f $< $@
 
-sources: $(MD_TARGETS) $(DOT_TARGETS) $(NEATO_TARGETS) $(FDP_TARGETS) $(SFDP_TARGETS) $(TWOPI_TARGETS) $(CIRCO_TARGETS)
+sources: \
+	$(MD_TARGETS) \
+	$(DOT_TARGETS) \
+	$(NEATO_TARGETS) \
+	$(FDP_TARGETS) \
+	$(SFDP_TARGETS) \
+	$(TWOPI_TARGETS) \
+	$(CIRCO_TARGETS) \
+	$(SEQ_TARGETS)
 
 $(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md makefile plugins/graphviz.py templates/documentary.html
 	@mkdir -p $(@D)
@@ -95,6 +108,7 @@ $(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md makefile plugins/graphviz.py templates/
 	@sed -i '' -e '/src="./s/\.sfdp/\.svg/g' $@
 	@sed -i '' -e '/src="./s/\.twopi/\.svg/g' $@
 	@sed -i '' -e '/src="./s/\.circo/\.svg/g' $@
+	@sed -i '' -e '/src="./s/\.seq/\.svg/g' $@
 
 $(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot makefile
 	@mkdir -p $(@D)
@@ -119,6 +133,10 @@ $(TWOPI_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.twopi makefile
 $(CIRCO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.circo makefile
 	@mkdir -p $(@D)
 	$(CIRCO) $< -o $@
+
+$(SEQ_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.seq makefile
+	@mkdir -p $(@D)
+	$(SEQ) $< -o $@
 
 PHONY: watch serve clean debug
 
