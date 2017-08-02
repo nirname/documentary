@@ -1,6 +1,5 @@
 # To Do
 
-* Add filters for `mscgen`, or have a look at `https://github.com/sverweij/mscgen_js`
 * Use `rake` instead of `make`
 * Add filters for `gnuplot`
 * Keep graphviz layout name as part of svg extension
@@ -28,6 +27,8 @@ http://modeling-languages.com/uml-tools/#textual
 # Done
 
 * Add other extensions, such as `dot`, `neato` and others
-* Remove highlight.js, try using pandoc
-* Remove template
+* Highlight.js has been removed, try using pandoc
+* Removed templates
+* ~~Add filters for `mscgen`, or have a look at `https://github.com/sverweij/mscgen_js`~~ Used seqdiag instead
+
 

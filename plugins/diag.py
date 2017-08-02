@@ -23,7 +23,7 @@ def diag(key, value, format, meta):
         raise Exception('output format must be HTML')
 
       proc = Popen(
-        "seqdiag -T svg  -o /dev/stdout /dev/stdin",
+        "seqdiag -T svg  -o /dev/stdout -",
         shell=True,
         stdin=PIPE, stdout=PIPE, stderr=PIPE
       )

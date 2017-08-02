@@ -1,35 +1,9 @@
 # Documentary
 
-This is a static website generator with built-in Markdown and Gravhiz support.
-
-```{#workflow .dot-graph}
-digraph workflow {
-  node [shape="circle" width=1 fixedsize=true]
-  { Markdown, "Graph" } -> Site
-}
-```
-
-asdf
-
-```seqdiag
-  seqdiag {
-    seqdiag -> "sequence-diagrams" [label = "generates"];
-    seqdiag --> "is very easy!";
-  }
-```
-
-Supported Graphivz layouts are:
-
-![Layouts](layouts.neato)
+This is a static website generator on top of Pandoc and Make
+with built-in Markdown, Gravhiz and Sequence diagrams support.
 
 ## Installation
-
-Install the requirements
-
-```shell
-sudo apt-get install build-essential pandoc graphviz pip
-pip install pandocfilters seqdiag
-```
 
 Clone this project and remove `.git` folder:
 
@@ -39,15 +13,37 @@ git clone git@github.com:/nirname/documentary.git && cd documentary && rm -rf .g
 
 ... or [download it](https://github.com/nirname/documentary/archive/master.zip).
 
+Install the requirements as follows.
+
+Ubuntu:
+
+```shell
+sudo apt-get install build-essential pandoc graphviz pip
+pip install pandocfilters seqdiag
+```
+
+MacOS:
+
+```shell
+brew install build-essential pandoc graphviz pip
+pip install pandocfilters seqdiag
+```
+
 ## Usage
 
-### Starting
+1. **Create and Compile**
 
-Put some `*.md` files under `source/` folder and run `make` from this project's folder.
+    Put some `*.md` files under `source/` folder and run `make` from this project's folder.
 
-Everything compiled will be found under `docs/` folder.
+    Everything compiled will be found under `docs/` folder.
 
-Run webserver via `make serve` and open `localhost:8000` in your browser.
+1. **Serve files**
+
+    Run webserver via `make serve` and open `localhost:8000` in your browser.
+
+1. **Watch changes**
+
+    Run `make watch` in antoher tab to update compiled files automatically
 
 Available commands are:
 
@@ -58,43 +54,88 @@ make serve  # to start serving files at localhost:8000
 make watch  # to watch and recompile changes automatically
 ```
 
-### Inline graphs
+## Inline images
 
-To create embedded graph add specific class to a code block:
+To create embedded graph add specific class to a code block.
 
-````dot
-```dot-graph
+---
+
+**Graphviz**
+
+````
+```dot
 digraph workflow {
-  node [shape="circle" width=1 fixedsize=true]
-  { Markdown, "Graph" } -> Site
+  node [shape="rect" width=1]
+  { Markdown, Graphviz, Sequence } -> HTML
 }
 ```
 ````
 
-This is the very code that produces graph at the top of the page.
+```dot
+digraph workflow {
+  node [shape="rect" width=1]
+  { Markdown, Graphviz, Sequence } -> HTML
+}
+```
 
-Class name must consist of an available Graphviz layout name plus `-graph` suffix.
+---
 
-### External graphs
+**Sequence diagrams**
 
-To add external graph, put in your project `graph.dot` with some valid graph inside and write a link to it:
+````
+```seqdiag
+seqdiag {
+  make; pandoc; tool;
+  make -> pandoc         [label = "markdown"];
+          pandoc -> tool [label = "graph"];
+          pandoc <- tool [label = "svg"];
+  make <- pandoc         [label = "html"];
+  make ->           tool [label = "graph"];
+  make <-           tool [label = "svg"];
+}
+```
+````
+
+```seqdiag
+seqdiag {
+  make; pandoc; tool;
+  make -> pandoc         [label = "markdown"];
+          pandoc -> tool [label = "graph"];
+          pandoc <- tool [label = "svg"];
+  make <- pandoc         [label = "html"];
+  make ->           tool [label = "graph"];
+  make <-           tool [label = "svg"];
+}
+```
+
+---
+
+## Standalone images
+
+It might be convenient to keep your graph as a separate file in case it is too big for inline usage.
+
+To add external graph, put in your project `layouts.neato` with some valid graph inside and write a link to it:
 
 ```markdown
-![Graph](graph.dot)
+![Supported Formats](formats.neato)
 
 ```
 
-`graph.dot` will be converted to `graph.svg` and links to it will be automatically changed as well.
+![Supported Formats](formats.neato)
 
-So as to change layout of the graph change source file extension, e.g. `graph.neato`.
+Layout of the image will be derived automatically by source file extension.
+`formats.neato` will be converted to `formats.svg` and links to it will be automatically changed as well.
 
-Don't forget to change link to the graph to `![Graph](graph.neato)`.
+So as to change layout of the graph change source file extension, e.g. `formats.circo`.
+Don't forget to change link to the graph to `![Supported Formats](formats.circo)`.
 
-This might be convenient if the graph is too big for inline usage.
-
-### Styles
+## Styles
 
 [Github Markdown styles](https://github.com/sindresorhus/github-markdown-css) are built in.
+
+## Syntax highlight
+
+`kate` color scheme of Pandoc is beeing used as a default.
 
 ## Acknowledgements
 

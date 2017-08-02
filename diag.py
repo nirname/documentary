@@ -28,8 +28,6 @@ proc = Popen(
     stdin=PIPE, stdout=PIPE, stderr=PIPE
 )
 
-# proc.stdin.write(qqq)
-# proc.wait()
 res = proc.communicate(qqq)
 if proc.returncode:
     print res[1]
