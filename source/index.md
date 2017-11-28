@@ -15,19 +15,28 @@ git clone git@github.com:/nirname/documentary.git && cd documentary && rm -rf .g
 
 Install the requirements as follows.
 
-Ubuntu:
+Pip:
 
 ```shell
-sudo apt-get install build-essential pandoc graphviz pip
+https://pip.readthedocs.io/en/stable/installing/
+```
+
+Ubuntu:
+
+
+```shell
+apt-get install build-essential pandoc graphviz
 pip install pandocfilters seqdiag
 ```
 
 MacOS:
 
 ```shell
-brew install build-essential pandoc graphviz pip
+brew install build-essential pandoc graphviz
 pip install pandocfilters seqdiag
 ```
+
+Use `sudo` if needed.
 
 ## Usage
 

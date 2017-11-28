@@ -1,15 +1,21 @@
 # Documentary
 
-Static website compilator.
+Static website compiler from simple text format with charts and graphs support
 
-Converts simple text notation **Markdown** and **Graphviz** in pretty looking pages.
+Converts simple text notation pretty looking pages.
 
 Is supports:
 
 * Markdown extended from *Pandoc*
 
-* Different types of graphs via *Graphviz*
+* All the types of graphs that *Graphviz* builds
 
 * Flowchart diagramms via *Seqdiag*
 
 Have a look at [documentary gh-pages](https://nirname.github.io/documentary/)
+
+## Join the development
+
+I would really appresiate any assistance so as to increase amount of diagrams and simplify usage.
+
+[Read through the plan](source/todo.md).

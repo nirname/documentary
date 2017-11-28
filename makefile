@@ -12,7 +12,7 @@ BUILDS_DIR = $(TARGET_DIR)/$(ASSETS_DIR)
 
 # use --toc option generate links to anchors
 MD = pandoc --data-dir=$(CURDIR) \
-	--from markdown --standalone \
+	--from markdown --standalone --quiet \
 	--css $(ASSETS_DIR)/github-markdown.css \
 	--highlight-style kate \
 	--filter plugins/graphviz.py \
