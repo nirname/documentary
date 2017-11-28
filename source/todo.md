@@ -4,7 +4,7 @@ What has been done so far and what is planned to do.
 
 ## Diagrams & Plots
 
-* Gannt
+* Gantt
 * CSV 2 md tables
 * Gnuplot
 
@@ -16,17 +16,9 @@ What has been done so far and what is planned to do.
 * Another watcher
 * Add pallets
 * Generate index page automatically
+* Move assets folder to source
 
-# Changelog
-
-## v1.0
-
-* Add other extensions, such as `dot`, `neato` and others
-* Code hightlight using pandoc instead of Highlight.js
-* Removed pandoc templates
-* Sequence diagrams using `seqdiag`
-
-# To Read
+# Links
 
 * https://github.com/sverweij/mscgen_js
   ```
