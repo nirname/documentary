@@ -28,7 +28,7 @@ What has been done so far and what is planned to do.
   ```
   java -jar plantuml.jar sequence.txt
   ```
-
+* http://devel.se.wtb.tue.nl/trac/shed/browser/trunk/visualization/taskresource_gnuplot_gantt/gantt.py
 * https://www.gnu.org/software/plotutils/
 * http://blog.julien.cayzac.name/2004/11/drawing-uml-sequence-diagrams-with-gnu.html
 * https://stackoverflow.com/questions/13136247/generate-uml-sequence-diagrams-with-python-or-perl
