@@ -1,3 +1,10 @@
+---
+title: Documentary
+header-includes:
+    <meta name="keywords" content="pandoc static website compiler graph graphviz seqdiag sequence diagrams" />
+    <meta name="description" content="static website generator on top of pandoc and make with built-in markdown, gravhiz and sequence diagrams support" />
+---
+
 # Documentary
 
 This is a static website generator on top of Pandoc and Make
