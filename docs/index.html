@@ -75,36 +75,8 @@ code span. { color: #1f1c1b; } /* Normal */
 <body>
 <h1 id="documentary">Documentary</h1>
 <p>This is a static website generator on top of Pandoc and Make with built-in Markdown, Gravhiz and Sequence diagrams support.</p>
-<h2 id="installation">Installation</h2>
-<p>Clone this project and remove <code>.git</code> folder:</p>
-<pre class="sourceCode bash" id="cb1"><code class="sourceCode bash"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="fu">git</span> clone git@github.com:/nirname/documentary.git <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> documentary <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -rf .git</div></code></pre>
-<p>… or <a href="https://github.com/nirname/documentary/archive/master.zip">download it</a>.</p>
-<p>Install the requirements as follows.</p>
-<p>Pip:</p>
-<pre class="shell"><code>https://pip.readthedocs.io/en/stable/installing/</code></pre>
-<p>Ubuntu:</p>
-<pre class="shell"><code>apt-get install build-essential pandoc graphviz
-pip install pandocfilters seqdiag</code></pre>
-<p>MacOS:</p>
-<pre class="shell"><code>brew install build-essential pandoc graphviz
-pip install pandocfilters seqdiag</code></pre>
-<p>Use <code>sudo</code> if needed.</p>
-<h2 id="usage">Usage</h2>
-<ol type="1">
-<li><p><strong>Create and Compile</strong></p>
-<p>Put some <code>*.md</code> files under <code>source/</code> folder and run <code>make</code> from this project’s folder.</p>
-<p>Everything compiled will be found under <code>docs/</code> folder.</p></li>
-<li><p><strong>Serve files</strong></p>
-<p>Run webserver via <code>make serve</code> and open <code>localhost:8000</code> in your browser.</p></li>
-<li><p><strong>Watch changes</strong></p>
-<p>Run <code>make watch</code> in antoher tab to update compiled files automatically</p></li>
-</ol>
-<p>Available commands are:</p>
-<pre class="sourceCode bash" id="cb5"><code class="sourceCode bash"><div class="sourceLine" id="cb5-1" data-line-number="1"><span class="fu">make</span> clean  # to remove all the compiled pages, equal to rm -rf docs/*</div>
-<div class="sourceLine" id="cb5-2" data-line-number="2"><span class="fu">make</span>        # to build site</div>
-<div class="sourceLine" id="cb5-3" data-line-number="3"><span class="fu">make</span> serve  # to start serving files at localhost:8000</div>
-<div class="sourceLine" id="cb5-4" data-line-number="4"><span class="fu">make</span> watch  # to watch and recompile changes automatically</div></code></pre>
-<h2 id="inline-images">Inline images</h2>
+<h2 id="examples">Examples</h2>
+<h3 id="inline-images">Inline images</h3>
 <p>To create embedded graph add specific class to a code block.</p>
 <hr />
 <p><strong>Graphviz</strong></p>
@@ -242,21 +214,47 @@ seqdiag {
 </svg>
 
 <hr />
-<h2 id="standalone-images">Standalone images</h2>
+<h3 id="standalone-images">Standalone images</h3>
 <p>It might be convenient to keep your graph as a separate file in case it is too big for inline usage.</p>
 <p>To add external graph, put in your project <code>layouts.neato</code> with some valid graph inside and write a link to it:</p>
-<pre class="sourceCode markdown" id="cb8"><code class="sourceCode markdown"><div class="sourceLine" id="cb8-1" data-line-number="1"><span class="al">![Supported Formats](formats.neato)</span></div></code></pre>
+<pre class="sourceCode markdown" id="cb3"><code class="sourceCode markdown"><div class="sourceLine" id="cb3-1" data-line-number="1"><span class="al">![Supported Formats](formats.neato)</span></div></code></pre>
 <figure>
 <embed src="formats.svg" /><figcaption>Supported Formats</figcaption>
 </figure>
 <p>Layout of the image will be derived automatically by source file extension. <code>formats.neato</code> will be converted to <code>formats.svg</code> and links to it will be automatically changed as well.</p>
 <p>So as to change layout of the graph change source file extension, e.g. <code>formats.circo</code>. Don’t forget to change link to the graph to <code>![Supported Formats](formats.circo)</code>.</p>
-<h2 id="styles">Styles</h2>
+<h3 id="styles">Styles</h3>
 <p><a href="https://github.com/sindresorhus/github-markdown-css">Github Markdown styles</a> are built in.</p>
-<h2 id="syntax-highlight">Syntax highlight</h2>
+<h3 id="syntax-highlight">Syntax highlight</h3>
 <p><code>kate</code> color scheme of Pandoc is beeing used as a default.</p>
-<h2 id="acknowledgements">Acknowledgements</h2>
-<p>The very idea of implementation is borrowed from <a href="https://tylercipriani.com/blog/2014/05/13/replace-jekyll-with-pandoc-makefile/">here</a></p>
-<p>The idea of using inline <code>dot</code> graphs shamelessly taken from <a href="https://gitlab.com/meonkeys/pandoc-dot-svg-hack/tree/master">here</a></p>
+<h2 id="installation">Installation</h2>
+<p>Clone this project and remove <code>.git</code> folder:</p>
+<pre class="sourceCode bash" id="cb4"><code class="sourceCode bash"><div class="sourceLine" id="cb4-1" data-line-number="1"><span class="fu">git</span> clone git@github.com:/nirname/documentary.git <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> documentary <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -rf .git</div></code></pre>
+<p>… or <a href="https://github.com/nirname/documentary/archive/master.zip">download it</a>.</p>
+<p>Install the requirements as follows.</p>
+<p>Pip:</p>
+<pre class="shell"><code>https://pip.readthedocs.io/en/stable/installing/</code></pre>
+<p>Ubuntu:</p>
+<pre class="shell"><code>apt-get install build-essential pandoc graphviz
+pip install pandocfilters seqdiag</code></pre>
+<p>MacOS:</p>
+<pre class="shell"><code>brew install build-essential pandoc graphviz
+pip install pandocfilters seqdiag</code></pre>
+<p>Use <code>sudo</code> if needed.</p>
+<h2 id="usage">Usage</h2>
+<ol type="1">
+<li><p><strong>Create and Compile</strong></p>
+<p>Put some <code>*.md</code> files under <code>source/</code> folder and run <code>make</code> from this project’s folder.</p>
+<p>Everything compiled will be found under <code>docs/</code> folder.</p></li>
+<li><p><strong>Serve files</strong></p>
+<p>Run webserver via <code>make serve</code> and open <code>localhost:8000</code> in your browser.</p></li>
+<li><p><strong>Watch changes</strong></p>
+<p>Run <code>make watch</code> in antoher tab to update compiled files automatically</p></li>
+</ol>
+<p>Available commands are:</p>
+<pre class="sourceCode bash" id="cb8"><code class="sourceCode bash"><div class="sourceLine" id="cb8-1" data-line-number="1"><span class="fu">make</span> clean  # to remove all the compiled pages, equal to rm -rf docs/*</div>
+<div class="sourceLine" id="cb8-2" data-line-number="2"><span class="fu">make</span>        # to build site</div>
+<div class="sourceLine" id="cb8-3" data-line-number="3"><span class="fu">make</span> serve  # to start serving files at localhost:8000</div>
+<div class="sourceLine" id="cb8-4" data-line-number="4"><span class="fu">make</span> watch  # to watch and recompile changes automatically</div></code></pre>
 </body>
 </html>
