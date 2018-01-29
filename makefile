@@ -94,7 +94,7 @@ sources: \
 	$(CIRCO_TARGETS) \
 	$(SEQ_TARGETS)
 
-$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md makefile plugins/graphviz.py templates/documentary.html
+$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md makefile plugins/graphviz.py
 	@mkdir -p $(@D)
 	$(MD) --to html5 $< --output $@
 	@sed -i '' -e '/href="./s/\.md/\.html/g' $@

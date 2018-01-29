@@ -5,8 +5,6 @@ header-includes:
     <meta name="description" content="static website generator on top of pandoc and make with built-in markdown, gravhiz and sequence diagrams support" />
 ---
 
-# Documentary
-
 This is a static website generator on top of Pandoc and Make
 with built-in Markdown, Gravhiz and Sequence diagrams support.
 
