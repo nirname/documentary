@@ -18,24 +18,6 @@ MD = pandoc --data-dir=$(CURDIR) \
 	--filter plugins/graphviz.py \
 	--filter plugins/diag.py
 
-	# --filter pandoc-imagine
-
-# pygments
-# tango
-# espresso
-# zenburn
-# kate
-# monochrome
-# breezedark
-# haddock
-
-	# --css $(ASSETS_DIR)/github.css \
-	# --css $(ASSETS_DIR)/documentary.css \
-	# --template documentary.html \
-	# --css $(ASSETS_DIR)/github-pandoc.css\
-	# --css $(ASSETS_DIR)/buttondown.css \
-	# --css $(ASSETS_DIR)/highlight.css \
-
 DOT = dot -Tsvg
 NEATO = neato -Tsvg
 FDP = fdp -Tsvg
