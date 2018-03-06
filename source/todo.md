@@ -9,16 +9,24 @@ What has been done so far and what is planned to do.
 * Gantt
 * CSV 2 md tables
 * Gnuplot
+* https://github.com/hertogp/imagine
+* https://github.com/raghur/mermaid-filter
 
 ## Improvements
 
-* Use `rake` instead of `make`
-* Keep graphviz layout name as part of svg extension
-* Run in Docker
-* Another watcher
-* Add pallets
-* Generate index page automatically
+(ordered by priority)
+
+* Use relative paths for styles and everything (as a filter)
 * Move assets folder to source
+* Remove `title` command, use pure Markdown instead
+* Keep graphviz layout name as part of svg extension
+* Replace sed with pandoc filters
+* Use `--toc` option generate links to anchors
+* Another watcher
+* Generate index page automatically (as a filter)
+* Add pallets
+* Run in Docker
+* Use `rake` instead of `make` ?
 
 # Links
 
