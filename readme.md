@@ -2,7 +2,7 @@
 
 Static website compiler with markdown, charts and graphs support.
 
-Converts simple text notation pretty looking pages.
+Converts simple text notation into pretty looking pages.
 
 It doesn't pretend to be a new tool, it is just convenient union of other great tools.
 
