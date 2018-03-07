@@ -10,3 +10,8 @@
 * Code hightlight using pandoc instead of Highlight.js
 * Removed pandoc templates
 * Sequence diagrams using `seqdiag`
+
+## pre
+
+* Use relative paths for styles and everything
+* Move assets folder to source

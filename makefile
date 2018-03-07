@@ -6,17 +6,17 @@ SOURCE_DIR = source
 TARGET_DIR = docs
 
 # Where assets are located
-ASSETS_DIR = assets
+# ASSETS_DIR = assets
 # Where all the compiled assets will be
-BUILDS_DIR = $(TARGET_DIR)/$(ASSETS_DIR)
+# BUILDS_DIR = $(TARGET_DIR)/$(ASSETS_DIR)
 
-# use --toc option generate links to anchors
+# TODO: fix --css / absolute path
 MD = pandoc --data-dir=$(CURDIR) \
 	--from markdown --standalone --quiet \
-	--css $(ASSETS_DIR)/github-markdown.css \
 	--highlight-style kate \
 	--filter plugins/graphviz.py \
 	--filter plugins/diag.py
+	# --css assets/github-markdown.css \
 
 DOT = dot -Tsvg
 NEATO = neato -Tsvg
@@ -26,8 +26,8 @@ TWOPI = twopi -Tsvg
 CIRCO = circo -Tsvg
 SEQ = seqdiag -Tsvg
 
-ASSETS_SOURCES = $(shell find $(ASSETS_DIR) -type f | grep -E ".*(css|js|woff|ttf|eot)" | cut -sd / -f 2-)
-ASSETS_TARGETS = $(ASSETS_SOURCES:%=$(BUILDS_DIR)/%)
+CSS_SOURCES = $(shell find $(SOURCE_DIR) -name '*.css' | cut -sd / -f 2-)
+CSS_TARGETS = $(CSS_SOURCES:%.css=$(TARGET_DIR)/%.css)
 
 MD_SOURCES = $(shell find $(SOURCE_DIR) -name '*.md' | cut -sd / -f 2-)
 MD_TARGETS = $(MD_SOURCES:%.md=$(TARGET_DIR)/%.html)
@@ -53,20 +53,10 @@ CIRCO_TARGETS = $(CIRCO_SOURCES:%.circo=$(TARGET_DIR)/%.svg)
 SEQ_SOURCES = $(shell find $(SOURCE_DIR) -name '*.seq' | cut -sd / -f 2-)
 SEQ_TARGETS = $(SEQ_SOURCES:%.seq=$(TARGET_DIR)/%.svg)
 
-all: assets sources no_jekyll
-
-no_jekyll: $(TARGET_DIR)/.no_jekyll
-
-$(TARGET_DIR)/.no_jekyll:
-	touch $@
-
-assets: $(ASSETS_TARGETS)
-
-$(ASSETS_TARGETS): $(BUILDS_DIR)/%: $(ASSETS_DIR)/%
-	@mkdir -p $(@D)
-	cp -f $< $@
+all: sources no_jekyll
 
 sources: \
+	$(CSS_TARGETS) \
 	$(MD_TARGETS) \
 	$(DOT_TARGETS) \
 	$(NEATO_TARGETS) \
@@ -76,9 +66,13 @@ sources: \
 	$(CIRCO_TARGETS) \
 	$(SEQ_TARGETS)
 
-$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md makefile plugins/graphviz.py
+$(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css makefile
 	@mkdir -p $(@D)
-	$(MD) --to html5 $< --output $@
+	cp -f $< $@
+
+$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md makefile plugins/*.py
+	@mkdir -p $(@D)
+	$(MD) $(foreach var,$(CSS_TARGETS), --css `python plugins/relpath.py $(var) $(@D)`) --to html5 $< --output $@
 	@sed -i '' -e '/href="./s/\.md/\.html/g' $@
 	@sed -i '' -e '/href="./s/\.dot/\.svg/g' $@
 	@sed -i '' -e '/href="./s/\.neato/\.svg/g' $@
@@ -93,6 +87,8 @@ $(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md makefile plugins/graphviz.py
 	@sed -i '' -e '/src="./s/\.twopi/\.svg/g' $@
 	@sed -i '' -e '/src="./s/\.circo/\.svg/g' $@
 	@sed -i '' -e '/src="./s/\.seq/\.svg/g' $@
+
+# $(MD) --to html5 $< --output $@
 
 $(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot makefile
 	@mkdir -p $(@D)
@@ -122,6 +118,11 @@ $(SEQ_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.seq makefile
 	@mkdir -p $(@D)
 	$(SEQ) $< -o $@
 
+no_jekyll: $(TARGET_DIR)/.no_jekyll
+
+$(TARGET_DIR)/.no_jekyll:
+	touch $@
+
 PHONY: watch serve clean debug
 
 watch:
@@ -133,7 +134,8 @@ serve:
 clean:
 	rm -rf $(TARGET_DIR)/*
 
+# QQQ = $(foreach var,$(CSS_SOURCES), $(python plugins/relpath.py . $(var));)
+
 debug:
-	@echo $(ASSETS_TARGETS)
-	@echo $(MD_TARGETS)
-	@echo $(DOT_TARGETS)
+	@echo $(CSS_SOURCES)
+	@echo $(CSS_TARGETS)

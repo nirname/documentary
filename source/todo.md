@@ -16,8 +16,8 @@ What has been done so far and what is planned to do.
 
 (ordered by priority)
 
-* Use relative paths for styles and everything (as a filter)
-* Move assets folder to source
+* Copy other files
+* Relative paths as a filter
 * Remove `title` command, use pure Markdown instead
 * Keep graphviz layout name as part of svg extension
 * Replace sed with pandoc filters
@@ -25,6 +25,7 @@ What has been done so far and what is planned to do.
 * Another watcher
 * Generate index page automatically (as a filter)
 * Add pallets
+* Create bootstrap script for installation
 * Run in Docker
 * Use `rake` instead of `make` ?
 
