@@ -70,7 +70,7 @@ $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css makefile
 	@mkdir -p $(@D)
 	cp -f $< $@
 
-$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md makefile plugins/*.py
+$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) makefile plugins/*.py
 	@mkdir -p $(@D)
 	$(MD) $(foreach var,$(CSS_TARGETS), --css `python plugins/relpath.py $(var) $(@D)`) --to html5 $< --output $@
 	@sed -i '' -e '/href="./s/\.md/\.html/g' $@
