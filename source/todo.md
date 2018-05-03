@@ -1,6 +1,4 @@
----
-title: To Do
----
+# To Do
 
 What has been done so far and what is planned to do.
 
