@@ -15,6 +15,8 @@ with built-in Markdown, Gravhiz and Sequence diagrams support.
 * [Usage](#usage)
 * [Examples](#examples)
 
+Read through [future development plans](todo.md).
+
 ## Installation
 
 Clone this project and remove `.git` folder:

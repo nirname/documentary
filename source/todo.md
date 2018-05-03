@@ -16,7 +16,7 @@ What has been done so far and what is planned to do.
 
 (ordered by priority)
 
-* Copy other files (png, svg, css, etc, that doesn't have to be compiled)
+* ~~Copy other files (png, svg, css, etc, that doesn't have to be compiled)~~
 * Reveal.js as a part of makefile
 * Relative paths as a filter
 * Remove `title` command, use pure Markdown instead
