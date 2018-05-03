@@ -18,6 +18,7 @@ What has been done so far and what is planned to do.
 
 * ~~Copy other files (png, svg, css, etc, that doesn't have to be compiled)~~
 * Reveal.js as a part of makefile
+* Include command in markdown
 * Relative paths as a filter
 * Remove `title` command, use pure Markdown instead
 * Keep graphviz layout name as part of svg extension
@@ -28,7 +29,7 @@ What has been done so far and what is planned to do.
 * Add pallets
 * Create bootstrap script for installation
 * Run in Docker
-* Use `rake` instead of `make` ?
+* ~~Use `rake` instead of `make`~~ ?
 
 # Links
 
