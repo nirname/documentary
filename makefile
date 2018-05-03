@@ -5,18 +5,11 @@ SOURCE_DIR = source
 # Where all the compiled sources will be
 TARGET_DIR = docs
 
-# Where assets are located
-# ASSETS_DIR = assets
-# Where all the compiled assets will be
-# BUILDS_DIR = $(TARGET_DIR)/$(ASSETS_DIR)
-
-# TODO: fix --css / absolute path
 MD = pandoc --data-dir=$(CURDIR) \
 	--from markdown --standalone --quiet \
 	--highlight-style kate \
 	--filter plugins/graphviz.py \
 	--filter plugins/diag.py
-	# --css assets/github-markdown.css \
 
 DOT = dot -Tsvg
 NEATO = neato -Tsvg
@@ -26,36 +19,40 @@ TWOPI = twopi -Tsvg
 CIRCO = circo -Tsvg
 SEQ = seqdiag -Tsvg
 
-CSS_SOURCES = $(shell find $(SOURCE_DIR) -name '*.css' | cut -sd / -f 2-)
-CSS_TARGETS = $(CSS_SOURCES:%.css=$(TARGET_DIR)/%.css)
+STATIC_SOURCES = $(shell find -E $(SOURCE_DIR) -iregex '.*\.(png|jpg|jpeg|svg)$$')
+STATIC_TARGETS = $(STATIC_SOURCES:$(SOURCE_DIR)/%=$(TARGET_DIR)/%)
 
-MD_SOURCES = $(shell find $(SOURCE_DIR) -name '*.md' | cut -sd / -f 2-)
-MD_TARGETS = $(MD_SOURCES:%.md=$(TARGET_DIR)/%.html)
+CSS_SOURCES = $(shell find $(SOURCE_DIR) -name '*.css')
+CSS_TARGETS = $(CSS_SOURCES:$(SOURCE_DIR)/%.css=$(TARGET_DIR)/%.css)
 
-DOT_SOURCES = $(shell find $(SOURCE_DIR) -name '*.dot' | cut -sd / -f 2-)
-DOT_TARGETS = $(DOT_SOURCES:%.dot=$(TARGET_DIR)/%.svg)
+MD_SOURCES = $(shell find $(SOURCE_DIR) -name '*.md')
+MD_TARGETS = $(MD_SOURCES:$(SOURCE_DIR)/%.md=$(TARGET_DIR)/%.html)
 
-NEATO_SOURCES = $(shell find $(SOURCE_DIR) -name '*.neato' | cut -sd / -f 2-)
-NEATO_TARGETS = $(NEATO_SOURCES:%.neato=$(TARGET_DIR)/%.svg)
+DOT_SOURCES = $(shell find $(SOURCE_DIR) -name '*.dot')
+DOT_TARGETS = $(DOT_SOURCES:$(SOURCE_DIR)/%.dot=$(TARGET_DIR)/%.svg)
 
-FDP_SOURCES = $(shell find $(SOURCE_DIR) -name '*.fdp' | cut -sd / -f 2-)
-FDP_TARGETS = $(FDP_SOURCES:%.dot=$(TARGET_DIR)/%.svg)
+NEATO_SOURCES = $(shell find $(SOURCE_DIR) -name '*.neato')
+NEATO_TARGETS = $(NEATO_SOURCES:$(SOURCE_DIR)/%.neato=$(TARGET_DIR)/%.svg)
 
-SFDP_SOURCES = $(shell find $(SOURCE_DIR) -name '*.sfdp' | cut -sd / -f 2-)
-SFDP_TARGETS = $(SFDP_SOURCES:%.sfdp=$(TARGET_DIR)/%.svg)
+FDP_SOURCES = $(shell find $(SOURCE_DIR) -name '*.fdp')
+FDP_TARGETS = $(FDP_SOURCES:$(SOURCE_DIR)/%.fdp=$(TARGET_DIR)/%.svg)
 
-TWOPI_SOURCES = $(shell find $(SOURCE_DIR) -name '*.twopi' | cut -sd / -f 2-)
-TWOPI_TARGETS = $(TWOPI_SOURCES:%.twopi=$(TARGET_DIR)/%.svg)
+SFDP_SOURCES = $(shell find $(SOURCE_DIR) -name '*.sfdp')
+SFDP_TARGETS = $(SFDP_SOURCES:$(SOURCE_DIR)/%.sfdp=$(TARGET_DIR)/%.svg)
 
-CIRCO_SOURCES = $(shell find $(SOURCE_DIR) -name '*.circo' | cut -sd / -f 2-)
-CIRCO_TARGETS = $(CIRCO_SOURCES:%.circo=$(TARGET_DIR)/%.svg)
+TWOPI_SOURCES = $(shell find $(SOURCE_DIR) -name '*.twopi')
+TWOPI_TARGETS = $(TWOPI_SOURCES:$(SOURCE_DIR)/%.twopi=$(TARGET_DIR)/%.svg)
 
-SEQ_SOURCES = $(shell find $(SOURCE_DIR) -name '*.seq' | cut -sd / -f 2-)
-SEQ_TARGETS = $(SEQ_SOURCES:%.seq=$(TARGET_DIR)/%.svg)
+CIRCO_SOURCES = $(shell find $(SOURCE_DIR) -name '*.circo')
+CIRCO_TARGETS = $(CIRCO_SOURCES:$(SOURCE_DIR)/%.circo=$(TARGET_DIR)/%.svg)
+
+SEQ_SOURCES = $(shell find $(SOURCE_DIR) -name '*.seq')
+SEQ_TARGETS = $(SEQ_SOURCES:$(SOURCE_DIR)/%.seq=$(TARGET_DIR)/%.svg)
 
 all: sources no_jekyll
 
 sources: \
+	$(STATIC_TARGETS)\
 	$(CSS_TARGETS) \
 	$(MD_TARGETS) \
 	$(DOT_TARGETS) \
@@ -65,6 +62,10 @@ sources: \
 	$(TWOPI_TARGETS) \
 	$(CIRCO_TARGETS) \
 	$(SEQ_TARGETS)
+
+$(STATIC_TARGETS):$(TARGET_DIR)/%: $(SOURCE_DIR)/% makefile
+	@mkdir -p $(@D)
+	cp -f $< $@
 
 $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css makefile
 	@mkdir -p $(@D)
@@ -87,8 +88,6 @@ $(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) makefile p
 	@sed -i '' -e '/src="./s/\.twopi/\.svg/g' $@
 	@sed -i '' -e '/src="./s/\.circo/\.svg/g' $@
 	@sed -i '' -e '/src="./s/\.seq/\.svg/g' $@
-
-# $(MD) --to html5 $< --output $@
 
 $(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot makefile
 	@mkdir -p $(@D)
@@ -137,5 +136,23 @@ clean:
 # QQQ = $(foreach var,$(CSS_SOURCES), $(python plugins/relpath.py . $(var));)
 
 debug:
-	@echo $(CSS_SOURCES)
-	@echo $(CSS_TARGETS)
+	@echo "STATIC_SOURCES: " $(STATIC_SOURCES)
+	@echo "STATIC_TARGETS: " $(STATIC_TARGETS)
+	@echo "CSS_SOURCES: " $(CSS_SOURCES)
+	@echo "CSS_TARGETS: " $(CSS_TARGETS)
+	@echo "MD_SOURCES: " $(MD_SOURCES)
+	@echo "MD_TARGETS: " $(MD_TARGETS)
+	@echo "DOT_SOURCES: " $(DOT_SOURCES)
+	@echo "DOT_TARGETS: " $(DOT_TARGETS)
+	@echo "NEATO_SOURCES: " $(NEATO_SOURCES)
+	@echo "NEATO_TARGETS: " $(NEATO_TARGETS)
+	@echo "FDP_SOURCES: " $(FDP_SOURCES)
+	@echo "FDP_TARGETS: " $(FDP_TARGETS)
+	@echo "SFDP_SOURCES: " $(SFDP_SOURCES)
+	@echo "SFDP_TARGETS: " $(SFDP_TARGETS)
+	@echo "TWOPI_SOURCES: " $(TWOPI_SOURCES)
+	@echo "TWOPI_TARGETS: " $(TWOPI_TARGETS)
+	@echo "CIRCO_SOURCES: " $(CIRCO_SOURCES)
+	@echo "CIRCO_TARGETS: " $(CIRCO_TARGETS)
+	@echo "SEQ_SOURCES: " $(SEQ_SOURCES)
+	@echo "SEQ_TARGETS: " $(SEQ_TARGETS)
