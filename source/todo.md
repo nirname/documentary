@@ -16,7 +16,7 @@ What has been done so far and what is planned to do.
 
 (ordered by priority)
 
-* Copy other files
+* Copy other files (png, svg, css, etc, that doesn't have to be compiled)
 * Relative paths as a filter
 * Remove `title` command, use pure Markdown instead
 * Keep graphviz layout name as part of svg extension
