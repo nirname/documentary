@@ -56,12 +56,12 @@ Use `sudo` if needed.
 
 Projects consist of 4 folders:
 
-* source - where ayou should put all the source, images and so on
-* docs - where you will find your website
-* resoucres - some ready styles for you (e.g. [Github Markdown styles](https://github.com/sindresorhus/github-markdown-css)), copy them to source folder if needed
-* plugins - contains pandoc filers and other nicities
+* `source` - where you should put all the source, images and so on
+* `docs` - where you will find your website
+* `resoucres` - some ready styles for you (e.g. [Github Markdown styles](https://github.com/sindresorhus/github-markdown-css)), copy them to source folder if needed
+* `plugins` - contains pandoc filers and other nicities
 
-In fact the source and docs folders are all you need.
+In fact the `source` and `docs` folders are all you need.
 
 Syntax highlight comes from `kate` color scheme of Pandoc.
 
