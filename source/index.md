@@ -94,6 +94,27 @@ make watch  # to watch and recompile changes automatically
 
 ## Examples
 
+### reveal.js
+
+```bash
+rm -rf reveal.js
+wget https://github.com/hakimel/reveal.js/archive/master.tar.gz
+tar -xzvf master.tar.gz
+mv reveal.js-master reveal.js
+rm master.tar.gz
+```
+
+Replace
+
+```
+--to html5
+```
+in `makefile` to
+
+```
+--to revealjs
+```
+
 ### Inline images
 
 To create embedded graph add specific class to a code block.

@@ -128,6 +128,16 @@ pip install pandocfilters seqdiag</code></pre>
 <div class="sourceLine" id="cb5-3" data-line-number="3"><span class="fu">make</span> serve  # to start serving files at localhost:8000</div>
 <div class="sourceLine" id="cb5-4" data-line-number="4"><span class="fu">make</span> watch  # to watch and recompile changes automatically</div></code></pre>
 <h2 id="examples">Examples</h2>
+<h3 id="reveal.js">reveal.js</h3>
+<pre class="sourceCode bash" id="cb6"><code class="sourceCode bash"><div class="sourceLine" id="cb6-1" data-line-number="1"><span class="fu">rm</span> -rf reveal.js</div>
+<div class="sourceLine" id="cb6-2" data-line-number="2"><span class="fu">wget</span> https://github.com/hakimel/reveal.js/archive/master.tar.gz</div>
+<div class="sourceLine" id="cb6-3" data-line-number="3"><span class="fu">tar</span> -xzvf master.tar.gz</div>
+<div class="sourceLine" id="cb6-4" data-line-number="4"><span class="fu">mv</span> reveal.js-master reveal.js</div>
+<div class="sourceLine" id="cb6-5" data-line-number="5"><span class="fu">rm</span> master.tar.gz</div></code></pre>
+<p>Replace</p>
+<pre><code>--to html5</code></pre>
+<p>in <code>makefile</code> to</p>
+<pre><code>--to revealjs</code></pre>
 <h3 id="inline-images">Inline images</h3>
 <p>To create embedded graph add specific class to a code block.</p>
 <hr />
@@ -269,7 +279,7 @@ seqdiag {
 <h3 id="standalone-images">Standalone images</h3>
 <p>It might be convenient to keep your graph as a separate file in case it is too big for inline usage.</p>
 <p>To add external graph, put in your project <code>layouts.neato</code> with some valid graph inside and write a link to it:</p>
-<pre class="sourceCode markdown" id="cb8"><code class="sourceCode markdown"><div class="sourceLine" id="cb8-1" data-line-number="1"><span class="al">![Supported Formats](formats.neato)</span></div></code></pre>
+<pre class="sourceCode markdown" id="cb11"><code class="sourceCode markdown"><div class="sourceLine" id="cb11-1" data-line-number="1"><span class="al">![Supported Formats](formats.neato)</span></div></code></pre>
 <figure>
 <embed src="formats.svg" /><figcaption>Supported Formats</figcaption>
 </figure>

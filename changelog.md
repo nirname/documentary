@@ -11,7 +11,11 @@
 * Removed pandoc templates
 * Sequence diagrams using `seqdiag`
 
-## pre
+## v1.2
 
 * Use relative paths for styles and everything
 * Move assets folder to source
+
+## candidate
+
+* Added instructions for reveal.js
