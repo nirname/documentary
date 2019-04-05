@@ -1,78 +1,56 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Documentary</title>
+  <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      div.line-block{white-space: pre-line;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-  <style type="text/css">
-div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; }
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource div.sourceLine, .numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em; }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0; background-color: #ffffff; color: #a0a0a0;  padding-left: 4px; }
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
+td.sourceCode { padding-left: 5px; }
 pre, code { color: #1f1c1b; background-color: #ffffff; }
-@media screen {
-a.sourceLine::before { text-decoration: underline; color: initial; }
-}
-code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code span.dt { color: #0057ae; } /* DataType */
-code span.dv { color: #b08000; } /* DecVal */
-code span.bn { color: #b08000; } /* BaseN */
-code span.fl { color: #b08000; } /* Float */
-code span.cn { color: #aa5500; } /* Constant */
-code span.ch { color: #924c9d; } /* Char */
-code span.sc { color: #3daee9; } /* SpecialChar */
-code span.st { color: #bf0303; } /* String */
-code span.vs { color: #bf0303; } /* VerbatimString */
-code span.ss { color: #ff5500; } /* SpecialString */
-code span.im { color: #ff5500; } /* Import */
-code span.co { color: #898887; } /* Comment */
-code span.do { color: #607880; } /* Documentation */
-code span.an { color: #ca60ca; } /* Annotation */
-code span.cv { color: #0095ff; } /* CommentVar */
-code span.ot { color: #006e28; } /* Other */
-code span.fu { color: #644a9b; } /* Function */
-code span.va { color: #0057ae; } /* Variable */
-code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code span.op { color: #1f1c1b; } /* Operator */
-code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code span.pp { color: #006e28; } /* Preprocessor */
-code span.at { color: #0057ae; } /* Attribute */
-code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
-code span.in { color: #b08000; } /* Information */
-code span.wa { color: #bf0303; } /* Warning */
-code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
-code span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code span. { color: #1f1c1b; } /* Normal */
+code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code > span.dt { color: #0057ae; } /* DataType */
+code > span.dv { color: #b08000; } /* DecVal */
+code > span.bn { color: #b08000; } /* BaseN */
+code > span.fl { color: #b08000; } /* Float */
+code > span.cn { color: #aa5500; } /* Constant */
+code > span.ch { color: #924c9d; } /* Char */
+code > span.sc { color: #3daee9; } /* SpecialChar */
+code > span.st { color: #bf0303; } /* String */
+code > span.vs { color: #bf0303; } /* VerbatimString */
+code > span.ss { color: #ff5500; } /* SpecialString */
+code > span.im { color: #ff5500; } /* Import */
+code > span.co { color: #898887; } /* Comment */
+code > span.do { color: #607880; } /* Documentation */
+code > span.an { color: #ca60ca; } /* Annotation */
+code > span.cv { color: #0095ff; } /* CommentVar */
+code > span.ot { color: #006e28; } /* Other */
+code > span.fu { color: #644a9b; } /* Function */
+code > span.va { color: #0057ae; } /* Variable */
+code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #1f1c1b; } /* Operator */
+code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code > span.pp { color: #006e28; } /* Preprocessor */
+code > span.at { color: #0057ae; } /* Attribute */
+code > span.re { color: #0057ae; } /* RegionMarker */
+code > span.in { color: #b08000; } /* Information */
+code > span.wa { color: #bf0303; } /* Warning */
+code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
+code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code > span. { color: #1f1c1b; } /* Normal */
   </style>
   <link rel="stylesheet" href="github-markdown.css">
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
-  <meta name="keywords" content="pandoc static website compiler graph graphviz seqdiag sequence diagrams" />
-  <meta name="description" content="static website generator on top of pandoc and make with built-in markdown, gravhiz and sequence diagrams support" />
+  <meta name="keywords" content="pandoc static website compiler graph graphviz seqdiag sequence diagrams" /> <meta name="description" content="static website generator on top of pandoc and make with built-in markdown, gravhiz and sequence diagrams support" />
 </head>
 <body>
 <header>
@@ -89,8 +67,8 @@ code span. { color: #1f1c1b; } /* Normal */
 <p>Read through <a href="todo.html">future development plans</a>.</p>
 <h2 id="installation">Installation</h2>
 <p>Clone this project and remove <code>.git</code> folder:</p>
-<pre class="sourceCode bash" id="cb1"><code class="sourceCode bash"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="fu">git</span> clone git@github.com:/nirname/documentary.git <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> documentary <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -rf .git</div></code></pre>
-<p>… or <a href="https://github.com/nirname/documentary/archive/master.zip">download it</a>.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> clone git@github.com:/nirname/documentary.git <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> documentary <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -rf .git</code></pre></div>
+<p>... or <a href="https://github.com/nirname/documentary/archive/master.zip">download it</a>.</p>
 <p>Install the requirements as follows.</p>
 <p>Pip:</p>
 <pre class="shell"><code>https://pip.readthedocs.io/en/stable/installing/</code></pre>
@@ -115,7 +93,7 @@ pip install pandocfilters seqdiag</code></pre>
 <ol type="1">
 <li><p><strong>Create and Compile</strong></p>
 <p>Put some <code>*.md</code>, <code>*.css</code> and <code>*.dot</code> files under <code>source/</code> folder.</p>
-<p>Run <code>make</code> from this project’s main folder.</p>
+<p>Run <code>make</code> from this project's main folder.</p>
 <p>Everything compiled will be found under <code>docs/</code> folder.</p></li>
 <li><p><strong>Serve files</strong></p>
 <p>Run webserver via <code>make serve</code> and open <code>localhost:8000</code> in your browser.</p></li>
@@ -123,17 +101,17 @@ pip install pandocfilters seqdiag</code></pre>
 <p>Run <code>make watch</code> in antoher terminal to update compiled files automatically</p></li>
 </ol>
 <p>Available commands are:</p>
-<pre class="sourceCode bash" id="cb5"><code class="sourceCode bash"><div class="sourceLine" id="cb5-1" data-line-number="1"><span class="fu">make</span> clean  # to remove all the compiled pages, equal to rm -rf docs/*</div>
-<div class="sourceLine" id="cb5-2" data-line-number="2"><span class="fu">make</span>        # to build site</div>
-<div class="sourceLine" id="cb5-3" data-line-number="3"><span class="fu">make</span> serve  # to start serving files at localhost:8000</div>
-<div class="sourceLine" id="cb5-4" data-line-number="4"><span class="fu">make</span> watch  # to watch and recompile changes automatically</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">make</span> clean  # to remove all the compiled pages, equal to rm -rf docs/*
+<span class="fu">make</span>        # to build site
+<span class="fu">make</span> serve  # to start serving files at localhost:8000
+<span class="fu">make</span> watch  # to watch and recompile changes automatically</code></pre></div>
 <h2 id="examples">Examples</h2>
 <h3 id="reveal.js">reveal.js</h3>
-<pre class="sourceCode bash" id="cb6"><code class="sourceCode bash"><div class="sourceLine" id="cb6-1" data-line-number="1"><span class="fu">rm</span> -rf reveal.js</div>
-<div class="sourceLine" id="cb6-2" data-line-number="2"><span class="fu">wget</span> https://github.com/hakimel/reveal.js/archive/master.tar.gz</div>
-<div class="sourceLine" id="cb6-3" data-line-number="3"><span class="fu">tar</span> -xzvf master.tar.gz</div>
-<div class="sourceLine" id="cb6-4" data-line-number="4"><span class="fu">mv</span> reveal.js-master reveal.js</div>
-<div class="sourceLine" id="cb6-5" data-line-number="5"><span class="fu">rm</span> master.tar.gz</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">rm</span> -rf reveal.js
+<span class="fu">wget</span> https://github.com/hakimel/reveal.js/archive/master.tar.gz
+<span class="fu">tar</span> -xzvf master.tar.gz
+<span class="fu">mv</span> reveal.js-master reveal.js
+<span class="fu">rm</span> master.tar.gz</code></pre></div>
 <p>Replace</p>
 <pre><code>--to html5</code></pre>
 <p>in <code>makefile</code> to</p>
@@ -154,52 +132,52 @@ digraph workflow {
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: workflow Pages: 1 -->
-<svg width="266pt" height="116pt"
- viewBox="0.00 0.00 265.72 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="305pt" height="116pt"
+ viewBox="0.00 0.00 304.50 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
 <title>workflow</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 261.7173,-112 261.7173,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 300.5,-112 300.5,4 -4,4"/>
 <!-- Markdown -->
 <g id="node1" class="node">
 <title>Markdown</title>
-<polygon fill="none" stroke="#000000" points="77.6531,-108 -.2185,-108 -.2185,-72 77.6531,-72 77.6531,-108"/>
-<text text-anchor="middle" x="38.7173" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">Markdown</text>
+<polygon fill="none" stroke="#000000" points="93,-108 0,-108 0,-72 93,-72 93,-108"/>
+<text text-anchor="middle" x="46.5" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">Markdown</text>
 </g>
 <!-- HTML -->
 <g id="node4" class="node">
 <title>HTML</title>
-<polygon fill="none" stroke="#000000" points="167.7173,-36 95.7173,-36 95.7173,0 167.7173,0 167.7173,-36"/>
-<text text-anchor="middle" x="131.7173" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">HTML</text>
+<polygon fill="none" stroke="#000000" points="187.5,-36 115.5,-36 115.5,0 187.5,0 187.5,-36"/>
+<text text-anchor="middle" x="151.5" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">HTML</text>
 </g>
 <!-- Markdown&#45;&gt;HTML -->
 <g id="edge1" class="edge">
 <title>Markdown&#45;&gt;HTML</title>
-<path fill="none" stroke="#000000" d="M62.1851,-71.8314C73.75,-62.8779 87.8577,-51.9558 100.3356,-42.2955"/>
-<polygon fill="#000000" stroke="#000000" points="102.4923,-45.0521 108.257,-36.1628 98.2071,-39.5171 102.4923,-45.0521"/>
+<path fill="none" stroke="#000000" d="M72.9959,-71.8314C86.1774,-62.7927 102.2847,-51.7476 116.4711,-42.0198"/>
+<polygon fill="#000000" stroke="#000000" points="118.7446,-44.7047 125.0125,-36.1628 114.7859,-38.9316 118.7446,-44.7047"/>
 </g>
 <!-- Graphviz -->
 <g id="node2" class="node">
 <title>Graphviz</title>
-<polygon fill="none" stroke="#000000" points="167.7173,-108 95.7173,-108 95.7173,-72 167.7173,-72 167.7173,-108"/>
-<text text-anchor="middle" x="131.7173" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">Graphviz</text>
+<polygon fill="none" stroke="#000000" points="192,-108 111,-108 111,-72 192,-72 192,-108"/>
+<text text-anchor="middle" x="151.5" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">Graphviz</text>
 </g>
 <!-- Graphviz&#45;&gt;HTML -->
 <g id="edge2" class="edge">
 <title>Graphviz&#45;&gt;HTML</title>
-<path fill="none" stroke="#000000" d="M131.7173,-71.8314C131.7173,-64.131 131.7173,-54.9743 131.7173,-46.4166"/>
-<polygon fill="#000000" stroke="#000000" points="135.2174,-46.4132 131.7173,-36.4133 128.2174,-46.4133 135.2174,-46.4132"/>
+<path fill="none" stroke="#000000" d="M151.5,-71.8314C151.5,-64.131 151.5,-54.9743 151.5,-46.4166"/>
+<polygon fill="#000000" stroke="#000000" points="155.0001,-46.4132 151.5,-36.4133 148.0001,-46.4133 155.0001,-46.4132"/>
 </g>
 <!-- Sequence -->
 <g id="node3" class="node">
 <title>Sequence</title>
-<polygon fill="none" stroke="#000000" points="257.7173,-108 185.7173,-108 185.7173,-72 257.7173,-72 257.7173,-108"/>
-<text text-anchor="middle" x="221.7173" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">Sequence</text>
+<polygon fill="none" stroke="#000000" points="296.5,-108 210.5,-108 210.5,-72 296.5,-72 296.5,-108"/>
+<text text-anchor="middle" x="253.5" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">Sequence</text>
 </g>
 <!-- Sequence&#45;&gt;HTML -->
 <g id="edge3" class="edge">
 <title>Sequence&#45;&gt;HTML</title>
-<path fill="none" stroke="#000000" d="M199.0065,-71.8314C187.9213,-62.9632 174.4219,-52.1637 162.4321,-42.5718"/>
-<polygon fill="#000000" stroke="#000000" points="164.416,-39.6768 154.4208,-36.1628 160.0431,-45.1429 164.416,-39.6768"/>
+<path fill="none" stroke="#000000" d="M227.7611,-71.8314C214.9563,-62.7927 199.3091,-51.7476 185.5281,-42.0198"/>
+<polygon fill="#000000" stroke="#000000" points="187.4188,-39.0703 177.2307,-36.1628 183.382,-44.7891 187.4188,-39.0703"/>
 </g>
 </g>
 </svg>
@@ -219,7 +197,7 @@ seqdiag {
 ```</code></pre>
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg viewBox="0 0 640 536" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg viewBox="0 0 640 534" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs id="defs_block">
     <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
       <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
@@ -235,55 +213,55 @@ seqdiag {
   make -&gt;           tool [label = "graph"];
   make &lt;-           tool [label = "svg"];
 }</desc>
-  <rect fill="rgb(0,0,0)" height="374" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="127" y="140" />
-  <rect fill="rgb(0,0,0)" height="196" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="319" y="140" />
-  <rect fill="rgb(0,0,0)" height="66" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="511" y="206" />
-  <rect fill="rgb(0,0,0)" height="66" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="511" y="402" />
+  <rect fill="rgb(0,0,0)" height="371" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="127" y="141" />
+  <rect fill="rgb(0,0,0)" height="195" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="319" y="141" />
+  <rect fill="rgb(0,0,0)" height="65" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="511" y="206" />
+  <rect fill="rgb(0,0,0)" height="65" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="511" y="401" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="46" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="259" y="46" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="46" />
-  <path d="M 128 80 L 128 524" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
-  <rect fill="moccasin" height="374" stroke="rgb(0,0,0)" width="8" x="124" y="134" />
-  <path d="M 320 80 L 320 524" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
-  <rect fill="moccasin" height="196" stroke="rgb(0,0,0)" width="8" x="316" y="134" />
-  <path d="M 512 80 L 512 524" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
-  <rect fill="moccasin" height="66" stroke="rgb(0,0,0)" width="8" x="508" y="200" />
-  <rect fill="moccasin" height="66" stroke="rgb(0,0,0)" width="8" x="508" y="396" />
+  <path d="M 128 80 L 128 522" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="371" stroke="rgb(0,0,0)" width="8" x="124" y="135" />
+  <path d="M 320 80 L 320 522" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="195" stroke="rgb(0,0,0)" width="8" x="316" y="135" />
+  <path d="M 512 80 L 512 522" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="65" stroke="rgb(0,0,0)" width="8" x="508" y="200" />
+  <rect fill="moccasin" height="65" stroke="rgb(0,0,0)" width="8" x="508" y="395" />
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="40" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="28" x="128" y="65">make</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="24" x="128" y="66">make</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="40" />
   <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="36" x="320" y="66">pandoc</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="40" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="18" x="512" y="65">tool</text>
-  <path d="M 136 134 L 312 134" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="304,130 312,134 304,138" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="24" x="512" y="66">tool</text>
+  <path d="M 136 135 L 312 135" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="304,131 312,135 304,139" stroke="rgb(0,0,0)" />
   <path d="M 328 200 L 504 200" fill="none" stroke="rgb(0,0,0)" />
   <polygon fill="rgb(0,0,0)" points="496,196 504,200 496,204" stroke="rgb(0,0,0)" />
-  <path d="M 328 266 L 504 266" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="336,262 328,266 336,270" stroke="rgb(0,0,0)" />
+  <path d="M 328 265 L 504 265" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="336,261 328,265 336,269" stroke="rgb(0,0,0)" />
   <path d="M 136 330 L 312 330" fill="none" stroke="rgb(0,0,0)" />
   <polygon fill="rgb(0,0,0)" points="144,326 136,330 144,334" stroke="rgb(0,0,0)" />
-  <path d="M 136 396 L 504 396" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="496,392 504,396 496,400" stroke="rgb(0,0,0)" />
-  <path d="M 136 462 L 504 462" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="144,458 136,462 144,466" stroke="rgb(0,0,0)" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="53" x="166" y="132">markdown</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="28" x="346" y="198">graph</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="17" x="495" y="264">svg</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="22" x="301" y="328">html</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="28" x="154" y="394">graph</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="17" x="495" y="460">svg</text>
+  <path d="M 136 395 L 504 395" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="496,391 504,395 496,399" stroke="rgb(0,0,0)" />
+  <path d="M 136 460 L 504 460" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="144,456 136,460 144,464" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="48" x="164" y="133">markdown</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="30" x="347" y="198">graph</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="18" x="495" y="263">svg</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="24" x="300" y="328">html</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="30" x="155" y="393">graph</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="18" x="495" y="458">svg</text>
 </svg>
 
 <hr />
 <h3 id="standalone-images">Standalone images</h3>
 <p>It might be convenient to keep your graph as a separate file in case it is too big for inline usage.</p>
 <p>To add external graph, put in your project <code>layouts.neato</code> with some valid graph inside and write a link to it:</p>
-<pre class="sourceCode markdown" id="cb11"><code class="sourceCode markdown"><div class="sourceLine" id="cb11-1" data-line-number="1"><span class="al">![Supported Formats](formats.neato)</span></div></code></pre>
+<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span class="al">![Supported Formats](formats.neato)</span></code></pre></div>
 <figure>
-<embed src="formats.svg" /><figcaption>Supported Formats</figcaption>
+<embed src="formats.neato" /><figcaption>Supported Formats</figcaption>
 </figure>
 <p>Layout of the image will be derived automatically by source file extension. <code>formats.neato</code> will be converted to <code>formats.svg</code> and links to it will be automatically changed as well.</p>
-<p>So as to change layout of the graph change source file extension, e.g. <code>formats.circo</code>. Don’t forget to change link to the graph to <code>![Supported Formats](formats.circo)</code>.</p>
+<p>So as to change layout of the graph change source file extension, e.g. <code>formats.circo</code>. Don't forget to change link to the graph to <code>![Supported Formats](formats.circo)</code>.</p>
 </body>
 </html>
