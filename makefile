@@ -80,23 +80,9 @@ $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css makefile
 	@mkdir -p $(@D); \
 	cp -f $< $@
 
-$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) makefile $(PLUGINS_DIR)/*.py
+$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) makefile $(PLUGINS_DIR)/*.*
 	@mkdir -p $(@D); \
-	$(MD) $(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) --to html5 $< --output $@; \
-	sed -i'' -e '/href="./s/\.md/\.html/g' $@; \
-	sed -i'' -e '/href="./s/\.dot/\.svg/g' $@; \
-	sed -i'' -e '/href="./s/\.neato/\.svg/g' $@; \
-	sed -i'' -e '/href="./s/\.fdp/\.svg/g' $@; \
-	sed -i'' -e '/href="./s/\.sfdp/\.svg/g' $@; \
-	sed -i'' -e '/href="./s/\.twopi/\.svg/g' $@; \
-	sed -i'' -e '/href="./s/\.circo/\.svg/g' $@; \
-	sed -i'' -e '/src="./s/\.dot/\.svg/g' $@; \
-	sed -i'' -e '/src="./s/\.neato/\.svg/g' $@; \
-	sed -i'' -e '/src="./s/\.fdp/\.svg/g' $@; \
-	sed -i'' -e '/src="./s/\.sfdp/\.svg/g' $@; \
-	sed -i'' -e '/src="./s/\.twopi/\.svg/g' $@; \
-	sed -i'' -e '/src="./s/\.circo/\.svg/g' $@; \
-	sed -i'' -e '/src="./s/\.seq/\.svg/g' $@
+	$(MD) $(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) --to html5 $< | sed -f $(PLUGINS_DIR)/relext.sed > $@;
 
 $(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot makefile
 	@mkdir -p $(@D); \

@@ -1,0 +1,14 @@
+/href="./s/\.md/\.html/g
+/href="./s/\.dot/\.svg/g
+/href="./s/\.neato/\.svg/g
+/href="./s/\.fdp/\.svg/g
+/href="./s/\.sfdp/\.svg/g
+/href="./s/\.twopi/\.svg/g
+/href="./s/\.circo/\.svg/g
+/src="./s/\.dot/\.svg/g
+/src="./s/\.neato/\.svg/g
+/src="./s/\.fdp/\.svg/g
+/src="./s/\.sfdp/\.svg/g
+/src="./s/\.twopi/\.svg/g
+/src="./s/\.circo/\.svg/g
+/src="./s/\.seq/\.svg/g
