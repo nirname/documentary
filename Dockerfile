@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 RUN apt-get update && \
-  apt-get install -y build-essential pandoc graphviz curl
+  apt-get install -y build-essential pandoc graphviz curl locales
 
 RUN apt-get install -y python3.4 python-pip
 
@@ -15,6 +15,11 @@ COPY documentary /bin
 COPY plugins makefile /app/
 
 WORKDIR /project
+
+RUN localedef -i en_US -f UTF-8 en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
 
 # Install Forego
 # ADD https://github.com/jwilder/forego/releases/download/v0.16.1/forego /usr/local/bin/forego

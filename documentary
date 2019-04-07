@@ -1,1 +1,1 @@
-make -f /app/makefile
+make -f /app/makefile $@

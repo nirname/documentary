@@ -1,3 +1,5 @@
+all: run
+
 build:
 	docker build -t nirname/documentary .
 

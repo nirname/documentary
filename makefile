@@ -73,57 +73,57 @@ sources: \
 	$(SEQ_TARGETS)
 
 $(STATIC_TARGETS):$(TARGET_DIR)/%: $(SOURCE_DIR)/% makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	cp -f $< $@
 
 $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	cp -f $< $@
 
 $(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) makefile $(PLUGINS_DIR)/*.py
-	@mkdir -p $(@D)
-	$(MD) $(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) --to html5 $< --output $@
-	sed -i '' -e '/href="./s/\.md/\.html/g' $@
-	sed -i '' -e '/href="./s/\.dot/\.svg/g' $@
-	sed -i '' -e '/href="./s/\.neato/\.svg/g' $@
-	sed -i '' -e '/href="./s/\.fdp/\.svg/g' $@
-	sed -i '' -e '/href="./s/\.sfdp/\.svg/g' $@
-	sed -i '' -e '/href="./s/\.twopi/\.svg/g' $@
-	sed -i '' -e '/href="./s/\.circo/\.svg/g' $@
-	sed -i '' -e '/src="./s/\.dot/\.svg/g' $@
-	sed -i '' -e '/src="./s/\.neato/\.svg/g' $@
-	sed -i '' -e '/src="./s/\.fdp/\.svg/g' $@
-	sed -i '' -e '/src="./s/\.sfdp/\.svg/g' $@
-	sed -i '' -e '/src="./s/\.twopi/\.svg/g' $@
-	sed -i '' -e '/src="./s/\.circo/\.svg/g' $@
-	sed -i '' -e '/src="./s/\.seq/\.svg/g' $@
+	@mkdir -p $(@D); \
+	$(MD) $(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) --to html5 $< --output $@; \
+	sed -i'' -e '/href="./s/\.md/\.html/g' $@; \
+	sed -i'' -e '/href="./s/\.dot/\.svg/g' $@; \
+	sed -i'' -e '/href="./s/\.neato/\.svg/g' $@; \
+	sed -i'' -e '/href="./s/\.fdp/\.svg/g' $@; \
+	sed -i'' -e '/href="./s/\.sfdp/\.svg/g' $@; \
+	sed -i'' -e '/href="./s/\.twopi/\.svg/g' $@; \
+	sed -i'' -e '/href="./s/\.circo/\.svg/g' $@; \
+	sed -i'' -e '/src="./s/\.dot/\.svg/g' $@; \
+	sed -i'' -e '/src="./s/\.neato/\.svg/g' $@; \
+	sed -i'' -e '/src="./s/\.fdp/\.svg/g' $@; \
+	sed -i'' -e '/src="./s/\.sfdp/\.svg/g' $@; \
+	sed -i'' -e '/src="./s/\.twopi/\.svg/g' $@; \
+	sed -i'' -e '/src="./s/\.circo/\.svg/g' $@; \
+	sed -i'' -e '/src="./s/\.seq/\.svg/g' $@
 
 $(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(DOT) $< -o $@
 
 $(NEATO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.neato makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(NEATO) $< -o $@
 
 $(FDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.fdp makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(FDP) $< -o $@
 
 $(SFDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.sfdp makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(SFDP) $< -o $@
 
 $(TWOPI_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.twopi makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(TWOPI) $< -o $@
 
 $(CIRCO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.circo makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(CIRCO) $< -o $@
 
 $(SEQ_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.seq makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(SEQ) $< -o $@
 
 no_jekyll: $(TARGET_DIR)/.no_jekyll
