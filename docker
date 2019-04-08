@@ -5,3 +5,6 @@ build:
 
 run: build
 	docker run -v "`pwd`:/project" -it nirname/documentary
+
+clean:
+	docker images -f 'dangling=true' -q | xargs docker rmi -f
