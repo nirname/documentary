@@ -4,9 +4,12 @@
 SOURCE_DIR ?= source
 # Where all the compiled sources will be
 TARGET_DIR ?= docs
-PLUGINS_DIR ?= plugins
 
-# --data-dir=$(CURDIR)
+
+APP_DIR ?= .
+PLUGINS_DIR ?= plugins
+RESOURCES_DIR ?= resources
+
 MD = pandoc \
 	--from markdown --standalone \
 	--highlight-style kate \
@@ -51,14 +54,15 @@ CIRCO_TARGETS = $(CIRCO_SOURCES:$(SOURCE_DIR)/%.circo=$(TARGET_DIR)/%.svg)
 SEQ_SOURCES = $(shell find $(SOURCE_DIR) -name '*.seq')
 SEQ_TARGETS = $(SEQ_SOURCES:$(SOURCE_DIR)/%.seq=$(TARGET_DIR)/%.svg)
 
-all: sources no_jekyll reveal.js
+all: sources no_jekyll
+#reveal.js
 
 .IGNORE: $(TARGET_DIR)/reveal.js
 
-reveal.js: $(TARGET_DIR)/reveal.js
+# reveal.js: $(TARGET_DIR)/reveal.js
 
-$(TARGET_DIR)/reveal.js:
-	cp -r reveal.js $(TARGET_DIR)
+# $(TARGET_DIR)/reveal.js:
+# 	cp -r $(RESOURCES_DIR)/reveal.js $(TARGET_DIR)
 
 sources: \
 	$(STATIC_TARGETS)\
@@ -80,7 +84,7 @@ $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css makefile
 	@mkdir -p $(@D); \
 	cp -f $< $@
 
-$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) makefile $(PLUGINS_DIR)/*.*
+$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(APP_DIR)/makefile $(PLUGINS_DIR)/*.*
 	@mkdir -p $(@D); \
 	$(MD) $(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) --to html5 $< | sed -f $(PLUGINS_DIR)/relext.sed > $@;
 
@@ -127,8 +131,6 @@ serve:
 
 clean:
 	rm -rf $(TARGET_DIR)/*
-
-# QQQ = $(foreach var,$(CSS_SOURCES), $(python plugins/relpath.py . $(var));)
 
 debug:
 	@echo "SOURCE_DIR: " $(SOURCE_DIR)

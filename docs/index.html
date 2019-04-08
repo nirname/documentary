@@ -65,7 +65,17 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li><a href="#examples">Examples</a></li>
 </ul>
 <p>Read through <a href="todo.html">future development plans</a>.</p>
-<h2 id="installation">Installation</h2>
+<h2 id="installation-and-usage">Installation and Usage</h2>
+<h3 id="docker">Docker</h3>
+<p>Install Docker. Then</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">docker</span> pull nirname/documentary</code></pre></div>
+<p>Create new folder for you website, put something under <code>source</code> subfolder and compile:</p>
+<pre><code>mkdir website &amp;&amp; cd website
+touch &quot;# Hello&quot; &gt; source/index.md
+docker run -v &quot;`pwd`:/project&quot; -it --rm nirname/documentary documentary</code></pre>
+<p>Your will found compiled output under <code>docs</code> subfolder.</p>
+<p>As simple as that.</p>
+<h3 id="local">Local</h3>
 <p>Clone this project and remove <code>.git</code> folder:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> clone git@github.com:/nirname/documentary.git <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> documentary <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> -rf .git</code></pre></div>
 <p>... or <a href="https://github.com/nirname/documentary/archive/master.zip">download it</a>.</p>
@@ -79,32 +89,18 @@ pip install pandocfilters seqdiag</code></pre>
 <pre class="shell"><code>brew install build-essential pandoc graphviz
 pip install pandocfilters seqdiag</code></pre>
 <p>Use <code>sudo</code> if needed.</p>
-<h2 id="structure">Structure</h2>
-<p>Projects consist of 4 folders:</p>
-<ul>
-<li><code>source</code> - where you should put all the source, images and so on</li>
-<li><code>docs</code> - where you will find your website</li>
-<li><code>resoucres</code> - some ready styles for you (e.g. <a href="https://github.com/sindresorhus/github-markdown-css">Github Markdown styles</a>), copy them to source folder if needed</li>
-<li><code>plugins</code> - contains pandoc filers and other nicities</li>
-</ul>
-<p>In fact the <code>source</code> and <code>docs</code> folders are all you need.</p>
-<p>Syntax highlight comes from <code>kate</code> color scheme of Pandoc.</p>
-<h2 id="usage">Usage</h2>
-<ol type="1">
-<li><p><strong>Create and Compile</strong></p>
-<p>Put some <code>*.md</code>, <code>*.css</code> and <code>*.dot</code> files under <code>source/</code> folder.</p>
-<p>Run <code>make</code> from this project's main folder.</p>
-<p>Everything compiled will be found under <code>docs/</code> folder.</p></li>
-<li><p><strong>Serve files</strong></p>
-<p>Run webserver via <code>make serve</code> and open <code>localhost:8000</code> in your browser.</p></li>
-<li><p><strong>Watch changes</strong></p>
-<p>Run <code>make watch</code> in antoher terminal to update compiled files automatically</p></li>
-</ol>
-<p>Available commands are:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">make</span> clean  # to remove all the compiled pages, equal to rm -rf docs/*
-<span class="fu">make</span>        # to build site
-<span class="fu">make</span> serve  # to start serving files at localhost:8000
-<span class="fu">make</span> watch  # to watch and recompile changes automatically</code></pre></div>
+<p>Put some <code>*.md</code>, <code>*.css</code> and <code>*.dot</code> files under <code>source/</code> folder, run:</p>
+<pre class="shell"><code>make</code></pre>
+<p>Everything compiled will be found under <code>docs/</code> folder.</p>
+<p>To skip trhough website run</p>
+<pre class="shell"><code>make serve</code></pre>
+<p>and open <code>localhost:8000</code> in your browser.</p>
+<p>To watch changes automatically run:</p>
+<pre><code>make watch</code></pre>
+<p>in antoher terminal.</p>
+<p>To remove <code>docs</code> folder completely, run:</p>
+<pre><code>make clean</code></pre>
+<p>This is equal to <code>rm -rf docs/*</code></p>
 <h2 id="examples">Examples</h2>
 <h3 id="reveal.js">reveal.js</h3>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">rm</span> -rf reveal.js

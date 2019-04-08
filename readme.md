@@ -6,19 +6,6 @@ Converts simple text notation into pretty looking pages.
 
 It doesn't pretend to be a new tool, it is just convenient union of other great tools.
 
-## Usage
-
-Install Docker.
-
-Create new folder for your static pages, put something under `source` subfolder and run:
-
-```
-```
-
-Your compiled output will be found under `docs` subfolder.
-
-As simple as that.
-
 ## Features
 
 * Markdown extended from *Pandoc*

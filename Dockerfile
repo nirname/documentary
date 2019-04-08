@@ -8,13 +8,18 @@ RUN apt-get install -y python3.4 python-pip
 RUN pip install pandocfilters seqdiag
 
 RUN mkdir /app
-COPY documentary /bin
 COPY plugins /app/plugins
+COPY resources /app/resources
 COPY makefile /app
+
+COPY documentary /bin
+
+ENV PLUGINS_DIR /app/plugins
+ENV RESOURCES_DIR /app/resources
+ENV APP_DIR /app
 
 ENV SOURCE_DIR /project/source
 ENV TARGET_DIR /project/docs
-ENV PLUGINS_DIR /app/plugins
 
 WORKDIR /project
 
