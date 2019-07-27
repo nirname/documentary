@@ -17,7 +17,29 @@ with built-in Markdown, Gravhiz and Sequence diagrams support.
 
 Read through [future development plans](todo.md).
 
-## Installation
+## Installation and Usage
+
+### Docker
+
+Install Docker. Then
+
+```bash
+docker pull nirname/documentary
+```
+
+Create new folder for you website, put something under `source` subfolder and compile:
+
+```
+mkdir website && cd website
+touch "# Hello" > source/index.md
+docker run -v "`pwd`:/project" -it --rm nirname/documentary documentary
+```
+
+Your will found compiled output under `docs` subfolder.
+
+As simple as that.
+
+### Local
 
 Clone this project and remove `.git` folder:
 
@@ -52,45 +74,37 @@ pip install pandocfilters seqdiag
 
 Use `sudo` if needed.
 
-## Structure
 
-Projects consist of 4 folders:
+Put some `*.md`, `*.css` and `*.dot` files under `source/` folder, run:
 
-* `source` - where you should put all the source, images and so on
-* `docs` - where you will find your website
-* `resoucres` - some ready styles for you (e.g. [Github Markdown styles](https://github.com/sindresorhus/github-markdown-css)), copy them to source folder if needed
-* `plugins` - contains pandoc filers and other nicities
-
-In fact the `source` and `docs` folders are all you need.
-
-Syntax highlight comes from `kate` color scheme of Pandoc.
-
-## Usage
-
-1. **Create and Compile**
-
-    Put some `*.md`, `*.css` and `*.dot` files under `source/` folder.
-
-    Run `make` from this project's main folder.
-
-    Everything compiled will be found under `docs/` folder.
-
-1. **Serve files**
-
-    Run webserver via `make serve` and open `localhost:8000` in your browser.
-
-1. **Watch changes**
-
-    Run `make watch` in antoher terminal to update compiled files automatically
-
-Available commands are:
-
-```bash
-make clean  # to remove all the compiled pages, equal to rm -rf docs/*
-make        # to build site
-make serve  # to start serving files at localhost:8000
-make watch  # to watch and recompile changes automatically
+```shell
+make
 ```
+
+Everything compiled will be found under `docs/` folder.
+
+To skip trhough website run
+
+```shell
+make serve
+```
+
+and open `localhost:8000` in your browser.
+
+To watch changes automatically run:
+
+```
+make watch
+```
+
+in antoher terminal.
+
+To remove `docs` folder completely, run:
+
+```
+make clean
+```
+This is equal to `rm -rf docs/*`
 
 ## Examples
 

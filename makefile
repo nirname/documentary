@@ -1,15 +1,20 @@
 # 'Makefile'
 
 # Where sources are located
-SOURCE_DIR = source
+SOURCE_DIR ?= source
 # Where all the compiled sources will be
-TARGET_DIR = docs
+TARGET_DIR ?= docs
 
-MD = pandoc --data-dir=$(CURDIR) \
-	--from markdown --standalone --quiet \
+
+APP_DIR ?= .
+PLUGINS_DIR ?= plugins
+RESOURCES_DIR ?= resources
+
+MD = pandoc \
+	--from markdown --standalone \
 	--highlight-style kate \
-	--filter plugins/graphviz.py \
-	--filter plugins/diag.py
+	--filter $(PLUGINS_DIR)/graphviz.py \
+	--filter $(PLUGINS_DIR)/diag.py
 
 DOT = dot -Tsvg
 NEATO = neato -Tsvg
@@ -19,7 +24,7 @@ TWOPI = twopi -Tsvg
 CIRCO = circo -Tsvg
 SEQ = seqdiag -Tsvg
 
-STATIC_SOURCES = $(shell find -E $(SOURCE_DIR) -iregex '.*\.(png|jpg|jpeg|svg)$$')
+STATIC_SOURCES = $(shell find $(SOURCE_DIR) -iregex '.*\.(png|jpg|jpeg|svg)$$')
 STATIC_TARGETS = $(STATIC_SOURCES:$(SOURCE_DIR)/%=$(TARGET_DIR)/%)
 
 CSS_SOURCES = $(shell find $(SOURCE_DIR) -name '*.css')
@@ -49,14 +54,15 @@ CIRCO_TARGETS = $(CIRCO_SOURCES:$(SOURCE_DIR)/%.circo=$(TARGET_DIR)/%.svg)
 SEQ_SOURCES = $(shell find $(SOURCE_DIR) -name '*.seq')
 SEQ_TARGETS = $(SEQ_SOURCES:$(SOURCE_DIR)/%.seq=$(TARGET_DIR)/%.svg)
 
-all: sources no_jekyll reveal.js
+all: sources no_jekyll
+#reveal.js
 
 .IGNORE: $(TARGET_DIR)/reveal.js
 
-reveal.js: $(TARGET_DIR)/reveal.js
+# reveal.js: $(TARGET_DIR)/reveal.js
 
-$(TARGET_DIR)/reveal.js:
-	cp -r reveal.js $(TARGET_DIR)
+# $(TARGET_DIR)/reveal.js:
+# 	cp -r $(RESOURCES_DIR)/reveal.js $(TARGET_DIR)
 
 sources: \
 	$(STATIC_TARGETS)\
@@ -71,57 +77,43 @@ sources: \
 	$(SEQ_TARGETS)
 
 $(STATIC_TARGETS):$(TARGET_DIR)/%: $(SOURCE_DIR)/% makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	cp -f $< $@
 
 $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	cp -f $< $@
 
-$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) makefile plugins/*.py
-	@mkdir -p $(@D)
-	$(MD) $(foreach var,$(CSS_TARGETS), --css `python plugins/relpath.py $(var) $(@D)`) --to html5 $< --output $@
-	@sed -i '' -e '/href="./s/\.md/\.html/g' $@
-	@sed -i '' -e '/href="./s/\.dot/\.svg/g' $@
-	@sed -i '' -e '/href="./s/\.neato/\.svg/g' $@
-	@sed -i '' -e '/href="./s/\.fdp/\.svg/g' $@
-	@sed -i '' -e '/href="./s/\.sfdp/\.svg/g' $@
-	@sed -i '' -e '/href="./s/\.twopi/\.svg/g' $@
-	@sed -i '' -e '/href="./s/\.circo/\.svg/g' $@
-	@sed -i '' -e '/src="./s/\.dot/\.svg/g' $@
-	@sed -i '' -e '/src="./s/\.neato/\.svg/g' $@
-	@sed -i '' -e '/src="./s/\.fdp/\.svg/g' $@
-	@sed -i '' -e '/src="./s/\.sfdp/\.svg/g' $@
-	@sed -i '' -e '/src="./s/\.twopi/\.svg/g' $@
-	@sed -i '' -e '/src="./s/\.circo/\.svg/g' $@
-	@sed -i '' -e '/src="./s/\.seq/\.svg/g' $@
+$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(APP_DIR)/makefile $(PLUGINS_DIR)/*.*
+	@mkdir -p $(@D); \
+	$(MD) $(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) --to html5 $< | sed -f $(PLUGINS_DIR)/relext.sed > $@;
 
 $(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(DOT) $< -o $@
 
 $(NEATO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.neato makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(NEATO) $< -o $@
 
 $(FDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.fdp makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(FDP) $< -o $@
 
 $(SFDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.sfdp makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(SFDP) $< -o $@
 
 $(TWOPI_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.twopi makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(TWOPI) $< -o $@
 
 $(CIRCO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.circo makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(CIRCO) $< -o $@
 
 $(SEQ_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.seq makefile
-	@mkdir -p $(@D)
+	@mkdir -p $(@D); \
 	$(SEQ) $< -o $@
 
 no_jekyll: $(TARGET_DIR)/.no_jekyll
@@ -140,9 +132,10 @@ serve:
 clean:
 	rm -rf $(TARGET_DIR)/*
 
-# QQQ = $(foreach var,$(CSS_SOURCES), $(python plugins/relpath.py . $(var));)
-
 debug:
+	@echo "SOURCE_DIR: " $(SOURCE_DIR)
+	@echo "TARGET_DIR: " $(TARGET_DIR)
+	@echo "PLUGINS_DIR: " $(PLUGINS_DIR)
 	@echo "STATIC_SOURCES: " $(STATIC_SOURCES)
 	@echo "STATIC_TARGETS: " $(STATIC_TARGETS)
 	@echo "CSS_SOURCES: " $(CSS_SOURCES)

@@ -1,0 +1,10 @@
+all: run
+
+build:
+	docker build -t nirname/documentary .
+
+run: build
+	docker run -v "`pwd`:/project" -it --rm nirname/documentary
+
+clean:
+	docker images -f 'dangling=true' -q | xargs docker rmi -f
