@@ -14,7 +14,7 @@ It doesn't pretend to be a new tool, it is just convenient union of other great 
 
 * Flowchart diagramms via *Seqdiag*
 
-Have a look at [documentary gh-pages](https://nirname.github.io/documentary/)
+Have a look at [documentary gh-pages](https://nirname.github.io/documentary-docs/)
 
 ## Join the development
 
