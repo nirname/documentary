@@ -76,11 +76,11 @@ sources: \
 	$(CIRCO_TARGETS) \
 	$(SEQ_TARGETS)
 
-$(STATIC_TARGETS):$(TARGET_DIR)/%: $(SOURCE_DIR)/% makefile
+$(STATIC_TARGETS):$(TARGET_DIR)/%: $(SOURCE_DIR)/% $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
 	cp -f $< $@
 
-$(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css makefile
+$(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
 	cp -f $< $@
 
@@ -88,31 +88,31 @@ $(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(APP_DIR)
 	@mkdir -p $(@D); \
 	$(MD) $(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) --to html5 $< | sed -f $(PLUGINS_DIR)/relext.sed > $@;
 
-$(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot makefile
+$(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
 	$(DOT) $< -o $@
 
-$(NEATO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.neato makefile
+$(NEATO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.neato $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
 	$(NEATO) $< -o $@
 
-$(FDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.fdp makefile
+$(FDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.fdp $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
 	$(FDP) $< -o $@
 
-$(SFDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.sfdp makefile
+$(SFDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.sfdp $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
 	$(SFDP) $< -o $@
 
-$(TWOPI_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.twopi makefile
+$(TWOPI_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.twopi $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
 	$(TWOPI) $< -o $@
 
-$(CIRCO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.circo makefile
+$(CIRCO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.circo $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
 	$(CIRCO) $< -o $@
 
-$(SEQ_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.seq makefile
+$(SEQ_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.seq $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
 	$(SEQ) $< -o $@
 
