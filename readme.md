@@ -6,6 +6,19 @@ Converts simple text notation into pretty looking pages.
 
 It doesn't pretend to be a new tool, it is just convenient union of other great tools.
 
+## Getting started
+
+Create a project, say `my-docs`, containing 2 folders `source` and `docs`.
+Put some `*.md` and `*.dot` files under `source` folder and then run:
+
+```
+cd my-docs
+docker run --rm -v $(pwd):/project nirname/documentary documentary
+```
+
+Have a look at [documentary gh-pages](https://nirname.github.io/documentary-docs/)
+to find out what is capable of.
+
 ## Features
 
 * Markdown extended from *Pandoc*
@@ -13,8 +26,6 @@ It doesn't pretend to be a new tool, it is just convenient union of other great 
 * All the types of graphs that *Graphviz* builds
 
 * Flowchart diagramms via *Seqdiag*
-
-Have a look at [documentary gh-pages](https://nirname.github.io/documentary-docs/)
 
 ## Join the development
 
