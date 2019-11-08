@@ -19,7 +19,7 @@ def diag(key, value, format, meta):
     # raise Exception(str(value))
     commands = list(set(classes) & set(SUPPORTED_COMMAMDS))
     if commands:
-      if format not in ['html', 'html5']:
+      if format not in ['html', 'html5', 'revealjs']:
         raise Exception('output format must be HTML')
 
       proc = Popen(

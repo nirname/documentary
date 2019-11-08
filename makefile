@@ -4,7 +4,9 @@
 SOURCE_DIR ?= source
 # Where all the compiled sources will be
 TARGET_DIR ?= docs
-
+# Output format
+TO ?= html
+# --to revealjs
 
 APP_DIR ?= .
 PLUGINS_DIR ?= plugins
@@ -86,7 +88,7 @@ $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css $(APP_DIR)/makefile
 
 $(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(APP_DIR)/makefile $(PLUGINS_DIR)/*.*
 	@mkdir -p $(@D); \
-	$(MD) $(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) --to html5 $< | sed -f $(PLUGINS_DIR)/relext.sed > $@;
+	$(MD) --to $(TO) $< | sed -f $(PLUGINS_DIR)/relext.sed > $@;
 
 $(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
