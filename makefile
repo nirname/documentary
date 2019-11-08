@@ -88,7 +88,7 @@ $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css $(APP_DIR)/makefile
 
 $(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(APP_DIR)/makefile $(PLUGINS_DIR)/*.*
 	@mkdir -p $(@D); \
-	$(MD) --to $(TO) $< | sed -f $(PLUGINS_DIR)/relext.sed > $@;
+	$(MD) $(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) --to $(TO) $< | sed -f $(PLUGINS_DIR)/relext.sed > $@;
 
 $(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
