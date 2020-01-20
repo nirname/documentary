@@ -64,7 +64,11 @@ all: sources no_jekyll
 # reveal.js: $(TARGET_DIR)/reveal.js
 
 # $(TARGET_DIR)/reveal.js:
-# 	cp -r $(RESOURCES_DIR)/reveal.js $(TARGET_DIR)
+# 	@cp -r $(RESOURCES_DIR)/reveal.js $(TARGET_DIR)
+# ifeq ($(TO),revealjs)
+# else
+# 	@echo "no reveal.js"
+# endif
 
 sources: \
 	$(STATIC_TARGETS)\

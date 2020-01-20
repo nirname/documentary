@@ -13,8 +13,21 @@ Put some `*.md` and `*.dot` files under `source` folder and then run:
 
 ```
 cd my-docs
+```
+
+To build simple html project use:
+
+```
 docker run --rm -v $(pwd):/project nirname/documentary documentary
 ```
+
+To build reveal.js project use:
+
+```
+docker run --rm -v $(pwd):/project nirname/documentary documentary TO=revealjs
+```
+
+And then download and copy reveal.js to your project/docs/ folder.
 
 Have a look at [documentary gh-pages](https://nirname.github.io/documentary-docs/)
 to find out what is capable of.
@@ -30,6 +43,12 @@ to find out what is capable of.
 ## Join the development
 
 I would really appreciate any assistance so as to increase amount of diagrams and simplify usage.
+
+To create new image locally use
+
+```
+make -f docker build
+```
 
 [Read through the plan](source/todo.md).
 
