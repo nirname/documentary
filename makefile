@@ -26,11 +26,14 @@ TWOPI = twopi -Tsvg
 CIRCO = circo -Tsvg
 SEQ = seqdiag -Tsvg
 
-STATIC_SOURCES = $(shell find $(SOURCE_DIR) -iregex '.*\.(png|jpg|jpeg|svg)$$')
+STATIC_SOURCES = $(shell find $(SOURCE_DIR) -iregex '.*\.(png|jpg|jpeg|svg|js)$$')
 STATIC_TARGETS = $(STATIC_SOURCES:$(SOURCE_DIR)/%=$(TARGET_DIR)/%)
 
 CSS_SOURCES = $(shell find $(SOURCE_DIR) -name '*.css')
 CSS_TARGETS = $(CSS_SOURCES:$(SOURCE_DIR)/%.css=$(TARGET_DIR)/%.css)
+
+# JS_SOURCES = $(shell find $(SOURCE_DIR) -name '*.js')
+# JS_TARGETS = $(JS_SOURCES:$(SOURCE_DIR)/%.js=$(TARGET_DIR)/%.js)
 
 MD_SOURCES = $(shell find $(SOURCE_DIR) -name '*.md')
 MD_TARGETS = $(MD_SOURCES:$(SOURCE_DIR)/%.md=$(TARGET_DIR)/%.html)
@@ -81,6 +84,7 @@ sources: \
 	$(TWOPI_TARGETS) \
 	$(CIRCO_TARGETS) \
 	$(SEQ_TARGETS)
+# 	$(JS_TARGETS) \
 
 $(STATIC_TARGETS):$(TARGET_DIR)/%: $(SOURCE_DIR)/% $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
@@ -90,9 +94,16 @@ $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
 	cp -f $< $@
 
-$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(APP_DIR)/makefile $(PLUGINS_DIR)/*.*
+# $(JS_TARGETS):$(TARGET_DIR)/%.js: $(SOURCE_DIR)/%.js $(APP_DIR)/makefile
+# 	@mkdir -p $(@D); \
+# 	cp -f $< $@
+
+$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(JS_TARGETS) $(APP_DIR)/makefile $(PLUGINS_DIR)/*.*
 	@mkdir -p $(@D); \
-	$(MD) $(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) --to $(TO) $< | sed -f $(PLUGINS_DIR)/relext.sed > $@;
+	$(MD) \
+	$(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) \
+	--to $(TO) $< | sed -f $(PLUGINS_DIR)/relext.sed > $@;
+# 	$(foreach var,$(JS_TARGETS), --js `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) \
 
 $(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot $(APP_DIR)/makefile
 	@mkdir -p $(@D); \
