@@ -23,7 +23,7 @@ mkdir website && cd website
 Create `sample.md` file under `source` subfolder:
 
 ```bash
-touch source/sample.md
+mkdir source && touch source/sample.md
 ```
 
 Copy and paste this to `source/sample.md`:
@@ -53,7 +53,7 @@ As simple as that.
 Have a look at [documentary gh-pages](https://nirname.github.io/documentary-docs/)
 to find out what is capable of.
 
-You may try other [examples](https://nirname.github.io/documentary-docs/#examples) as well
+You may try other [examples](https://nirname.github.io/documentary-docs/#examples) as well.
 
 ## Features
 
@@ -69,13 +69,7 @@ You may try other [examples](https://nirname.github.io/documentary-docs/#example
 
 I would really appreciate any assistance so as to increase amount of diagrams and simplify usage.
 
-To create new image locally use
-
-```
-make -f docker build
-```
-
-[Read through the plan](source/todo.md).
+[Skim through the plan](source/todo.md).
 
 ## Acknowledgements
 
