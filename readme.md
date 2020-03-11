@@ -48,10 +48,11 @@ Your will find compiled output under `docs` subfolder. Check the result:
 open docs/sample.html
 ```
 
-As simple as that. Check other [examples](#examples) below.
+As simple as that.
 
 Have a look at [documentary gh-pages](https://nirname.github.io/documentary-docs/)
 to find out what is capable of.
+
 You may try other [examples](https://nirname.github.io/documentary-docs/#examples) as well
 
 ## Features
