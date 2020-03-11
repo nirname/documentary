@@ -36,7 +36,19 @@ Copy and paste this to `source/sample.md`:
     }
     ```
 
-And build:
+Prepare build script:
+
+```bash
+touch build.sh
+chmod +x build.sh
+```
+
+Copy and paste the following code inside build.sh
+
+```bash
+#!/usr/bin/env bash
+docker run --rm -v $(pwd):/project nirname/documentary documentary
+```
 
 ```bash
 docker run -v "`pwd`:/project" -it --rm nirname/documentary documentary
@@ -70,7 +82,7 @@ You may try other [examples](https://nirname.github.io/documentary-docs/#example
 
 I would really appreciate any assistance so as to increase amount of diagrams and simplify usage.
 
-[Skim through the plan](source/todo.md).
+[Skim through the plan](https://nirname.github.io/documentary-docs/todo.html).
 
 ## Acknowledgements
 
