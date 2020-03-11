@@ -8,37 +8,61 @@ It doesn't pretend to be a new tool, it is just convenient union of other great 
 
 ## Getting started
 
-Create a project, say `my-docs`, containing 2 folders `source` and `docs`.
-Put some `*.md` and `*.dot` files under `source` folder and then run:
+Install Docker. Then:
 
-```
-cd my-docs
-```
-
-To build simple html project use:
-
-```
-docker run --rm -v $(pwd):/project nirname/documentary documentary
+```bash
+docker pull nirname/documentary
 ```
 
-To build reveal.js project use:
+Create a new folder for your website:
 
-```
-docker run --rm -v $(pwd):/project nirname/documentary documentary TO=revealjs
+```bash
+mkdir website && cd website
 ```
 
-And then download and copy reveal.js to your project/docs/ folder.
+Create `sample.md` file under `source` subfolder:
+
+```bash
+touch source/sample.md
+```
+
+Copy and paste this to `source/sample.md`:
+
+    # Hello
+
+    ```dot
+    digraph {
+      A -> B
+    }
+    ```
+
+And build:
+
+```bash
+docker run -v "`pwd`:/project" -it --rm nirname/documentary documentary
+```
+
+Your will find compiled output under `docs` subfolder. Check the result:
+
+```bash
+open docs/sample.html
+```
+
+As simple as that. Check other [examples](#examples) below.
 
 Have a look at [documentary gh-pages](https://nirname.github.io/documentary-docs/)
 to find out what is capable of.
+You may try other [examples](https://nirname.github.io/documentary-docs/#examples) as well
 
 ## Features
 
 * Markdown extended from *Pandoc*
 
-* All the types of graphs that *Graphviz* builds
+* All the types of graphs that *Graphviz* supports
 
 * Flowchart diagramms via *Seqdiag*
+
+* Embedded and standalone images
 
 ## Join the development
 
