@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+WATCH_COMMAND="make -f /app/makefile $@" make -f /app/makefile watch $@

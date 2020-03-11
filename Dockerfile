@@ -17,6 +17,7 @@ COPY plugins /app/plugins
 COPY resources /app/resources
 COPY makefile /app
 COPY documentary /bin
+COPY watcher /bin
 
 ENV APP_DIR /app
 ENV PLUGINS_DIR /app/plugins

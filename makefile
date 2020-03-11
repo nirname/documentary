@@ -8,6 +8,8 @@ TARGET_DIR ?= docs
 TO ?= html
 # --to revealjs
 
+WATCH_COMMAND ?= make all
+
 APP_DIR ?= .
 PLUGINS_DIR ?= plugins
 RESOURCES_DIR ?= resources
@@ -87,11 +89,11 @@ sources: \
 # 	$(JS_TARGETS) \
 
 $(STATIC_TARGETS):$(TARGET_DIR)/%: $(SOURCE_DIR)/% $(APP_DIR)/makefile
-	@mkdir -p $(@D); \
+	mkdir -p $(@D); \
 	cp -f $< $@
 
 $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css $(APP_DIR)/makefile
-	@mkdir -p $(@D); \
+	mkdir -p $(@D); \
 	cp -f $< $@
 
 # $(JS_TARGETS):$(TARGET_DIR)/%.js: $(SOURCE_DIR)/%.js $(APP_DIR)/makefile
@@ -99,38 +101,38 @@ $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css $(APP_DIR)/makefile
 # 	cp -f $< $@
 
 $(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(JS_TARGETS) $(APP_DIR)/makefile $(PLUGINS_DIR)/*.*
-	@mkdir -p $(@D); \
+	mkdir -p $(@D); \
 	$(MD) \
 	$(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) \
 	--to $(TO) $< | sed -f $(PLUGINS_DIR)/relext.sed > $@;
 # 	$(foreach var,$(JS_TARGETS), --js `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) \
 
 $(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot $(APP_DIR)/makefile
-	@mkdir -p $(@D); \
+	mkdir -p $(@D); \
 	$(DOT) $< -o $@
 
 $(NEATO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.neato $(APP_DIR)/makefile
-	@mkdir -p $(@D); \
+	mkdir -p $(@D); \
 	$(NEATO) $< -o $@
 
 $(FDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.fdp $(APP_DIR)/makefile
-	@mkdir -p $(@D); \
+	mkdir -p $(@D); \
 	$(FDP) $< -o $@
 
 $(SFDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.sfdp $(APP_DIR)/makefile
-	@mkdir -p $(@D); \
+	mkdir -p $(@D); \
 	$(SFDP) $< -o $@
 
 $(TWOPI_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.twopi $(APP_DIR)/makefile
-	@mkdir -p $(@D); \
+	mkdir -p $(@D); \
 	$(TWOPI) $< -o $@
 
 $(CIRCO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.circo $(APP_DIR)/makefile
-	@mkdir -p $(@D); \
+	mkdir -p $(@D); \
 	$(CIRCO) $< -o $@
 
 $(SEQ_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.seq $(APP_DIR)/makefile
-	@mkdir -p $(@D); \
+	mkdir -p $(@D); \
 	$(SEQ) $< -o $@
 
 no_jekyll: $(TARGET_DIR)/.no_jekyll
@@ -141,7 +143,7 @@ $(TARGET_DIR)/.no_jekyll:
 PHONY: watch serve clean debug
 
 watch:
-	(while true; do make; sleep 1; done) | grep -v 'make\[1\]'
+	(while true; do $(WATCH_COMMAND); sleep 1; done) | grep -v 'make\[1\]'
 
 serve:
 	cd $(TARGET_DIR) && python -m SimpleHTTPServer 8000
