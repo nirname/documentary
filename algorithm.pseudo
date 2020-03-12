@@ -1,0 +1,33 @@
+Place phone call.
+Home?
+  Leave message
+  Wait for callback
+  "Would you like to share a meal"
+"Would you like to share a meal"
+What is the response (A) ?
+  "Do you enjoy a hot beverage"
+  What is the response (B) ?
+    n = 0
+    "recreational activity? tell me one of your interests"
+    Do I share that interest?
+      n = n + 1
+      n > 6?
+        "recreational activity? tell me one of your interests"
+      Choose least objectionable interest
+      Partake in interest
+    "Why don't we do that together"
+    Partake in interest
+    Begin friendship.
+  Is it tea?
+    Is it coffee?
+      Is it cocoa?
+        Have whatever that person said
+        Begin friendship.
+      Have cocoa
+      Begin friendship.
+    Have coffee
+    Begin friendship.
+  Have tea
+  Begin friendship.
+Dine together
+Begin friendship.

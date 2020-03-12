@@ -1,0 +1,11 @@
+digraph G {
+"call method" [shape=box]
+"succeed?" [shape=diamond]
+"call method" -> "succeed?" 
+"exit" [shape=box]
+"succeed?" -> "exit" [label="Yes"]
+"retry" [shape=box]
+"exit" -> "retry" 
+"call method" [shape=box]
+"retry" -> "call method" 
+}
