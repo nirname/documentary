@@ -25,7 +25,10 @@ def diag(key, value, format, meta):
       proc = Popen(
         "seqdiag -T svg  -o /dev/stdout -",
         shell=True,
-        stdin=PIPE, stdout=PIPE, stderr=PIPE
+        stdin=PIPE,
+        stdout=PIPE,
+        stderr=PIPE,
+        universal_newlines=True
       )
       (output, errors) = proc.communicate(code)
       return RawBlock("html", output)
