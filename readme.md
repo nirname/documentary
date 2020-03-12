@@ -36,22 +36,10 @@ Copy and paste this to `source/sample.md`:
     }
     ```
 
-Prepare build script:
+Then build
 
-```bash
-touch build.sh
-chmod +x build.sh
 ```
-
-Copy and paste the following code inside build.sh
-
-```bash
-#!/usr/bin/env bash
 docker run --rm -v $(pwd):/project nirname/documentary documentary
-```
-
-```bash
-docker run -v "`pwd`:/project" -it --rm nirname/documentary documentary
 ```
 
 Your will find compiled output under `docs` subfolder. Check the result:
