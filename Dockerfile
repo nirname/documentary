@@ -15,8 +15,9 @@ ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 RUN apt-get install -y \
-  graphviz \
-  gnuplot
+  graphviz
+
+# gnuplot
 
 RUN apt-get install -y \
   python3.6 \
