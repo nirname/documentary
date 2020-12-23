@@ -75,11 +75,11 @@ You may try other [examples](https://nirname.github.io/documentary-docs/#example
 
 ## Features
 
-* Markdown extended from *Pandoc*
+* Markdown extended from *[Pandoc](https://pandoc.org/)*
 
-* All the types of graphs that *Graphviz* supports
+* All the types of graphs that *[Graphviz](https://graphviz.org/)* supports
 
-* Flowchart diagramms via *Seqdiag*
+* Flowchart diagramms via *[Seqdiag](http://blockdiag.com/en/seqdiag/index.html)*
 
 * Embedded and standalone images
 
