@@ -8,45 +8,62 @@ It doesn't pretend to be a new tool, it is just convenient union of other great 
 
 ## Getting started
 
-Install Docker. Then:
+Install Docker.
 
-```bash
-docker pull nirname/documentary
-```
+1. **Create following folder structure for your website or presentation:**
 
-Create a new folder for your website:
+  ```
+  website
+  └── source
+      └── sample.md
+  ```
 
-```bash
-mkdir website && cd website
-```
+  by using this command:
 
-Create `sample.md` file under `source` subfolder:
+  ```bash
+  mkdir -p website/source
+  touch website/source/sample.md
+  ```
 
-```bash
-mkdir source && touch source/sample.md
-```
+2. **Copy and paste this to `source/sample.md`:**
 
-Copy and paste this to `source/sample.md`:
+        <style>
+          svg {
+            width: 400px;
+          }
+        </style>
 
-    # Hello
+        # Hello
 
-    ```dot
-    digraph {
-      A -> B
-    }
-    ```
+        ## Graph
 
-Then build
+        ```dot
+        digraph {
+          A -> B
+        }
+        ```
 
-```
-docker run --rm -v $(pwd):/project nirname/documentary documentary
-```
+        ## Sequence graph
 
-Your will find compiled output under `docs` subfolder. Check the result:
+        ```seqdiag
+        seqdiag {
+          browser -> webserver [label = "GET /index.html"];
+          browser <-- webserver;
+        }
+        ```
 
-```bash
-open docs/sample.html
-```
+3. **Then build:**
+
+  ```bash
+  cd website
+  docker run --rm -v $(pwd):/project nirname/documentary documentary
+  ```
+
+  Your will find compiled output under `docs` subfolder. Check the result:
+
+  ```bash
+  open docs/sample.html
+  ```
 
 As simple as that.
 
