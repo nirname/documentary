@@ -8,22 +8,22 @@ It doesn't pretend to be a new tool, it is just convenient union of other great 
 
 ## Getting started
 
-Install Docker.
+**Install Docker.**
 
 1. **Create following folder structure for your website or presentation:**
 
-  ```
-  website
-  └── source
-      └── sample.md
-  ```
+    ```
+    website
+    └── source
+        └── sample.md
+    ```
 
-  by using this command:
+    by using this command:
 
-  ```bash
-  mkdir -p website/source
-  touch website/source/sample.md
-  ```
+    ```bash
+    mkdir -p website/source
+    touch website/source/sample.md
+    ```
 
 2. **Copy and paste this to `source/sample.md`:**
 
@@ -54,16 +54,16 @@ Install Docker.
 
 3. **Then build:**
 
-  ```bash
-  cd website
-  docker run --rm -v $(pwd):/project nirname/documentary documentary
-  ```
+    ```bash
+    cd website
+    docker run --rm -v $(pwd):/project nirname/documentary documentary
+    ```
 
-  Your will find compiled output under `docs` subfolder. Check the result:
+    Your will find compiled output under `docs` subfolder. Check the result:
 
-  ```bash
-  open docs/sample.html
-  ```
+    ```bash
+    open docs/sample.html
+    ```
 
 As simple as that.
 
