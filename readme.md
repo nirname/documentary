@@ -6,66 +6,35 @@ Converts simple text notation into pretty looking pages.
 
 It doesn't pretend to be a new tool, it is just convenient union of other great tools.
 
-## Getting started
+## Getting Started
 
 **Install Docker.**
 
-1. **Create following folder structure for your website or presentation:**
+Create new project within new folder:
 
-    ```
-    website
-    └── source
-        └── sample.md
-    ```
+```bash
+docker run --rm -v $(pwd):/app documentary init website
+cd website
+```
 
-    by using this command:
+Or intialize project inside existing one:
 
-    ```bash
-    mkdir -p website/source
-    touch website/source/sample.md
-    ```
+```bash
+cd website
+docker run --rm -v $(pwd):/app documentary init .
+```
 
-2. **Copy and paste this to `source/sample.md`:**
+Then:
 
-        <style>
-          svg {
-            width: 400px;
-          }
-        </style>
+```bash
+./documentary build
+```
 
-        # Hello
-
-        ## Graph
-
-        ```dot
-        digraph {
-          A -> B
-        }
-        ```
-
-        ## Sequence graph
-
-        ```seqdiag
-        seqdiag {
-          browser -> webserver [label = "GET /index.html"];
-          browser <-- webserver;
-        }
-        ```
-
-3. **Then build:**
-
-    ```bash
-    cd website
-    docker run --rm -v $(pwd):/project nirname/documentary documentary
-    ```
-
-    Your will find compiled output under `docs` subfolder. Check the result:
-
-    ```bash
-    open docs/sample.html
-    ```
+Open `docs/sample.html`
 
 As simple as that.
+
+# Further Reading
 
 Have a look at [documentary gh-pages](https://nirname.github.io/documentary-docs/)
 to find out what is capable of.
@@ -83,7 +52,7 @@ You may try other [examples](https://nirname.github.io/documentary-docs/#example
 
 * Embedded and standalone images
 
-## Join the development
+## Join the Development
 
 I would really appreciate any assistance so as to increase amount of diagrams and simplify usage.
 

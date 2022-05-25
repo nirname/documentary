@@ -1,7 +1,7 @@
 # 'Makefile'
 
 # Where sources are located
-SOURCE_DIR ?= source
+SOURCE_DIR ?= src
 # Where all the compiled sources will be
 TARGET_DIR ?= docs
 # Output format
@@ -10,15 +10,16 @@ TO ?= html
 
 WATCH_COMMAND ?= make all
 
-APP_DIR ?= .
-PLUGINS_DIR ?= plugins
-RESOURCES_DIR ?= resources
+BIN_PATH ?= .
+PLUGINS_PATH ?= plugins
+RESOURCES_PATH ?= resources
+MAKEFILE ?= $(BIN_PATH)/makefile
 
 MD = pandoc \
 	--from markdown --standalone \
 	--highlight-style kate \
-	--filter $(PLUGINS_DIR)/graphviz.py \
-	--filter $(PLUGINS_DIR)/diag.py
+	--filter $(PLUGINS_PATH)/graphviz.py \
+	--filter $(PLUGINS_PATH)/diag.py
 
 DOT = dot -Tsvg
 NEATO = neato -Tsvg
@@ -88,50 +89,50 @@ sources: \
 	$(SEQ_TARGETS)
 # 	$(JS_TARGETS) \
 
-$(STATIC_TARGETS):$(TARGET_DIR)/%: $(SOURCE_DIR)/% $(APP_DIR)/makefile
+$(STATIC_TARGETS):$(TARGET_DIR)/%: $(SOURCE_DIR)/% $(MAKEFILE)
 	mkdir -p $(@D); \
 	cp -f $< $@
 
-$(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css $(APP_DIR)/makefile
+$(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css $(MAKEFILE)
 	mkdir -p $(@D); \
 	cp -f $< $@
 
-# $(JS_TARGETS):$(TARGET_DIR)/%.js: $(SOURCE_DIR)/%.js $(APP_DIR)/makefile
+# $(JS_TARGETS):$(TARGET_DIR)/%.js: $(SOURCE_DIR)/%.js $(MAKEFILE)
 # 	@mkdir -p $(@D); \
 # 	cp -f $< $@
 
-$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(JS_TARGETS) $(APP_DIR)/makefile $(PLUGINS_DIR)/*.*
+$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(JS_TARGETS) $(MAKEFILE) $(PLUGINS_PATH)/*.*
 	mkdir -p $(@D); \
 	$(MD) \
-	$(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) \
-	--to $(TO) $< | sed -f $(PLUGINS_DIR)/relext.sed > $@;
-# 	$(foreach var,$(JS_TARGETS), --js `python $(PLUGINS_DIR)/relpath.py $(var) $(@D)`) \
+	$(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_PATH)/relpath.py $(var) $(@D)`) \
+	--to $(TO) $< | sed -f $(PLUGINS_PATH)/relext.sed > $@;
+# 	$(foreach var,$(JS_TARGETS), --js `python $(PLUGINS_PATH)/relpath.py $(var) $(@D)`) \
 
-$(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot $(APP_DIR)/makefile
+$(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(DOT) $< -o $@
 
-$(NEATO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.neato $(APP_DIR)/makefile
+$(NEATO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.neato $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(NEATO) $< -o $@
 
-$(FDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.fdp $(APP_DIR)/makefile
+$(FDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.fdp $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(FDP) $< -o $@
 
-$(SFDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.sfdp $(APP_DIR)/makefile
+$(SFDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.sfdp $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(SFDP) $< -o $@
 
-$(TWOPI_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.twopi $(APP_DIR)/makefile
+$(TWOPI_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.twopi $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(TWOPI) $< -o $@
 
-$(CIRCO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.circo $(APP_DIR)/makefile
+$(CIRCO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.circo $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(CIRCO) $< -o $@
 
-$(SEQ_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.seq $(APP_DIR)/makefile
+$(SEQ_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.seq $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(SEQ) $< -o $@
 
@@ -154,7 +155,7 @@ clean:
 debug:
 	@echo "SOURCE_DIR: " $(SOURCE_DIR)
 	@echo "TARGET_DIR: " $(TARGET_DIR)
-	@echo "PLUGINS_DIR: " $(PLUGINS_DIR)
+	@echo "PLUGINS_PATH: " $(PLUGINS_PATH)
 	@echo "STATIC_SOURCES: " $(STATIC_SOURCES)
 	@echo "STATIC_TARGETS: " $(STATIC_TARGETS)
 	@echo "CSS_SOURCES: " $(CSS_SOURCES)

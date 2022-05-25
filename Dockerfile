@@ -21,26 +21,30 @@ RUN apt-get install -y \
 
 RUN apt-get install -y \
   python3.6 \
-  python3-pip
+  python3-pip \
+  python-seqdiag
+RUN pip3 install pandocfilters
 
-RUN pip3 install pandocfilters seqdiag
+RUN \
+  echo "alias python='python3'\nalias pip='pip3'" >> /root/.bashrc \
+  printf '#!/usr/bin/env bash \n python3 $@' > /usr/bin/python && chmod +x /usr/bin/python
 
-RUN echo "alias python='python3'\nalias pip='pip3'" >> /root/.bashrc
-RUN printf '#!/usr/bin/env bash \n python3 $@' > /usr/bin/python && chmod +x /usr/bin/python
+ARG libs_path=/usr/local/lib/documentary
+ARG bin_path=/usr/local/bin
 
-RUN mkdir /app
-COPY plugins /app/plugins
-COPY resources /app/resources
-COPY makefile /app
-COPY documentary /bin
-COPY watcher /bin
+RUN mkdir -p $libs_path
+COPY plugins resources $libs_path/
 
-ENV APP_DIR /app
-ENV PLUGINS_DIR /app/plugins
-ENV RESOURCES_DIR /app/resources
-ENV SOURCE_DIR /project/source
-ENV TARGET_DIR /project/docs
-WORKDIR /project
+COPY documentary watcher makefile $bin_path/
+
+ENV BIN_PATH $bin_path
+ENV LIBS_PATH $libs_path
+ENV PLUGINS_PATH $libs_path/plugins
+ENV RESOURCES_PATH $libs_path/resources
+
+ENV SOURCE_DIR /app/source
+ENV TARGET_DIR /app/docs
+WORKDIR /app
 
 # Install Forego
 # ADD https://github.com/jwilder/forego/releases/download/v0.16.1/forego /usr/local/bin/forego
