@@ -22,10 +22,10 @@ RUN apt-get install -y \
 RUN apt-get install -y \
   python3.6 \
   python3-pip \
-  python-seqdiag
-RUN pip3 install pandocfilters
+  python3-seqdiag
+RUN pip3 install pandocfilters seqdiag
 
-RUN echo "alias python='python3'\nalias pip='pip3'" >> /root/.bashrc
+RUN echo "alias python='python3'\nalias pip='pip3'\n alias seqdiag='seqdiag3'" >> /root/.bashrc
 RUN ln -sf /usr/bin/python3 /usr/bin/python
   # printf '#!/usr/bin/env bash \n python3 $@' > /usr/bin/python && chmod +x /usr/bin/python
 

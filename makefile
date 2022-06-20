@@ -27,7 +27,7 @@ FDP = fdp -Tsvg
 SFDT = sfdp -Tsvg
 TWOPI = twopi -Tsvg
 CIRCO = circo -Tsvg
-SEQ = seqdiag -Tsvg
+SEQ = seqdiag3 -Tsvg
 
 STATIC_SOURCES = $(shell find $(SOURCE_DIR) -iregex '.*\.(png|jpg|jpeg|svg|js)$$')
 STATIC_TARGETS = $(STATIC_SOURCES:$(SOURCE_DIR)/%=$(TARGET_DIR)/%)
@@ -104,9 +104,9 @@ $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css $(MAKEFILE)
 $(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(JS_TARGETS) $(MAKEFILE) $(PLUGINS_PATH)/*.*
 	mkdir -p $(@D); \
 	$(MD) \
-	$(foreach var,$(CSS_TARGETS), --css `python $(PLUGINS_PATH)/relpath.py $(var) $(@D)`) \
+	$(foreach var,$(CSS_TARGETS), --css `python3 $(PLUGINS_PATH)/relpath.py $(var) $(@D)`) \
 	--to $(TO) $< | sed -f $(PLUGINS_PATH)/relext.sed > $@;
-# 	$(foreach var,$(JS_TARGETS), --js `python $(PLUGINS_PATH)/relpath.py $(var) $(@D)`) \
+# 	$(foreach var,$(JS_TARGETS), --js `python3 $(PLUGINS_PATH)/relpath.py $(var) $(@D)`) \
 
 $(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot $(MAKEFILE)
 	mkdir -p $(@D); \
@@ -150,7 +150,7 @@ watch:
 	(while true; do $(WATCH_COMMAND); sleep 1; done) | grep -v 'make\[1\]'
 
 serve:
-	cd $(TARGET_DIR) && python -m SimpleHTTPServer 8000
+	cd $(TARGET_DIR) && python3 -m SimpleHTTPServer 8000
 
 clean:
 	rm -rf $(TARGET_DIR)/*
