@@ -1,2 +1,39 @@
 #!/usr/bin/env bash
-make -f /app/makefile $@
+
+command=$1
+
+case $command in
+
+init)
+app=$2
+mkdir -p $app/src $app/build
+cp cli $app/documentary
+chmod +x $app/documentary
+chown 1000:1000 $app/documentary
+;;
+
+build)
+make -f $BIN_PATH/makefile ${@:2}
+;;
+
+reveal)
+;;
+
+help)
+cat <<EOF
+Documentary static website compiler
+
+$0 init    # Init new folder structure
+$0 build   # Build website
+$0 reveal  # Build reveal.js presentation
+
+$0 help    # Show this help
+
+EOF
+;;
+
+*)
+$0 help
+;;
+
+esac

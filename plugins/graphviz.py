@@ -22,11 +22,11 @@ def graphviz(key, value, format, meta):
       if format not in ['html', 'html5', 'revealjs']:
         raise Exception('output format must be HTML')
       proc = Popen(
-      	[commands[0], '-T', 'svg'],
-      	stdin=PIPE,
-      	stdout=PIPE,
-      	encoding='utf8',
-      	universal_newlines=True
+        [commands[0], '-T', 'svg'],
+        stdin=PIPE,
+        stdout=PIPE,
+        encoding='utf8',
+        universal_newlines=True
       )
       (output, errors) = proc.communicate(code)
       return RawBlock("html", output)
