@@ -13,7 +13,7 @@ chown 1000:1000 $app/documentary
 ;;
 
 build)
-make -f /app/makefile $@
+make -f $BIN_PATH/makefile ${@:2}
 ;;
 
 reveal)

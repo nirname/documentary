@@ -25,22 +25,25 @@ RUN apt-get install -y \
   python-seqdiag
 RUN pip3 install pandocfilters
 
-RUN \
-  echo "alias python='python3'\nalias pip='pip3'" >> /root/.bashrc \
-  printf '#!/usr/bin/env bash \n python3 $@' > /usr/bin/python && chmod +x /usr/bin/python
+RUN echo "alias python='python3'\nalias pip='pip3'" >> /root/.bashrc
+RUN ln -sf /usr/bin/python3 /usr/bin/python
+  # printf '#!/usr/bin/env bash \n python3 $@' > /usr/bin/python && chmod +x /usr/bin/python
 
-ARG libs_path=/usr/local/lib/documentary
 ARG bin_path=/usr/local/bin
+ARG libs_path=/usr/local/lib/documentary
+ARG plugins_path=$libs_path/plugins
+ARG resources_path=$libs_path/resources
 
 RUN mkdir -p $libs_path
-COPY plugins resources $libs_path/
 
 COPY documentary watcher makefile $bin_path/
+COPY plugins $plugins_path
+COPY resources $resources_path
 
 ENV BIN_PATH $bin_path
 ENV LIBS_PATH $libs_path
-ENV PLUGINS_PATH $libs_path/plugins
-ENV RESOURCES_PATH $libs_path/resources
+ENV PLUGINS_PATH $plugins_path
+ENV RESOURCES_PATH $resources_path
 
 ENV SOURCE_DIR /app/source
 ENV TARGET_DIR /app/docs

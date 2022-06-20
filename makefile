@@ -62,7 +62,7 @@ CIRCO_TARGETS = $(CIRCO_SOURCES:$(SOURCE_DIR)/%.circo=$(TARGET_DIR)/%.svg)
 SEQ_SOURCES = $(shell find $(SOURCE_DIR) -name '*.seq')
 SEQ_TARGETS = $(SEQ_SOURCES:$(SOURCE_DIR)/%.seq=$(TARGET_DIR)/%.svg)
 
-all: sources no_jekyll
+all: sources no_jekyll permissions
 #reveal.js
 
 .IGNORE: $(TARGET_DIR)/reveal.js
@@ -140,6 +140,9 @@ no_jekyll: $(TARGET_DIR)/.no_jekyll
 
 $(TARGET_DIR)/.no_jekyll:
 	touch $@
+
+permissions:
+	chown 1000:1000 $(TARGET_DIR)
 
 PHONY: watch serve clean debug
 
