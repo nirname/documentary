@@ -16,16 +16,12 @@ build)
 make -f $BIN_PATH/makefile ${@:2}
 ;;
 
-reveal)
-;;
-
 help)
 cat <<EOF
 Documentary static website compiler
 
 $0 init    # Init new folder structure
 $0 build   # Build website
-$0 reveal  # Build reveal.js presentation
 
 $0 help    # Show this help
 
@@ -37,3 +33,7 @@ $0 help
 ;;
 
 esac
+
+# reveal)
+# ;;
+# $0 reveal  # Build reveal.js presentation

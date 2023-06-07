@@ -29,21 +29,20 @@ RUN echo "alias python='python3'\nalias pip='pip3'\n alias seqdiag='seqdiag3'" >
 RUN ln -sf /usr/bin/python3 /usr/bin/python
   # printf '#!/usr/bin/env bash \n python3 $@' > /usr/bin/python && chmod +x /usr/bin/python
 
-ARG bin_path=/usr/local/bin
-ARG libs_path=/usr/local/lib/documentary
-ARG plugins_path=$libs_path/plugins
-ARG resources_path=$libs_path/resources
+ARG documentary_path=/opt/documentary
+RUN mkdir -p $documentary_path
 
-RUN mkdir -p $libs_path
+ARG documentary_bin_path=$documentary_path/bin
+ARG documentary_plugins_path=$documentary_path/plugins
+ARG documentary_resources_path=$ocumentary_path/resources
 
 COPY documentary watcher makefile $bin_path/
 COPY plugins $plugins_path
 COPY resources $resources_path
 
-ENV BIN_PATH $bin_path
-ENV LIBS_PATH $libs_path
-ENV PLUGINS_PATH $plugins_path
-ENV RESOURCES_PATH $resources_path
+ENV DOCUMENTARY_BIN_PATH $bin_path
+ENV DOCUMENTARY_PLUGINS_PATH $plugins_path
+ENV DOCUMENTARY_RESOURCES_PATH $resources_path
 
 ENV SOURCE_DIR /app/source
 ENV TARGET_DIR /app/docs

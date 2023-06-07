@@ -56,7 +56,8 @@ You may try other [examples](https://nirname.github.io/documentary-docs/#example
 
 I would really appreciate any assistance so as to increase amount of diagrams and simplify usage.
 
-[Skim through the plan](https://nirname.github.io/documentary-docs/todo.html).
+[Skim through the plan](todo.md).
+[Have a look at changelog](changelog.md)
 
 ## Acknowledgements
 

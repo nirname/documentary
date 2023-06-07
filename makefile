@@ -10,16 +10,16 @@ TO ?= html
 
 WATCH_COMMAND ?= make all
 
-BIN_PATH ?= .
-PLUGINS_PATH ?= plugins
-RESOURCES_PATH ?= resources
-MAKEFILE ?= $(BIN_PATH)/makefile
+DOCUMENTARY_BIN_PATH ?= .
+DOCUMENTARY_PLUGINS_PATH ?= ../plugins
+DOCUMENTARY_RESOURCES_PATH ?= ../resources
+MAKEFILE ?= $(DOCUMENTARY_BIN_PATH)/makefile
 
 MD = pandoc \
 	--from markdown --standalone \
 	--highlight-style kate \
-	--filter $(PLUGINS_PATH)/graphviz.py \
-	--filter $(PLUGINS_PATH)/diag.py
+	--filter $(DOCUMENTARY_PLUGINS_PATH)/graphviz.py \
+	--filter $(DOCUMENTARY_PLUGINS_PATH)/diag.py
 
 DOT = dot -Tsvg
 NEATO = neato -Tsvg
@@ -101,12 +101,12 @@ $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css $(MAKEFILE)
 # 	@mkdir -p $(@D); \
 # 	cp -f $< $@
 
-$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(JS_TARGETS) $(MAKEFILE) $(PLUGINS_PATH)/*.*
+$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(JS_TARGETS) $(MAKEFILE) $(DOCUMENTARY_PLUGINS_PATH)/*.*
 	mkdir -p $(@D); \
 	$(MD) \
-	$(foreach var,$(CSS_TARGETS), --css `python3 $(PLUGINS_PATH)/relpath.py $(var) $(@D)`) \
-	--to $(TO) $< | sed -f $(PLUGINS_PATH)/relext.sed > $@;
-# 	$(foreach var,$(JS_TARGETS), --js `python3 $(PLUGINS_PATH)/relpath.py $(var) $(@D)`) \
+	$(foreach var,$(CSS_TARGETS), --css `python3 $(DOCUMENTARY_PLUGINS_PATH)/relpath.py $(var) $(@D)`) \
+	--to $(TO) $< | sed -f $(DOCUMENTARY_PLUGINS_PATH)/relext.sed > $@;
+# 	$(foreach var,$(JS_TARGETS), --js `python3 $(DOCUMENTARY_PLUGINS_PATH)/relpath.py $(var) $(@D)`) \
 
 $(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot $(MAKEFILE)
 	mkdir -p $(@D); \
@@ -158,7 +158,7 @@ clean:
 debug:
 	@echo "SOURCE_DIR: " $(SOURCE_DIR)
 	@echo "TARGET_DIR: " $(TARGET_DIR)
-	@echo "PLUGINS_PATH: " $(PLUGINS_PATH)
+	@echo "DOCUMENTARY_PLUGINS_PATH: " $(DOCUMENTARY_PLUGINS_PATH)
 	@echo "STATIC_SOURCES: " $(STATIC_SOURCES)
 	@echo "STATIC_TARGETS: " $(STATIC_TARGETS)
 	@echo "CSS_SOURCES: " $(CSS_SOURCES)
