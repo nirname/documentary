@@ -13,15 +13,15 @@ It doesn't pretend to be a new tool, it is just convenient union of other great 
 Create new project within new folder:
 
 ```bash
-docker run --rm -v $(pwd):/app documentary init website
+docker run --rm -v $(pwd):/app nirname/documentary documentary init website
 cd website
 ```
 
-Or intialize project inside existing one:
+To add existing one, put your markdown under `source/` folder first:
 
 ```bash
 cd website
-docker run --rm -v $(pwd):/app documentary init .
+docker run --rm -v $(pwd):/app nirname/documentary documentary init .
 ```
 
 Then:
