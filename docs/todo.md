@@ -1,19 +1,18 @@
 [Home page](readme.md)
 
-# To Do
+# TODO
 
-What has been done so far and what is planned to do.
+## At first
 
-## Implemented Features
-
-* Pandoc
-* Graphviz
-* Seqdiag
-* Docker
-* Reveal.js
+* Change installation path /opt/bin
+* Rename `source` and `build` folders (how?)
+* Make `source` and `build` folders configurable
+* Add version to build
+* Move sample.md to templates
 
 ## Add Diagrams & Plots
 
+* Added instructions & support for reveal.js
 * Gantt
 * CSV 2 markdown tables
 * Gnuplot
@@ -26,9 +25,9 @@ What has been done so far and what is planned to do.
 (ordered by priority)
 
 * Remove files automatically
-* ~~Add watcher~~
-* ~~See logs from Docker output~~
-* ~~Relative paths as a filter~~
+* Add watcher
+* See logs from Docker output
+* Relative paths as a filter
 * Replace sed with pandoc filters
 * Copy other files that doesn't have to be compiled
 * Include another file in markdown

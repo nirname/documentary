@@ -16,7 +16,8 @@ DOCUMENTARY_RESOURCES_PATH ?= ../resources
 MAKEFILE ?= $(DOCUMENTARY_BIN_PATH)/makefile
 
 MD = pandoc \
-	--from markdown --standalone \
+	--from markdown \
+	--standalone \
 	--highlight-style kate \
 	--filter $(DOCUMENTARY_PLUGINS_PATH)/graphviz.py \
 	--filter $(DOCUMENTARY_PLUGINS_PATH)/diag.py
