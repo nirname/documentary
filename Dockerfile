@@ -38,7 +38,9 @@ RUN mkdir -p $documentary_path
 COPY app $documentary_path
 
 # Make documentary command available
-RUN ln -s $documentary_path/bin/documentary /usr/local/bin/documentary
+RUN \
+  ln -s $documentary_path/bin/documentary /usr/local/bin/documentary && \
+  ln -s $documentary_path/bin/documentary /usr/local/bin/ndoc
 
 ENV DOCUMENTARY_PATH $documentary_path
 

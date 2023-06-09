@@ -12,6 +12,7 @@ WATCH_COMMAND ?= make all
 
 # This is relative to makefile
 DOCUMENTARY_PATH ?= ./..
+$(info $(DOCUMENTARY_PATH))
 MAKEFILE ?= $(DOCUMENTARY_PATH)/bin/makefile
 PLUGINS ?= $(DOCUMENTARY_PATH)/plugins
 
