@@ -8,6 +8,7 @@ Under development
 * `source` and `build` are configurable now
 * Default `source` is `src` and `build` is `docs` (for gh-pages complience)
 * `sample.md` moved to templates
+* Updated ubuntu version
 
 # v1.3
 
