@@ -1,8 +1,8 @@
 FROM ubuntu:22.04
 
-RUN apt-get update
+RUN apt-get clean && apt-get update
 
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get install -y \
   build-essential \
   apt-utils \
   pandoc \
@@ -32,18 +32,20 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python
 ARG documentary_path=/opt/documentary
 RUN mkdir -p $documentary_path
 
-ARG documentary_bin_path=$documentary_path/bin
-ARG documentary_plugins_path=$documentary_path/plugins
-ARG documentary_resources_path=$ocumentary_path/resources
+# ARG documentary_bin_path=$documentary_path/bin
+# ARG documentary_plugins_path=$documentary_path/plugins
+# ARG documentary_resources_path=$ocumentary_path/resources
+COPY app $documentary_path
 
-COPY documentary watcher makefile $bin_path/
-COPY plugins $plugins_path
-COPY resources $resources_path
+# Make documentary command available
+RUN ln -s $documentary_path/bin /usr/local/bin
 
-ENV DOCUMENTARY_BIN_PATH $bin_path
-ENV DOCUMENTARY_PLUGINS_PATH $plugins_path
-ENV DOCUMENTARY_RESOURCES_PATH $resources_path
+ENV DOCUMENTARY_PATH $documentary_path
 
+# COPY plugins $plugins_path
+# COPY resources $resources_path
+
+# This is where user's markdown files are mounted
 ENV SOURCE_DIR /app/source
 ENV TARGET_DIR /app/docs
 WORKDIR /app

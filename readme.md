@@ -53,7 +53,6 @@ You may try other [examples](https://nirname.github.io/documentary-docs/#example
 
 * bin - executables
 * plugins - things that enhance and extend markdown
-* resources - built-in styles and other 
 * templates - self-descripting, this will be used as scaffold and put within project
 * docs - 
 
