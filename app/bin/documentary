@@ -1,15 +1,47 @@
 #!/usr/bin/env bash
 
+# hide ^C
+stty -echoctl
+
+trap - SIGINT
+
+function fetch() {
+    local desc=$1
+    local -n param=$2
+    local default=$3
+
+    local answer=""
+    if [[ -z "$param" ]]; then
+        read -p "Enter your $desc (press enter to default: '$default'): " answer
+        param=${answer:-$default}
+    fi
+
+    echo "Your $desc is '$param'"
+}
+
 command=$1
 
 case $command in
 
 init)
-app=$2
-mkdir -p $app/src $app/build
-cp cli $app/documentary
-chmod +x $app/documentary
-chown 1000:1000 $app/documentary
+
+echo "NDoc Initializing (ctrl-c to cancel)"
+
+project=$2
+src=$3
+dest=$4
+domain=$5
+
+fetch "project path or name" project "."
+fetch "source folder within '$project'" src "src"
+fetch "destination folder within '$project'" dest "docs"
+fetch "domain name" domain ""
+
+mkdir -p /local/$project/$src /local/$project/$dest
+
+cat $DOCUMENTARY_PATH/templates/cli | sed "s/__SOURCE_DIR__/$src/;s/__TARGET_DIR__/$dest/;s/__DOMAIN__/$domain/" > /local/$project/ndoc
+chmod +x /local/$project/ndoc
+chown 1000:1000 /local/$project/ndoc
 ;;
 
 build)
@@ -20,10 +52,10 @@ help)
 cat <<EOF
 Documentary static website compiler
 
-$0 init    # Init new folder structure
-$0 build   # Build website
+ndoc init    # Init new folder structure ('init project' or 'init .')
+ndoc build   # Compile markdown to html
 
-$0 help    # Show this help
+ndoc help    # Show this help
 
 EOF
 ;;

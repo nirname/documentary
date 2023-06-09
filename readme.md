@@ -20,7 +20,7 @@ Right now it includes:
 To create new project within new folder:
 
 ```bash
-docker run --rm -v $(pwd):/app nirname/documentary init project
+docker run --rm -v $(pwd):/local nirname/documentary init project
 cd project
 ```
 
@@ -28,13 +28,13 @@ To add existing one, put your markdown under `source/` folder first:
 
 ```bash
 cd project
-docker run --rm -v $(pwd):/app nirname/documentary init .
+docker run --rm -v $(pwd):/local nirname/documentary init .
 ```
 
 Then:
 
 ```bash
-docker run --rm -v $(pwd):/app nirname/documentary build
+docker run --rm -v $(pwd):/local nirname/documentary build
 ```
 
 or simply:
@@ -43,11 +43,9 @@ or simply:
 ./ndoc build
 ```
 
-Which is a shortcut
-
+Which is a shortcut for the previous command.
 
 Open `docs/sample.html`
-
 
 As simple as that.
 

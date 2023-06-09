@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-docker run --rm -v $(pwd):/app nirname/documentary documentary $@
+docker run --rm -it -env-file SOURCE_DIR=/local/__SOURCE_DIR__ -e TARGET_DIR=/local/__TARGET_DIR__ -v $(pwd):/local nirname/documentary $@
+echo "__DOMAIN__" > ./__TARGET_DIR__/CNAME

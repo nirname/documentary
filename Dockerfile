@@ -48,14 +48,14 @@ ENV DOCUMENTARY_PATH $documentary_path
 # COPY resources $resources_path
 
 # This is where user's markdown files are mounted
-ENV SOURCE_DIR /app/source
-ENV TARGET_DIR /app/docs
-WORKDIR /app
+ENV SOURCE_DIR /local/src
+ENV TARGET_DIR /local/docs
+WORKDIR /local
 
 # Install Forego
 # ADD https://github.com/jwilder/forego/releases/download/v0.16.1/forego /usr/local/bin/forego
 # RUN chmod u+x /usr/local/bin/forego
 
-ENTRYPOINT ["documentary"]
+ENTRYPOINT ["ndoc"]
 # ENTRYPOINT ["/app/docker-entrypoint.sh"]
 # CMD ["forego", "start", "-r"]

@@ -4,11 +4,7 @@
 
 ## At first
 
-* Change installation path /opt/bin
-* Rename `source` and `build` folders (how?)
-* Make `source` and `build` folders configurable
 * Add version to build
-* Move sample.md to templates
 
 ## Add Diagrams & Plots
 

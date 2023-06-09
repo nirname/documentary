@@ -4,6 +4,11 @@
 
 Under development
 
+* Installation path changed to /opt/bin
+* `source` and `build` are configurable now
+* Default `source` is `src` and `build` is `docs` (for gh-pages complience)
+* `sample.md` moved to templates
+
 # v1.3
 
 * Docker support
