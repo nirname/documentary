@@ -38,7 +38,7 @@ RUN mkdir -p $documentary_path
 COPY app $documentary_path
 
 # Make documentary command available
-RUN ln -s $documentary_path/bin /usr/local/bin
+RUN ln -s $documentary_path/bin/documentary /usr/local/bin/documentary
 
 ENV DOCUMENTARY_PATH $documentary_path
 
@@ -54,5 +54,6 @@ WORKDIR /app
 # ADD https://github.com/jwilder/forego/releases/download/v0.16.1/forego /usr/local/bin/forego
 # RUN chmod u+x /usr/local/bin/forego
 
+ENTRYPOINT ["documentary"]
 # ENTRYPOINT ["/app/docker-entrypoint.sh"]
 # CMD ["forego", "start", "-r"]

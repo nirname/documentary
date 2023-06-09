@@ -6,55 +6,65 @@ Converts simple text notation into pretty looking pages.
 
 It doesn't pretend to be a new tool, it is just convenient union of other great tools.
 
-## Getting Started
-
-**Install Docker.**
-
-Create new project within new folder:
-
-```bash
-docker run --rm -v $(pwd):/app nirname/documentary documentary init website
-cd website
-```
-
-To add existing one, put your markdown under `source/` folder first:
-
-```bash
-cd website
-docker run --rm -v $(pwd):/app nirname/documentary documentary init .
-```
-
-Then:
-
-```bash
-./documentary build
-```
-
-Open `docs/sample.html`
-
-As simple as that.
-
-# Further Reading
-
-Have a look at [documentary gh-pages](https://nirname.github.io/documentary-docs/)
-to find out what is capable of.
-
-You may try other [examples](https://nirname.github.io/documentary-docs/#examples) or
-[build reveal.js presentation](https://nirname.github.io/documentary-docs/#reveal.js) as well.
-
-## Features
+Right now it includes:
 
 * Markdown extended from *[Pandoc](https://pandoc.org/)*
 * All the types of graphs that *[Graphviz](https://graphviz.org/)* supports
 * Flowchart diagramms via *[Seqdiag](http://blockdiag.com/en/seqdiag/index.html)*
 * Embedded and standalone images
 
+## Getting Started
+
+**Install Docker.**
+
+To create new project within new folder:
+
+```bash
+docker run --rm -v $(pwd):/app nirname/documentary init project
+cd project
+```
+
+To add existing one, put your markdown under `source/` folder first:
+
+```bash
+cd project
+docker run --rm -v $(pwd):/app nirname/documentary init .
+```
+
+Then:
+
+```bash
+docker run --rm -v $(pwd):/app nirname/documentary build
+```
+
+or simply:
+
+```bash
+./ndoc build
+```
+
+Which is a shortcut
+
+
+Open `docs/sample.html`
+
+
+As simple as that.
+
+## Documentation
+
+Have a look at [documentation](https://nirname.github.io/documentary-docs/)
+to find out what it is capable of.
+
+<!-- You may try other [examples](https://nirname.github.io/documentary-docs/#examples) or
+[build reveal.js presentation](https://nirname.github.io/documentary-docs/#reveal.js) as well. -->
+
 ## Structure of the project
 
 * bin - executables
 * plugins - things that enhance and extend markdown
 * templates - self-descripting, this will be used as scaffold and put within project
-* docs - 
+* docs - documentation
 
 ## Join the Development
 

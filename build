@@ -2,5 +2,4 @@
 tag=$(git rev-parse HEAD)
 tag=${tag:0:8}
 echo $tag
-docker build -t nirname/documentary:$tag .
-# docker build -t nirname/documentary .
+docker build -t nirname/documentary -t nirname/documentary:$tag .
