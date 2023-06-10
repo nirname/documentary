@@ -11,14 +11,19 @@
 * Add version to build
 * Add `sample` command to cli
 
-## Add Diagrams & Plots
+## Diagrams & Plots Tools
 
-* Added instructions & support for reveal.js
+
+* https://www.nomnoml.com/
 * Gantt
 * CSV 2 markdown tables
 * Flowchart https://gist.github.com/antimatter15/1841460
 * https://github.com/hertogp/imagine
 * https://github.com/raghur/mermaid-filter
+
+# Other tools
+
+* reveal.js
 
 ## Make Other Improvements
 
