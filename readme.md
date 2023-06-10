@@ -57,11 +57,15 @@ As simple as that.
 
 To create embedded graph add class to a code block:
 
+````md
+# Sample
+
 ```dot
 digraph {
     A->B
 }
 ```
+````
 
 Supported classes are:
 
