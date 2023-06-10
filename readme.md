@@ -57,7 +57,7 @@ As simple as that.
 
 To create embedded graph add class to a code block:
 
-````md
+````markdown
 # Sample
 
 ```dot
