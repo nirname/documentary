@@ -11,7 +11,7 @@ graph TD
     F --> B
 ```
 
-```graphviz
+```dot
 digraph {
     A->B
 }
