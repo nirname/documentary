@@ -90,11 +90,13 @@ Supported classes (they are extensions also) are:
 * **circo**   - Graphviz 'circo'
 * **seqdiag** - Blockdiag 'seqdiag'
 
-
-
 ## Styles
 
 Currently, all the `css` are automatically included. Put some `*.css` files under source folder, then build.
+
+For instance, you can download [Github markdown styles](https://github.com/sindresorhus/github-markdown-css/blob/gh-pages/github-markdown.css).
+
+Code syntax highlight comes from Pandoc.
 
 ## Documentation
 
