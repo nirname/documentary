@@ -1,8 +1,8 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
-RUN apt-get update
+RUN apt-get clean && apt-get update
 
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get install -y \
   build-essential \
   apt-utils \
   pandoc \
@@ -29,29 +29,29 @@ RUN echo "alias python='python3'\nalias pip='pip3'\n alias seqdiag='seqdiag3'" >
 RUN ln -sf /usr/bin/python3 /usr/bin/python
   # printf '#!/usr/bin/env bash \n python3 $@' > /usr/bin/python && chmod +x /usr/bin/python
 
-ARG bin_path=/usr/local/bin
-ARG libs_path=/usr/local/lib/documentary
-ARG plugins_path=$libs_path/plugins
-ARG resources_path=$libs_path/resources
+ARG documentary_path=/opt/documentary
+RUN mkdir -p $documentary_path
 
-RUN mkdir -p $libs_path
+# Copy executables
+COPY app $documentary_path
 
-COPY documentary watcher makefile $bin_path/
-COPY plugins $plugins_path
-COPY resources $resources_path
+# Make documentary and ndoc (alias) commands available
+RUN \
+  ln -s $documentary_path/bin/documentary /usr/local/bin/documentary && \
+  ln -s $documentary_path/bin/documentary /usr/local/bin/ndoc
 
-ENV BIN_PATH $bin_path
-ENV LIBS_PATH $libs_path
-ENV PLUGINS_PATH $plugins_path
-ENV RESOURCES_PATH $resources_path
+ENV DOCUMENTARY_PATH $documentary_path
 
-ENV SOURCE_DIR /app/source
-ENV TARGET_DIR /app/docs
-WORKDIR /app
+# A user's project are mounted to /local
+ENV PROJECT_PATH /local
+ENV SOURCE_DIR src
+ENV TARGET_DIR docs
+WORKDIR /local
 
 # Install Forego
 # ADD https://github.com/jwilder/forego/releases/download/v0.16.1/forego /usr/local/bin/forego
 # RUN chmod u+x /usr/local/bin/forego
 
+ENTRYPOINT ["ndoc"]
 # ENTRYPOINT ["/app/docker-entrypoint.sh"]
 # CMD ["forego", "start", "-r"]

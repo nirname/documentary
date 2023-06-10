@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+docker run --rm -it --env-file nenv -v $(pwd):/local nirname/documentary $@

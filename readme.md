@@ -6,57 +6,75 @@ Converts simple text notation into pretty looking pages.
 
 It doesn't pretend to be a new tool, it is just convenient union of other great tools.
 
+Right now it includes:
+
+* Markdown extended from *[Pandoc](https://pandoc.org/)*
+* All the types of graphs that *[Graphviz](https://graphviz.org/)* supports
+* Flowchart diagramms via *[Seqdiag](http://blockdiag.com/en/seqdiag/index.html)*
+* Embedded and standalone images
+
 ## Getting Started
 
 **Install Docker.**
 
-Create new project within new folder:
+**Init project**
+
+To create new project within new folder or add existing one like this:
 
 ```bash
-docker run --rm -v $(pwd):/app documentary init website
-cd website
+docker run --rm -it -v $(pwd):/local nirname/documentary init project
+cd project
 ```
 
-Or intialize project inside existing one:
-
+Or like this
 ```bash
-cd website
-docker run --rm -v $(pwd):/app documentary init .
+cd project
+docker run --rm -it -v $(pwd):/local nirname/documentary init .
 ```
 
-Then:
+You can also configure source (src) and destination (docs) folder names, as well as your domain (CNAME).
+
+Full command looks like this:
+```bash
+docker run --rm -it -v $(pwd):/local nirname/documentary init project src docs my.website
+```
+
+Your configuration will be saved in `nenv`.
+
+**Build project project**
+
+Then :
 
 ```bash
-./documentary build
+./ndoc build
 ```
 
 Open `docs/sample.html`
 
 As simple as that.
 
-# Further Reading
+## Documentation
 
-Have a look at [documentary gh-pages](https://nirname.github.io/documentary-docs/)
-to find out what is capable of.
+Have a look at [documentation](https://nirname.github.io/documentary-docs/)
+to find out what it is capable of.
 
-You may try other [examples](https://nirname.github.io/documentary-docs/#examples) or
-[build reveal.js presentation](https://nirname.github.io/documentary-docs/#reveal.js) as well.
+<!-- You may try other [examples](https://nirname.github.io/documentary-docs/#examples) or
+[build reveal.js presentation](https://nirname.github.io/documentary-docs/#reveal.js) as well. -->
 
-## Features
+## Structure of the project
 
-* Markdown extended from *[Pandoc](https://pandoc.org/)*
-
-* All the types of graphs that *[Graphviz](https://graphviz.org/)* supports
-
-* Flowchart diagramms via *[Seqdiag](http://blockdiag.com/en/seqdiag/index.html)*
-
-* Embedded and standalone images
+* bin - executables
+* plugins - things that enhance and extend markdown
+* templates - self-descripting, this will be used as scaffold and put within project
+* docs - documentation
 
 ## Join the Development
 
 I would really appreciate any assistance so as to increase amount of diagrams and simplify usage.
 
-[Skim through the plan](https://nirname.github.io/documentary-docs/todo.html).
+* [Skim through the plan](docs/todo.md).
+* [Have a look at what has been done so far in changelog](docs/changelog.md).
+* [Grap sample markdown](docs/sample.md) to test if it works.
 
 ## Acknowledgements
 

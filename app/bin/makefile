@@ -1,25 +1,36 @@
 # 'Makefile'
 
+PROJECT_PATH ?= /local
+PROJECT_SOURCE_DIR ?= src
+PROJECT_TARGET_DIR ?= docs
+
 # Where sources are located
-SOURCE_DIR ?= src
+SOURCE_DIR = $(PROJECT_PATH)/$(PROJECT_SOURCE_DIR)
+
 # Where all the compiled sources will be
-TARGET_DIR ?= docs
+TARGET_DIR = $(PROJECT_PATH)/$(PROJECT_TARGET_DIR)
+
+# what to put inside cname
+DOMAIN = $(PROJECT_DOMAIN)
+
 # Output format
 TO ?= html
 # --to revealjs
 
 WATCH_COMMAND ?= make all
 
-BIN_PATH ?= .
-PLUGINS_PATH ?= plugins
-RESOURCES_PATH ?= resources
-MAKEFILE ?= $(BIN_PATH)/makefile
+# This is relative to makefile
+DOCUMENTARY_PATH ?= ./..
+$(info $(DOCUMENTARY_PATH))
+MAKEFILE ?= $(DOCUMENTARY_PATH)/bin/makefile
+PLUGINS ?= $(DOCUMENTARY_PATH)/plugins
 
 MD = pandoc \
-	--from markdown --standalone \
+	--from markdown \
+	--standalone \
 	--highlight-style kate \
-	--filter $(PLUGINS_PATH)/graphviz.py \
-	--filter $(PLUGINS_PATH)/diag.py
+	--filter $(PLUGINS)/graphviz.py \
+	--filter $(PLUGINS)/diag.py
 
 DOT = dot -Tsvg
 NEATO = neato -Tsvg
@@ -62,7 +73,7 @@ CIRCO_TARGETS = $(CIRCO_SOURCES:$(SOURCE_DIR)/%.circo=$(TARGET_DIR)/%.svg)
 SEQ_SOURCES = $(shell find $(SOURCE_DIR) -name '*.seq')
 SEQ_TARGETS = $(SEQ_SOURCES:$(SOURCE_DIR)/%.seq=$(TARGET_DIR)/%.svg)
 
-all: sources no_jekyll permissions
+all: sources no_jekyll cname permissions
 #reveal.js
 
 .IGNORE: $(TARGET_DIR)/reveal.js
@@ -101,12 +112,12 @@ $(CSS_TARGETS):$(TARGET_DIR)/%.css: $(SOURCE_DIR)/%.css $(MAKEFILE)
 # 	@mkdir -p $(@D); \
 # 	cp -f $< $@
 
-$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(JS_TARGETS) $(MAKEFILE) $(PLUGINS_PATH)/*.*
+$(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(JS_TARGETS) $(MAKEFILE) $(PLUGINS)/*.*
 	mkdir -p $(@D); \
 	$(MD) \
-	$(foreach var,$(CSS_TARGETS), --css `python3 $(PLUGINS_PATH)/relpath.py $(var) $(@D)`) \
-	--to $(TO) $< | sed -f $(PLUGINS_PATH)/relext.sed > $@;
-# 	$(foreach var,$(JS_TARGETS), --js `python3 $(PLUGINS_PATH)/relpath.py $(var) $(@D)`) \
+	$(foreach var,$(CSS_TARGETS), --css `python3 $(PLUGINS)/relpath.py $(var) $(@D)`) \
+	--to $(TO) $< | sed -f $(PLUGINS)/relext.sed > $@;
+# 	$(foreach var,$(JS_TARGETS), --js `python3 $(PLUGINS)/relpath.py $(var) $(@D)`) \
 
 $(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot $(MAKEFILE)
 	mkdir -p $(@D); \
@@ -137,14 +148,16 @@ $(SEQ_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.seq $(MAKEFILE)
 	$(SEQ) $< -o $@
 
 no_jekyll: $(TARGET_DIR)/.no_jekyll
-
 $(TARGET_DIR)/.no_jekyll:
 	touch $@
 
-permissions:
-	chown 1000:1000 $(TARGET_DIR)
+cname:
+	echo $(DOMAIN) > $(TARGET_DIR)/CNAME
 
-PHONY: watch serve clean debug
+permissions:
+	chown -R 1000:1000 $(TARGET_DIR)
+
+PHONY: watch serve clean debug cname permissions
 
 watch:
 	(while true; do $(WATCH_COMMAND); sleep 1; done) | grep -v 'make\[1\]'
@@ -156,9 +169,10 @@ clean:
 	rm -rf $(TARGET_DIR)/*
 
 debug:
+	@echo "DOMAIN: " $(DOMAIN)
 	@echo "SOURCE_DIR: " $(SOURCE_DIR)
 	@echo "TARGET_DIR: " $(TARGET_DIR)
-	@echo "PLUGINS_PATH: " $(PLUGINS_PATH)
+	@echo "PLUGINS: " $(PLUGINS)
 	@echo "STATIC_SOURCES: " $(STATIC_SOURCES)
 	@echo "STATIC_TARGETS: " $(STATIC_TARGETS)
 	@echo "CSS_SOURCES: " $(CSS_SOURCES)
