@@ -4,13 +4,13 @@
 
 Under development
 
+* Extension of graph file is kept as a part of standalone resulting image name
 * Installation path changed to /opt/bin
 * `source` and `build` are configurable now
 * Default `source` is `src` and `build` is `docs` (for gh-pages complience)
 * `sample.md` moved to templates
 * Updated ubuntu version
 * `ndoc` config is now inside `nenv` file
-
 
 # v1.3
 

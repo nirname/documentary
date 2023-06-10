@@ -4,7 +4,10 @@
 
 ## At first
 
-* Include extension as a part of standalone resulting image name
+* Add full blockdiag support
+* Add gnuplot support
+
+
 * Add version to build
 * Add `sample` command to cli
 
@@ -13,7 +16,6 @@
 * Added instructions & support for reveal.js
 * Gantt
 * CSV 2 markdown tables
-* Gnuplot
 * Flowchart https://gist.github.com/antimatter15/1841460
 * https://github.com/hertogp/imagine
 * https://github.com/raghur/mermaid-filter
