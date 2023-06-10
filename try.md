@@ -10,3 +10,9 @@ graph TD
     D --> F[Save Image and Code]
     F --> B
 ```
+
+```graphviz
+digraph {
+    A->B
+}
+```
