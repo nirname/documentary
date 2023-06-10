@@ -9,6 +9,8 @@ Under development
 * Default `source` is `src` and `build` is `docs` (for gh-pages complience)
 * `sample.md` moved to templates
 * Updated ubuntu version
+* `ndoc` config is now inside `nenv` file
+
 
 # v1.3
 

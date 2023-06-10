@@ -5,7 +5,6 @@
 ## At first
 
 * Add version to build
-* Dont rewrite `ndoc` if it is already there, make it immutable
 * Add `sample` command to cli
 
 ## Add Diagrams & Plots
