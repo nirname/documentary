@@ -4,7 +4,7 @@
 
 ## At first
 
-* Include 
+* Include extension as a part of standalone resulting image name
 * Add version to build
 * Add `sample` command to cli
 
