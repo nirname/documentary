@@ -21,7 +21,7 @@ function fetch() {
         param=${answer:-$suggested}
     fi
 
-    echo "Set $desc to '$param'"
+    echo "Set $desc is set to '$param'"
 }
 
 command=$1

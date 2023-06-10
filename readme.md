@@ -15,43 +15,67 @@ Right now it includes:
 
 ## Getting Started
 
-**Install Docker.**
+1. Install Docker
 
-**Create new project or add existing folder**
+2. Create new project or add existing folder
 
-```bash
-docker run --rm -it -v $(pwd):/local nirname/documentary init project
-cd project
-```
+    ```bash
+    docker run --rm -it -v $(pwd):/local nirname/documentary init project
+    ```
+    then `cd project`.
 
-or:
+    Or `cd project` first, then:
 
-```bash
-cd project
-docker run --rm -it -v $(pwd):/local nirname/documentary init .
-```
+    ```bash
 
-You can also configure source (src) and destination (docs) folder names, as well as your domain (CNAME).
+    docker run --rm -it -v $(pwd):/local nirname/documentary init .
+    ```
 
-Full command example:
+    You can also configure source (src) and destination (docs) folder names, as well as your domain (CNAME).
 
-```bash
-docker run --rm -it -v $(pwd):/local nirname/documentary init project src docs my.website
-```
+    Full command example:
 
-Your configuration will be saved in `nenv`.
+    ```bash
+    docker run --rm -it -v $(pwd):/local nirname/documentary init project src docs my.website
+    ```
 
-**Build your project:**
+    Your configuration will be saved in `nenv`.
 
-Put some markdown in your source folder and:
+3. Build your project:
 
-```bash
-./ndoc build
-```
+    Put some markdown in your source folder and:
+
+    ```bash
+    ./ndoc build
+    ```
 
 <!-- Open `docs/sample.html` -->
 
 As simple as that.
+
+## How to use it
+
+To create embedded graph add class to a code block:
+
+```dot
+digraph {
+    A->B
+}
+```
+
+Supported classes are:
+
+* **dot**     - Graphviz 'dot'
+* **neato**   - Graphviz 'neato'
+* **fdp**     - Graphviz 'fdp'
+* **sfdp**    - Graphviz 'sfdp'
+* **twopi**   - Graphviz 'twopi'
+* **circo**   - Graphviz 'circo'
+* **seqdiag** - Blockdiag 'seqdiag'
+
+## Styles
+
+Currently, all the `css` are automatically included. Put some `*.css` files under source folder, then build.
 
 ## Documentation
 
