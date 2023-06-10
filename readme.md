@@ -19,35 +19,35 @@ Right now it includes:
 
 2. **Create new project or add existing folder**
 
-    ```bash
-    docker run --rm -it -v $(pwd):/local nirname/documentary init project
-    ```
-    then `cd project`.
+  ```sh
+  docker run --rm -it -v $(pwd):/local nirname/documentary init project
+  ```
+  then `cd project`.
 
-    Or `cd project` first, then:
+  Or `cd project` first, then:
 
-    ```bash
+  ```sh
 
-    docker run --rm -it -v $(pwd):/local nirname/documentary init .
-    ```
+  docker run --rm -it -v $(pwd):/local nirname/documentary init .
+  ```
 
-    You can also configure source (src) and destination (docs) folder names, as well as your domain (CNAME).
+  You can also configure source (src) and destination (docs) folder names, as well as your domain (CNAME).
 
-    Full command example:
+  Full command example:
 
-    ```bash
-    docker run --rm -it -v $(pwd):/local nirname/documentary init project src docs my.website
-    ```
+  ```sh
+  docker run --rm -it -v $(pwd):/local nirname/documentary init project src docs my.website
+  ```
 
-    Your configuration will be saved in `nenv`.
+  Your configuration will be saved in `nenv`.
 
 3. **Build your project**
 
-    Put some markdown in your source folder and:
+  Put some markdown in your source folder and:
 
-    ```bash
-    ./ndoc build
-    ```
+  ```sh
+  ./ndoc build
+  ```
 
 <!-- Open `docs/sample.html` -->
 
@@ -67,7 +67,15 @@ digraph {
 ```
 ````
 
-Supported classes are:
+To create standalone image add file (with dot extension) to source folder with proper extension
+
+```sh
+touch src/mygraph.dot
+```
+
+and
+
+Supported classes (they are extensions also) are:
 
 * **dot**     - Graphviz 'dot'
 * **neato**   - Graphviz 'neato'
@@ -76,6 +84,8 @@ Supported classes are:
 * **twopi**   - Graphviz 'twopi'
 * **circo**   - Graphviz 'circo'
 * **seqdiag** - Blockdiag 'seqdiag'
+
+
 
 ## Styles
 
