@@ -1,9 +1,18 @@
 # 'Makefile'
 
+PROJECT_PATH ?= /local
+PROJECT_SOURCE_DIR ?= src
+PROJECT_TARGET_DIR ?= docs
+
 # Where sources are located
-SOURCE_DIR ?= src
+SOURCE_DIR = $(PROJECT_PATH)/$(PROJECT_SOURCE_DIR)
+
 # Where all the compiled sources will be
-TARGET_DIR ?= docs
+TARGET_DIR = $(PROJECT_PATH)/$(PROJECT_TARGET_DIR)
+
+# what to put inside cname
+DOMAIN = $(PROJECT_DOMAIN)
+
 # Output format
 TO ?= html
 # --to revealjs
@@ -64,7 +73,7 @@ CIRCO_TARGETS = $(CIRCO_SOURCES:$(SOURCE_DIR)/%.circo=$(TARGET_DIR)/%.svg)
 SEQ_SOURCES = $(shell find $(SOURCE_DIR) -name '*.seq')
 SEQ_TARGETS = $(SEQ_SOURCES:$(SOURCE_DIR)/%.seq=$(TARGET_DIR)/%.svg)
 
-all: sources no_jekyll permissions
+all: sources no_jekyll cname permissions
 #reveal.js
 
 .IGNORE: $(TARGET_DIR)/reveal.js
@@ -139,14 +148,16 @@ $(SEQ_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.seq $(MAKEFILE)
 	$(SEQ) $< -o $@
 
 no_jekyll: $(TARGET_DIR)/.no_jekyll
-
 $(TARGET_DIR)/.no_jekyll:
 	touch $@
 
-permissions:
-	chown 1000:1000 $(TARGET_DIR)
+cname:
+	echo $(DOMAIN) > $(TARGET_DIR)/CNAME
 
-PHONY: watch serve clean debug
+permissions:
+	chown -R 1000:1000 $(TARGET_DIR)
+
+PHONY: watch serve clean debug cname permissions
 
 watch:
 	(while true; do $(WATCH_COMMAND); sleep 1; done) | grep -v 'make\[1\]'
@@ -158,6 +169,7 @@ clean:
 	rm -rf $(TARGET_DIR)/*
 
 debug:
+	@echo "DOMAIN: " $(DOMAIN)
 	@echo "SOURCE_DIR: " $(SOURCE_DIR)
 	@echo "TARGET_DIR: " $(TARGET_DIR)
 	@echo "PLUGINS: " $(PLUGINS)

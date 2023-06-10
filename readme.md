@@ -17,29 +17,37 @@ Right now it includes:
 
 **Install Docker.**
 
-To create new project within new folder or add exising one:
+**Init project**
+
+To create new project within new folder or add existing one like this:
 
 ```bash
-docker run --rm -v $(pwd):/local nirname/documentary init project
+docker run --rm -it -v $(pwd):/local nirname/documentary init project
+cd project
 ```
 
-You can use period ('.') as project name if you are currently in its folder.
+Or like this
+```bash
+cd project
+docker run --rm -it -v $(pwd):/local nirname/documentary init .
+```
 
-You can also configure source (src) and destination (docs) folder names, as well as CNAME.
+You can also configure source (src) and destination (docs) folder names, as well as your domain (CNAME).
 
 Full command looks like this:
 ```bash
-docker run --rm -v $(pwd):/local nirname/documentary init project src docs my.website
+docker run --rm -it -v $(pwd):/local nirname/documentary init project src docs my.website
 ```
+
+Your configuration will be saved in `nenv`.
+
+**Build project project**
 
 Then :
 
 ```bash
-cd project
 ./ndoc build
 ```
-
-Which is a shortcut for the previous command.
 
 Open `docs/sample.html`
 

@@ -32,24 +32,20 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python
 ARG documentary_path=/opt/documentary
 RUN mkdir -p $documentary_path
 
-# ARG documentary_bin_path=$documentary_path/bin
-# ARG documentary_plugins_path=$documentary_path/plugins
-# ARG documentary_resources_path=$ocumentary_path/resources
+# Copy executables
 COPY app $documentary_path
 
-# Make documentary command available
+# Make documentary and ndoc (alias) commands available
 RUN \
   ln -s $documentary_path/bin/documentary /usr/local/bin/documentary && \
   ln -s $documentary_path/bin/documentary /usr/local/bin/ndoc
 
 ENV DOCUMENTARY_PATH $documentary_path
 
-# COPY plugins $plugins_path
-# COPY resources $resources_path
-
-# This is where user's markdown files are mounted
-ENV SOURCE_DIR /local/src
-ENV TARGET_DIR /local/docs
+# A user's project are mounted to /local
+ENV PROJECT_PATH /local
+ENV SOURCE_DIR src
+ENV TARGET_DIR docs
 WORKDIR /local
 
 # Install Forego

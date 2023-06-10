@@ -3,20 +3,25 @@
 # hide ^C
 stty -echoctl
 
+# listen for ctrl-C
 trap - SIGINT
+
+# read env
 
 function fetch() {
     local desc=$1
     local -n param=$2
-    local default=$3
+    local suggested=$3
+    local default=$4
 
     local answer=""
+    # if param is set directly from console we do not check it
     if [[ -z "$param" ]]; then
-        read -p "Enter your $desc (press enter to default: '$default'): " answer
-        param=${answer:-$default}
+        read -p "Your $desc is '$suggested' (leave blank to confirm or type new value): " answer
+        param=${answer:-$suggested}
     fi
 
-    echo "Your $desc is '$param'"
+    echo "Set $desc to '$param'"
 }
 
 command=$1
@@ -25,27 +30,42 @@ case $command in
 
 init)
 
-echo "NDoc Initializing (ctrl-c to cancel)"
-
+# Arguments from command line
 project=$2
 src=$3
 dest=$4
 domain=$5
 
-fetch "project path or name" project "."
-fetch "source folder within '$project'" src "src"
-fetch "destination folder within '$project'" dest "docs"
-fetch "domain name" domain ""
+if [ "-f /local/$project/nenv" ]; then
+    set -o allexport; source /local/$project/nenv; set +o allexport;
+    echo "Updating configuration for existing NDoc project in '$project' (ctrl-c to cancel):"
+else
+    echo "Initializing new NDoc project in '$project' (ctrl-c to cancel):"
+fi
+
+fetch "project path or name" project {"."}
+fetch "source folder within '$project'" src ${PROJECT_SOURCE_DIR:-"src"}
+fetch "destination folder within '$project'" dest ${PROJECT_TARGET_DIR:-"docs"}
+fetch "domain name" domain ${PROJECT_DOMAIN:-""}
 
 mkdir -p /local/$project/$src /local/$project/$dest
 
-cat $DOCUMENTARY_PATH/templates/cli | sed "s/__SOURCE_DIR__/$src/;s/__TARGET_DIR__/$dest/;s/__DOMAIN__/$domain/" > /local/$project/ndoc
+cat $DOCUMENTARY_PATH/templates/env | sed "s/__PROJECT_SOURCE_DIR__/$src/;s/__PROJECT_TARGET_DIR__/$dest/;s/__PROJECT_DOMAIN__/$domain/" > /local/$project/nenv
+chown 1000:1000 /local/$project/nenv
+
+if [ ! -f /local/$project/ndoc ]; then 
+cp $DOCUMENTARY_PATH/templates/cli /local/$project/ndoc
 chmod +x /local/$project/ndoc
 chown 1000:1000 /local/$project/ndoc
+fi
 ;;
 
 build)
 make -f $DOCUMENTARY_PATH/bin/makefile ${@:2}
+;;
+
+debug)
+make -f $DOCUMENTARY_PATH/bin/makefile debug ${@:2}
 ;;
 
 help)
@@ -54,6 +74,8 @@ Documentary static website compiler
 
 ndoc init    # Init new folder structure ('init project' or 'init .')
 ndoc build   # Compile markdown to html
+
+ndoc debug   # See all variables from make
 
 ndoc help    # Show this help
 
