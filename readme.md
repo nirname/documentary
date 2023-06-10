@@ -19,35 +19,35 @@ Right now it includes:
 
 2. **Create new project or add existing folder**
 
-  ```sh
-  docker run --rm -it -v $(pwd):/local nirname/documentary init project
-  ```
-  then `cd project`.
+    ```bash
+    docker run --rm -it -v $(pwd):/local nirname/documentary init project
+    ```
+    then `cd project`.
 
-  Or `cd project` first, then:
+    Or `cd project` first, then:
 
-  ```sh
+    ```bash
 
-  docker run --rm -it -v $(pwd):/local nirname/documentary init .
-  ```
+    docker run --rm -it -v $(pwd):/local nirname/documentary init .
+    ```
 
-  You can also configure source (src) and destination (docs) folder names, as well as your domain (CNAME).
+    You can also configure source (src) and destination (docs) folder names, as well as your domain (CNAME).
 
-  Full command example:
+    Full command example:
 
-  ```sh
-  docker run --rm -it -v $(pwd):/local nirname/documentary init project src docs my.website
-  ```
+    ```bash
+    docker run --rm -it -v $(pwd):/local nirname/documentary init project src docs my.website
+    ```
 
-  Your configuration will be saved in `nenv`.
+    Your configuration will be saved in `nenv`.
 
 3. **Build your project**
 
-  Put some markdown in your source folder and:
+    Put some markdown in your source folder and:
 
-  ```sh
-  ./ndoc build
-  ```
+    ```bash
+    ./ndoc build
+    ```
 
 <!-- Open `docs/sample.html` -->
 
@@ -55,7 +55,7 @@ As simple as that.
 
 ## How to use it
 
-To create embedded graph add class to a code block:
+To create an embedded graph add class to a code block:
 
 ````markdown
 # Sample
@@ -69,11 +69,16 @@ digraph {
 
 To create standalone image add file (with dot extension) to source folder with proper extension
 
-```sh
+```bash
 touch src/mygraph.dot
 ```
+with this content inside
 
-and
+```dot
+digraph {
+    A->B
+}
+```
 
 Supported classes (they are extensions also) are:
 
