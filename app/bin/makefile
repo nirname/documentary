@@ -53,25 +53,25 @@ MD_SOURCES = $(shell find $(SOURCE_DIR) -name '*.md')
 MD_TARGETS = $(MD_SOURCES:$(SOURCE_DIR)/%.md=$(TARGET_DIR)/%.html)
 
 DOT_SOURCES = $(shell find $(SOURCE_DIR) -name '*.dot')
-DOT_TARGETS = $(DOT_SOURCES:$(SOURCE_DIR)/%.dot=$(TARGET_DIR)/%.svg)
+DOT_TARGETS = $(DOT_SOURCES:$(SOURCE_DIR)/%.dot=$(TARGET_DIR)/%.dot.svg)
 
 NEATO_SOURCES = $(shell find $(SOURCE_DIR) -name '*.neato')
-NEATO_TARGETS = $(NEATO_SOURCES:$(SOURCE_DIR)/%.neato=$(TARGET_DIR)/%.svg)
+NEATO_TARGETS = $(NEATO_SOURCES:$(SOURCE_DIR)/%.neato=$(TARGET_DIR)/%.neato.svg)
 
 FDP_SOURCES = $(shell find $(SOURCE_DIR) -name '*.fdp')
-FDP_TARGETS = $(FDP_SOURCES:$(SOURCE_DIR)/%.fdp=$(TARGET_DIR)/%.svg)
+FDP_TARGETS = $(FDP_SOURCES:$(SOURCE_DIR)/%.fdp=$(TARGET_DIR)/%.fdp.svg)
 
 SFDP_SOURCES = $(shell find $(SOURCE_DIR) -name '*.sfdp')
-SFDP_TARGETS = $(SFDP_SOURCES:$(SOURCE_DIR)/%.sfdp=$(TARGET_DIR)/%.svg)
+SFDP_TARGETS = $(SFDP_SOURCES:$(SOURCE_DIR)/%.sfdp=$(TARGET_DIR)/%.sfpd.svg)
 
 TWOPI_SOURCES = $(shell find $(SOURCE_DIR) -name '*.twopi')
-TWOPI_TARGETS = $(TWOPI_SOURCES:$(SOURCE_DIR)/%.twopi=$(TARGET_DIR)/%.svg)
+TWOPI_TARGETS = $(TWOPI_SOURCES:$(SOURCE_DIR)/%.twopi=$(TARGET_DIR)/%.twopi.svg)
 
 CIRCO_SOURCES = $(shell find $(SOURCE_DIR) -name '*.circo')
-CIRCO_TARGETS = $(CIRCO_SOURCES:$(SOURCE_DIR)/%.circo=$(TARGET_DIR)/%.svg)
+CIRCO_TARGETS = $(CIRCO_SOURCES:$(SOURCE_DIR)/%.circo=$(TARGET_DIR)/%.circo.svg)
 
 SEQ_SOURCES = $(shell find $(SOURCE_DIR) -name '*.seq')
-SEQ_TARGETS = $(SEQ_SOURCES:$(SOURCE_DIR)/%.seq=$(TARGET_DIR)/%.svg)
+SEQ_TARGETS = $(SEQ_SOURCES:$(SOURCE_DIR)/%.seqdiag=$(TARGET_DIR)/%.seqdiag.svg)
 
 all: sources no_jekyll cname permissions
 #reveal.js
@@ -119,31 +119,31 @@ $(MD_TARGETS):$(TARGET_DIR)/%.html: $(SOURCE_DIR)/%.md $(CSS_TARGETS) $(JS_TARGE
 	--to $(TO) $< | sed -f $(PLUGINS)/relext.sed > $@;
 # 	$(foreach var,$(JS_TARGETS), --js `python3 $(PLUGINS)/relpath.py $(var) $(@D)`) \
 
-$(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.dot $(MAKEFILE)
+$(DOT_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/% $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(DOT) $< -o $@
 
-$(NEATO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.neato $(MAKEFILE)
+$(NEATO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/% $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(NEATO) $< -o $@
 
-$(FDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.fdp $(MAKEFILE)
+$(FDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/% $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(FDP) $< -o $@
 
-$(SFDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.sfdp $(MAKEFILE)
+$(SFDP_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/% $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(SFDP) $< -o $@
 
-$(TWOPI_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.twopi $(MAKEFILE)
+$(TWOPI_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/% $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(TWOPI) $< -o $@
 
-$(CIRCO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.circo $(MAKEFILE)
+$(CIRCO_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/% $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(CIRCO) $< -o $@
 
-$(SEQ_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/%.seq $(MAKEFILE)
+$(SEQ_TARGETS):$(TARGET_DIR)/%.svg: $(SOURCE_DIR)/% $(MAKEFILE)
 	mkdir -p $(@D); \
 	$(SEQ) $< -o $@
 

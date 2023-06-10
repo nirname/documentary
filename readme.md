@@ -67,17 +67,16 @@ digraph {
 ```
 ````
 
-To create standalone image add file (with dot extension) to source folder with proper extension
+Regarding standalone images a file with proper extension like `sample.dot` will be converted to `sample.dot.svg`.
 
+Create a graph file:
 ```bash
-touch src/mygraph.dot
+echo "digraph { A->B }" > src/sample.dot
 ```
-with this content inside
 
-```dot
-digraph {
-    A->B
-}
+and add it to your markdown
+```
+![Sample](sample.dot.svg)
 ```
 
 Supported classes (they are extensions also) are:
@@ -98,10 +97,10 @@ For instance, you can download [Github markdown styles](https://github.com/sindr
 
 Code syntax highlight comes from Pandoc.
 
-## Documentation
+<!-- ## Documentation
 
 Have a look at [documentation](https://nirname.github.io/documentary-docs/)
-to find out what it is capable of.
+to find out what it is capable of. -->
 
 <!-- You may try other [examples](https://nirname.github.io/documentary-docs/#examples) or
 [build reveal.js presentation](https://nirname.github.io/documentary-docs/#reveal.js) as well. -->
