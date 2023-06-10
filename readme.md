@@ -15,9 +15,9 @@ Right now it includes:
 
 ## Getting Started
 
-1. Install Docker
+1. **Install Docker**
 
-2. Create new project or add existing folder
+2. **Create new project or add existing folder**
 
     ```bash
     docker run --rm -it -v $(pwd):/local nirname/documentary init project
@@ -41,7 +41,7 @@ Right now it includes:
 
     Your configuration will be saved in `nenv`.
 
-3. Build your project:
+3. **Build your project**
 
     Put some markdown in your source folder and:
 
